@@ -146,4 +146,4 @@ dmypy.json
 .pyre/
 
 # Datasets
-./data_cifar/
+data_cifar/
