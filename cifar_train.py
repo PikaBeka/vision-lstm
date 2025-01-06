@@ -52,20 +52,20 @@ test_dataloader = DataLoader(test_dataset, batch_size=batch_size)
 
 # create model
 print('-------Creating model----------')
-from vision_lstm.vision_minLSTM import VisionMinLSTMConcat
-from vision_lstm.vision_minLSTM import VisionMinLSTM
+# from vision_lstm.vision_minLSTM import VisionMinLSTMConcat
+# from vision_lstm.vision_minLSTM import VisionMinLSTM
 from vision_lstm import VisionLSTM2
 
 
 
-model = VisionMinLSTMConcat(
-    dim=192,  # latent dimension (192 for ViL-T)
-    depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
-    patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
-    input_shape=(3, 32, 32),  # RGB images with resolution 32x32
-    output_shape=(10,),  # classifier with 10 classes
-    #drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
-).to(device)
+# model = VisionMinLSTMConcat(
+#     dim=192,  # latent dimension (192 for ViL-T)
+#     depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
+#     patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
+#     input_shape=(3, 32, 32),  # RGB images with resolution 32x32
+#     output_shape=(10,),  # classifier with 10 classes
+#     #drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
+# ).to(device)
 
 # model = VisionMinLSTM(
 #     dim=192,  # latent dimension (192 for ViL-T)
@@ -76,14 +76,14 @@ model = VisionMinLSTMConcat(
 #     #drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
 # ).to(device)
 
-# model = VisionLSTM2(
-#     dim=192,  # latent dimension (192 for ViL-T)
-#     depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
-#     patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
-#     input_shape=(3, 32, 32),  # RGB images with resolution 32x32
-#     output_shape=(10,),  # classifier with 10 classes
-#     drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
-# ).to(device)
+model = VisionLSTM2(
+    dim=192,  # latent dimension (192 for ViL-T)
+    depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
+    patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
+    input_shape=(3, 32, 32),  # RGB images with resolution 32x32
+    output_shape=(10,),  # classifier with 10 classes
+    drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
+).to(device)
 
 print(f"parameters: {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M")
 print(model)
