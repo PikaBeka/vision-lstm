@@ -39,7 +39,7 @@ print(f"test_dataset length: {len(test_dataset)}")
 print('-------Setting hyperparameters----------')
 # hyperparameters
 batch_size = 256
-epochs = 200
+epochs = 3
 lr = 1e-3
 weight_decay = 0.05
 
@@ -53,7 +53,7 @@ test_dataloader = DataLoader(test_dataset, batch_size=batch_size)
 # create model
 print('-------Creating model----------')
 # from vision_lstm.vision_minLSTM import VisionMinLSTMConcat
-# from vision_lstm.vision_minLSTM import VisionMinLSTM
+from vision_lstm.vision_minlstm import VisionMinLSTM
 from vision_lstm import VisionLSTM2
 
 
@@ -67,23 +67,22 @@ from vision_lstm import VisionLSTM2
 #     #drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
 # ).to(device)
 
-# model = VisionMinLSTM(
+model = VisionMinLSTM(
+    dim=192,
+    input_shape=(3, 32, 32),
+    depth=3,
+    output_shape=(10,),
+    pooling="bilateral_flatten",
+).to(device)
+
+# model = VisionLSTM2(
 #     dim=192,  # latent dimension (192 for ViL-T)
 #     depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
 #     patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
 #     input_shape=(3, 32, 32),  # RGB images with resolution 32x32
 #     output_shape=(10,),  # classifier with 10 classes
-#     #drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
+#     drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
 # ).to(device)
-
-model = VisionLSTM2(
-    dim=192,  # latent dimension (192 for ViL-T)
-    depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
-    patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
-    input_shape=(3, 32, 32),  # RGB images with resolution 32x32
-    output_shape=(10,),  # classifier with 10 classes
-    drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
-).to(device)
 
 print(f"parameters: {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M")
 print(model)
