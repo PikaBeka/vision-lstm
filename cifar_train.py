@@ -39,7 +39,7 @@ print(f"test_dataset length: {len(test_dataset)}")
 print('-------Setting hyperparameters----------')
 # hyperparameters
 batch_size = 256
-epochs = 3
+epochs = 200
 lr = 1e-3
 weight_decay = 0.05
 
@@ -118,7 +118,7 @@ train_accuracies = []
 test_accuracies = []
 loss = None
 train_accuracy = None
-for _ in range(epochs):
+for e in range(epochs):
     # train for an epoch
     model.train()
     for x, y in train_dataloader:
@@ -138,6 +138,8 @@ for _ in range(epochs):
         # backward pass
         loss.backward()
 
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+
         # update step
         optim.step()
         optim.zero_grad()
@@ -150,6 +152,7 @@ for _ in range(epochs):
             f"train_loss: {loss.item():.4f} "
             f"train_accuracy: {train_accuracy * 100:4.1f}% "
             f"test_accuracy: {test_accuracy * 100:4.1f}%"
+            f"epoch: {e}"
         )
         train_losses.append(loss.item())
         train_accuracies.append(train_accuracy)
