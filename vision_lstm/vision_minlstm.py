@@ -9,6 +9,20 @@ from torch import nn
 
 from .vision_lstm_util import interpolate_sincos, to_ntuple, VitPatchEmbed, VitPosEmbed2d, DropPath, SequenceConv2d
 
+class SequenceTraversal(Enum):
+    ROWWISE_FROM_TOP_LEFT = "rowwise_from_top_left"
+    ROWWISE_FROM_BOT_RIGHT = "rowwise_from_bot_right"
+
+def small_init_(param: torch.Tensor, dim: int) -> torch.Tensor:
+    """
+    Fills the input Tensor with values according to the method described in Transformers without Tears: Improving
+    the Normalization of Self-Attention - Nguyen, T. & Salazar, J. (2019), using a normal distribution.
+    Adopted from https://github.com/EleutherAI/gpt-neox/blob/main/megatron/model/init_functions.py.
+    """
+    std = math.sqrt(2 / (5 * dim))
+    torch.nn.init.normal_(param, mean=0.0, std=std)
+    return param
+
 def parallel_scan_log(log_coeffs, log_values):
     """
     log_coeffs: (batch_size, seq_len, input_size)
@@ -49,19 +63,98 @@ class minLSTMCell(nn.Module):
         # print(f"log_values shape: {log_values.shape}")
         h = parallel_scan_log(log_f, log_values)
         return h
+    
+    def reset_parameters(self):
+        small_init_(self.linear_f.weight, dim=self.hidden_dim)
+        if self.linear_f.bias is not None:
+            nn.init.zeros_(self.linear_f.bias)
+        
+        small_init_(self.linear_i.weight, dim=self.hidden_dim)
+        if self.linear_i.bias is not None:
+            nn.init.zeros_(self.linear_i.bias)
+        
+        small_init_(self.linear_h.weight, dim=self.hidden_dim)
+        if self.linear_h.bias is not None:
+            nn.init.zeros_(self.linear_h.bias)
 
 class minLSTM(nn.Module):
-    def __init__(self, input_dim, hidden_dim):
+    def __init__(self, input_dim, hidden_dim, direction):
         super().__init__()
         self.cell = minLSTMCell(input_dim, hidden_dim)
+        self.direction = direction
 
     def forward(self, x):
+        if self.direction == SequenceTraversal.ROWWISE_FROM_TOP_LEFT:
+            pass
+        elif self.direction == SequenceTraversal.ROWWISE_FROM_BOT_RIGHT:
+            x = x.flip(dims=[1])
+        else:
+            raise NotImplementedError
+
         h = torch.zeros(x.size(0), 1, self.cell.hidden_dim, device=x.device)
         outputs = []
         for t in range(x.size(1)):
             h = self.cell(x[:, t:t+1, :], h)
             outputs.append(h)
+        
+
+        if self.direction == SequenceTraversal.ROWWISE_FROM_TOP_LEFT:
+            pass
+        elif self.direction == SequenceTraversal.ROWWISE_FROM_BOT_RIGHT:
+            x = x.flip(dims=[1])
+        else:
+            raise NotImplementedError
+    
         return torch.cat(outputs, dim=1)  # (batch_size, seq_len, hidden_dim)
+    
+    def reset_parameters(self):
+        self.cell.reset_parameters()
+
+class LayerNorm(nn.Module):
+    """ LayerNorm but with an optional bias. PyTorch doesn't support simply bias=False. """
+
+    def __init__(
+            self,
+            ndim: int = -1,
+            weight: bool = True,
+            bias: bool = False,
+            eps: float = 1e-5,
+            residual_weight: bool = True,
+    ):
+        super().__init__()
+        self.weight = nn.Parameter(torch.zeros(ndim)) if weight else None
+        self.bias = nn.Parameter(torch.zeros(ndim)) if bias else None
+        self.eps = eps
+        self.residual_weight = residual_weight
+        self.ndim = ndim
+        self.reset_parameters()
+
+    @property
+    def weight_proxy(self) -> torch.Tensor:
+        if self.weight is None:
+            return None
+        if self.residual_weight:
+            return 1.0 + self.weight
+        else:
+            return self.weight
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return F.layer_norm(
+            x,
+            normalized_shape=(self.ndim,),
+            weight=self.weight_proxy,
+            bias=self.bias,
+            eps=self.eps,
+        )
+
+    def reset_parameters(self):
+        if self.weight_proxy is not None:
+            if self.residual_weight:
+                nn.init.zeros_(self.weight)
+            else:
+                nn.init.ones_(self.weight)
+        if self.bias is not None:
+            nn.init.zeros_(self.bias)
 
 class minLSTMBlcok(nn.Module):
     def __init__(
@@ -85,14 +178,29 @@ class minLSTMBlcok(nn.Module):
         self.conv_kernel_size = conv_kernel_size
         self.init_weights = init_weights
 
-    def forward(self):
-        pass
+        self.drop_path = DropPath(drop_prob=drop_path)
+        self.norm = LayerNorm(ndim=dim, weight=True, bias=norm_bias)
+        self.layer = minLSTM(dim, dim, direction)
+
+        self.reset_parameters()
+
+    def _forward_path(self, x):
+        x = self.norm(x)
+        x = self.layer(x)
+        return x
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        x = self.drop_path(x, self._forward_path)
+        return x
+
+    def reset_parameters(self):
+        self.layer.reset_parameters()
+        self.norm.reset_parameters()
 
 class minLSTMPair(nn.Module):
     def __init__(
         self,
-        input_dim,
-        hidden_dim,
+        dim,
         drop_path=0.0,
         conv_kind="2d",
         conv_kernel_size=3,
@@ -103,11 +211,35 @@ class minLSTMPair(nn.Module):
         init_weights="original",
     ):
         super().__init__()
-        self.rowwise_from_top_left = ViLBlock()
-        self.rowwise_from_bot_right = ViLBlock()
+        self.rowwise_from_top_left = minLSTMBlcok(
+            dim,
+            direction=SequenceTraversal.ROWWISE_FROM_TOP_LEFT,
+            drop_path=drop_path,
+            conv_kind=conv_kind,
+            conv_kernel_size=conv_kernel_size,
+            proj_bias=True,
+            norm_bias=True,
+            seqlens=None,
+            num_blocks=None,
+            init_weights="original",
+        )
+        self.rowwise_from_bot_right = minLSTMBlcok(
+            dim,
+            direction=SequenceTraversal.ROWWISE_FROM_BOT_RIGHT,
+            drop_path=drop_path,
+            conv_kind=conv_kind,
+            conv_kernel_size=conv_kernel_size,
+            proj_bias=True,
+            norm_bias=True,
+            seqlens=None,
+            num_blocks=None,
+            init_weights="original",
+        )
     
-    def forward(self):
-        pass
+    def forward(self, x):
+        x = self.rowwise_from_top_left(x)
+        x = self.rowwise_from_bot_right(x)
+        return x
 
 class VisionMinLSTM(nn.Module):
     def __init__(
@@ -144,7 +276,7 @@ class VisionMinLSTM(nn.Module):
         self.pos_embed = VitPosEmbed2d(seqlens=self.patch_embed.seqlens, dim=dim)
 
         # Stacked minLSTM layers
-        self.layers = nn.ModuleList([minLSTM(dim, dim) for _ in range(depth)])
+        self.layers = nn.ModuleList([minLSTMPair(dim) for _ in range(depth)])
 
         # Normalization
         self.norm = nn.LayerNorm(dim)
