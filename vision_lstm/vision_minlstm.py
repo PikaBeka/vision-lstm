@@ -63,6 +63,52 @@ class minLSTM(nn.Module):
             outputs.append(h)
         return torch.cat(outputs, dim=1)  # (batch_size, seq_len, hidden_dim)
 
+class minLSTMBlcok(nn.Module):
+    def __init__(
+        self,
+        dim,
+        direction,
+        drop_path=0.0,
+        conv_kind="2d",
+        conv_kernel_size=3,
+        proj_bias=True,
+        norm_bias=True,
+        seqlens=None,
+        num_blocks=None,
+        init_weights="original",
+    ):
+        super().__init__()
+        self.dim = dim
+        self.direction = direction
+        self.drop_path = drop_path
+        self.conv_kind = conv_kind
+        self.conv_kernel_size = conv_kernel_size
+        self.init_weights = init_weights
+
+    def forward(self):
+        pass
+
+class minLSTMPair(nn.Module):
+    def __init__(
+        self,
+        input_dim,
+        hidden_dim,
+        drop_path=0.0,
+        conv_kind="2d",
+        conv_kernel_size=3,
+        proj_bias=True,
+        norm_bias=True,
+        seqlens=None,
+        num_blocks=None,
+        init_weights="original",
+    ):
+        super().__init__()
+        self.rowwise_from_top_left = ViLBlock()
+        self.rowwise_from_bot_right = ViLBlock()
+    
+    def forward(self):
+        pass
+
 class VisionMinLSTM(nn.Module):
     def __init__(
         self,
@@ -97,9 +143,6 @@ class VisionMinLSTM(nn.Module):
         # Positional embedding
         self.pos_embed = VitPosEmbed2d(seqlens=self.patch_embed.seqlens, dim=dim)
 
-        # Convolutional preprocessor
-        self.conv = nn.Conv2d(input_shape[0], dim, kernel_size=conv_kernel_size, padding=1)
-
         # Stacked minLSTM layers
         self.layers = nn.ModuleList([minLSTM(dim, dim) for _ in range(depth)])
 
@@ -127,7 +170,7 @@ class VisionMinLSTM(nn.Module):
         # flatten to 1d
         x = einops.rearrange(x, "b ... d -> b (...) d")
 
-        # Process through minLSTM layers
+        # Process through minLSTM layersse
         for layer in self.layers:
             # print("The layer is: ", layer)
             x_residual = x
