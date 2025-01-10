@@ -70,7 +70,7 @@ from vision_lstm import VisionLSTM2
 model = VisionMinLSTM(
     dim=192,
     input_shape=(3, 32, 32),
-    depth=3,
+    depth=12,
     output_shape=(10,),
     pooling="bilateral_flatten",
 ).to(device)
@@ -138,7 +138,7 @@ for e in range(epochs):
         # backward pass
         loss.backward()
 
-        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+        # torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 
         # update step
         optim.step()
