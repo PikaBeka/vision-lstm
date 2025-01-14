@@ -39,7 +39,7 @@ print(f"test_dataset length: {len(test_dataset)}")
 print('-------Setting hyperparameters----------')
 # hyperparameters
 batch_size = 256
-epochs = 200
+epochs = 1
 lr = 1e-3
 weight_decay = 0.05
 
@@ -73,6 +73,8 @@ model = VisionMinLSTM(
     depth=12,
     output_shape=(10,),
     pooling="bilateral_flatten",
+    patch_size=4,
+    drop_path_rate=0.0,
 ).to(device)
 
 # model = VisionLSTM2(
@@ -132,6 +134,11 @@ for e in range(epochs):
 
         # forward pass (this tutorial doesnt use mixed precision because T4 cards dont support bfloat16)
         # we recommend bfloat16 mixed precision training
+
+        # print(f"Input x - min: {x.min().item()}, max: {x.max().item()}, mean: {x.mean().item()}")
+        # if torch.isnan(x).any():
+        #     print("NaN detected in input data!")
+
         y_hat = model(x)
         loss = F.cross_entropy(y_hat, y)
 
