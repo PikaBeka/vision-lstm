@@ -101,7 +101,6 @@ class minLSTMCell(nn.Module):
     def forward(self, x_t, pre_h = None):
         """
         x_t: (batch_size, sequence_length, input_size)
-        pre_h: (batch_size, 1, hidden_size)
         """
         B, S, _ = x_t.shape
         f_gate, i_gate, hidden = self.to_hidden_and_gates(x_t).chunk(3, dim=-1)
@@ -121,7 +120,6 @@ class minLSTMCell(nn.Module):
         
         h_t = parallel_scan_log(log_coeffs, log_values)
         out = h_t[:, -S:]
-        next_prev_hidden = out[:, -1:] if S > 1 else out
 
         return out
     

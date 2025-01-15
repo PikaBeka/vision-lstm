@@ -39,7 +39,7 @@ print(f"test_dataset length: {len(test_dataset)}")
 print('-------Setting hyperparameters----------')
 # hyperparameters
 batch_size = 256
-epochs = 1
+epochs = 200
 lr = 1e-3
 weight_decay = 0.05
 
