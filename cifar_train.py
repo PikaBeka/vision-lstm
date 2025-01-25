@@ -9,8 +9,8 @@ import torch.nn.functional as F
 from torchvision.datasets import CIFAR10
 from torchvision.transforms import ToTensor
 import sys
-
-
+import torch.profiler
+from fvcore.nn import FlopCountAnalysis, parameter_count_table
 
 #Device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -90,8 +90,14 @@ print(f"parameters: {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M")
 print(model)
 #model = torch.compile(model) #This makes training faster
 
+input_tensor = torch.randn(1, 3, 32, 32)  # Batch size 1, 3 channels, 32x32 input
+input_tensor = input_tensor.to(device)
+
+flops = FlopCountAnalysis(model, input_tensor)
+print(f"FLOPS: {flops.total()}")
+
 # Stop execution for debugging
-# sys.exit("Debug: Stopping after printing the model.")
+sys.exit("Debug: Stopping after printing the model.")
 
 print('-------Initializing optimizer----------')
 # initialize optimizer and learning rate schedule (linear warmup for first 10% -> linear decay)

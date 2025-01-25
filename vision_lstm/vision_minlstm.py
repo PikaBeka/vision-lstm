@@ -222,8 +222,6 @@ class minLSTM(nn.Module):
 
         self.cell = minLSTMCell(inner_dim, inner_dim)
 
-        self.norm = LayerNorm(dim, bias=norm_bias, eps=1e-6)
-
         self.proj_down = nn.Linear(
             in_features=inner_dim,
             out_features=dim,
