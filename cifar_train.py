@@ -67,26 +67,56 @@ from vision_lstm import VisionLSTM2
 #     #drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
 # ).to(device)
 
-model = VisionMinLSTM(
-    dim=192,
-    input_shape=(3, 32, 32),
-    depth=12,
-    output_shape=(10,),
-    pooling="bilateral_flatten",
-    patch_size=4,
-    drop_path_rate=0.0,
-).to(device)
-
-# model = VisionLSTM2(
-#     dim=192,  # latent dimension (192 for ViL-T)
-#     depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
-#     patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
-#     input_shape=(3, 32, 32),  # RGB images with resolution 32x32
-#     output_shape=(10,),  # classifier with 10 classes
-#     drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
+# model = VisionMinLSTM(
+#     dim=192,
+#     input_shape=(3, 32, 32),
+#     depth=12,
+#     output_shape=(10,),
+#     pooling="bilateral_flatten",
+#     patch_size=4,
+#     drop_path_rate=0.0,
 # ).to(device)
 
+model = VisionLSTM2(
+    dim=192,  # latent dimension (192 for ViL-T)
+    depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
+    patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
+    input_shape=(3, 32, 32),  # RGB images with resolution 32x32
+    output_shape=(10,),  # classifier with 10 classes
+    drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
+).to(device)
+
 print(f"parameters: {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M")
+
+def count_parameters_hierarchically(module, indent=0):
+    total_params = 0
+    layer_info = []
+
+    for name, child in module.named_children():
+        # Recursively count parameters in child modules
+        num_params, child_info = count_parameters_hierarchically(child, indent + 2)
+        total_params += num_params
+        layer_info.append((name, num_params, child_info))
+
+    # Count parameters in the current module (not its children)
+    module_params = sum(p.numel() for p in module.parameters(recurse=False) if p.requires_grad)
+    total_params += module_params
+
+    return total_params, layer_info
+
+# Function to pretty-print the hierarchy
+def print_hierarchical_params(info, indent=0):
+    for name, num_params, child_info in info:
+        print(f"{' ' * indent}{name}: {num_params} parameters")
+        print_hierarchical_params(child_info, indent + 2)
+
+# Get hierarchical parameter info
+total_params, hierarchy_info = count_parameters_hierarchically(model)
+
+# Print the hierarchy
+print(f"Total Parameters: {total_params}")
+print_hierarchical_params(hierarchy_info)
+
 print(model)
 #model = torch.compile(model) #This makes training faster
 

@@ -96,14 +96,19 @@ class minLSTMCell(nn.Module):
         self.input_dim = input_dim
         self.hidden_dim = hidden_dim
         
-        self.to_hidden_and_gates = nn.Linear(input_dim, hidden_dim * 3, bias=False)
-    
+        self.linear_i = nn.Linear(input_dim, hidden_dim, bias=False)
+        self.linear_f = nn.Linear(input_dim, hidden_dim, bias=False)
+        self.linear_h = nn.Linear(input_dim, hidden_dim, bias=False)
+
     def forward(self, x_t, pre_h = None):
         """
         x_t: (batch_size, sequence_length, input_size)
         """
         B, S, _ = x_t.shape
-        f_gate, i_gate, hidden = self.to_hidden_and_gates(x_t).chunk(3, dim=-1)
+
+        f_gate = self.linear_f(x_t)
+        i_gate = self.linear_i(x_t)
+        hidden = self.linear_h(x_t)
 
         diff = F.softplus(-f_gate) - F.softplus(-i_gate)
         log_f = -F.softplus(diff)
@@ -124,7 +129,9 @@ class minLSTMCell(nn.Module):
         return out
     
     def reset_parameters(self):
-        small_init_(self.to_hidden_and_gates.weight, dim=self.hidden_dim * 3)
+        small_init_(self.linear_f.weight, dim=self.hidden_dim)
+        small_init_(self.linear_i.weight, dim=self.hidden_dim)
+        small_init_(self.linear_h.weight, dim=self.hidden_dim)
 
 class LayerNorm(nn.Module):
     """ LayerNorm but with an optional bias. PyTorch doesn't support simply bias=False. """
