@@ -10,8 +10,9 @@ from torchvision.datasets import CIFAR10
 from torchvision.transforms import ToTensor
 import sys
 import torch.profiler
-from fvcore.nn import FlopCountAnalysis, parameter_count_table
+# from fvcore.nn import FlopCountAnalysis, parameter_count_table
 import time
+from ptflops import get_model_complexity_info
 
 #Device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -57,15 +58,27 @@ print('-------Creating model----------')
 from vision_lstm.vision_minlstm import VisionMinLSTM
 from vision_lstm import VisionLSTM2
 
-model = VisionMinLSTM(
-    dim=192,
-    input_shape=(3, 32, 32),
-    depth=12,
-    output_shape=(10,),
-    pooling="bilateral_flatten",
-    patch_size=4,
-    drop_path_rate=0.0,
+# model = VisionMinLSTM(
+#     dim=192,
+#     input_shape=(3, 32, 32),
+#     depth=12,
+#     output_shape=(10,),
+#     pooling="bilateral_flatten",
+#     patch_size=4,
+#     drop_path_rate=0.0,
+# ).to(device)
+
+model = VisionLSTM2(
+    dim=192,  # latent dimension (192 for ViL-T)
+    depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
+    patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
+    input_shape=(3, 32, 32),  # RGB images with resolution 32x32
+    output_shape=(10,),  # classifier with 10 classes
+    drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
 ).to(device)
+
+macs, params = get_model_complexity_info(model, (3, 224, 224), as_strings=True, print_per_layer_stat=True)
+print(f"FLOPs: {macs}, Parameters: {params}")
 
 optim = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
 total_updates = len(train_dataloader) * epochs
@@ -98,8 +111,8 @@ for e in range(10):
         y = y.to(device)
 
         # schedule learning rate
-        for param_group in optim.param_groups:
-            param_group["lr"] = lrs[update]
+        # for param_group in optim.param_groups:
+        #     param_group["lr"] = lrs[update]
 
         # forward pass (this tutorial doesnt use mixed precision because T4 cards dont support bfloat16)
         # we recommend bfloat16 mixed precision training
@@ -112,5 +125,5 @@ for e in range(10):
         y_hat = model(x)
         end = time.time()
 
-        print(start - time)
-pbar.close()
+        print(end - start)
+# pbar.close()
