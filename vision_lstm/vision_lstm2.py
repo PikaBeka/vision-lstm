@@ -301,22 +301,22 @@ class MatrixLSTMCell(nn.Module):
         self.reset_parameters()
 
     def forward(self, q: torch.Tensor, k: torch.Tensor, v: torch.Tensor) -> torch.Tensor:
-        B, S, _ = q.shape  # (B, S, H)
+        B, S, _ = q.shape  # (B, S, H) (1, 64, 384)
 
         if_gate_input = torch.cat([q, k, v], dim=-1)
-        q = q.view(B, S, self.num_heads, -1)  # (B, S, NH, DH)
-        k = k.view(B, S, self.num_heads, -1)  # (B, S, NH, DH)
-        v = v.view(B, S, self.num_heads, -1)  # (B, S, NH, DH)
+        q = q.view(B, S, self.num_heads, -1)  # (B, S, NH, DH) (1, 64, 4, 96)
+        k = k.view(B, S, self.num_heads, -1)  # (B, S, NH, DH) (1, 64, 4, 96)
+        v = v.view(B, S, self.num_heads, -1)  # (B, S, NH, DH) (1, 64, 4, 96)
 
-        q = q.transpose(1, 2)  # (B, NH, S, DH)
-        k = k.transpose(1, 2)  # (B, NH, S, DH)
-        v = v.transpose(1, 2)  # (B, NH, S, DH)
+        q = q.transpose(1, 2)  # (B, NH, S, DH) (1, 4, 64, 96)
+        k = k.transpose(1, 2)  # (B, NH, S, DH) (1, 4, 64, 96)
+        v = v.transpose(1, 2)  # (B, NH, S, DH) (1, 4, 64, 96)
 
         # compute input and forget gate pre-activations
-        igate_preact = self.igate(if_gate_input)  # (B, S, NH)
-        igate_preact = igate_preact.transpose(-1, -2).unsqueeze(-1)  # (B, NH, S, 1)
-        fgate_preact = self.fgate(if_gate_input)  # (B, S, NH)
-        fgate_preact = fgate_preact.transpose(-1, -2).unsqueeze(-1)  # (B, NH, S, 1)#
+        igate_preact = self.igate(if_gate_input)  # (B, S, NH) (1, 64, 4)
+        igate_preact = igate_preact.transpose(-1, -2).unsqueeze(-1)  # (B, NH, S, 1) (1, 4, 64, 1)
+        fgate_preact = self.fgate(if_gate_input)  # (B, S, NH) (1, 64, 4)
+        fgate_preact = fgate_preact.transpose(-1, -2).unsqueeze(-1)  # (B, NH, S, 1) (1, 4, 64, 1)
 
         # cache causal mask to avoid memory allocation in every iteration
         if S in self.causal_mask_cache:
@@ -332,10 +332,10 @@ class MatrixLSTMCell(nn.Module):
             igate_preact=igate_preact,
             fgate_preact=fgate_preact,
             lower_triangular_matrix=causal_mask,
-        )  # (B, NH, S, DH)
+        )  # (B, NH, S, DH) (1, 4, 64, 96)
 
-        h_state_norm = self.outnorm(h_state)  # (B, NH, S, DH)
-        h_state_norm = h_state_norm.transpose(1, 2).reshape(B, S, -1)  # (B, NH, S, DH) -> (B, S, NH, DH) -> (B, S, H)
+        h_state_norm = self.outnorm(h_state)  # (B, NH, S, DH) (1, 4, 64, 96)
+        h_state_norm = h_state_norm.transpose(1, 2).reshape(B, S, -1)  # (B, NH, S, DH) (1, 4, 64, 96) -> (B, S, NH, DH) (1, 64, 4, 96) -> (B, S, H) (1, 64, 384)
 
         return h_state_norm
 
