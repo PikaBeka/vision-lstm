@@ -96,9 +96,13 @@ class minLSTMCell(nn.Module):
         self.input_dim = input_dim
         self.hidden_dim = hidden_dim
         
-        self.linear_i = nn.Linear(input_dim, hidden_dim, bias=False)
-        self.linear_f = nn.Linear(input_dim, hidden_dim, bias=False)
-        self.linear_h = nn.Linear(input_dim, hidden_dim, bias=False)
+        # self.linear_i = nn.Linear(input_dim, hidden_dim, bias=False)
+        # self.linear_f = nn.Linear(input_dim, hidden_dim, bias=False)
+        # self.linear_h = nn.Linear(input_dim, hidden_dim, bias=False)
+
+        self.linear_i = nn.Conv1d(input_dim, hidden_dim, kernel_size=1, groups=input_dim, bias=False)
+        self.linear_f = nn.Conv1d(input_dim, hidden_dim, kernel_size=1, groups=input_dim, bias=False)
+        self.linear_h = nn.Conv1d(input_dim, hidden_dim, kernel_size=1, groups=input_dim, bias=False)
 
     def forward(self, x_t, pre_h = None):
         """
@@ -106,9 +110,15 @@ class minLSTMCell(nn.Module):
         """
         B, S, _ = x_t.shape
 
+        x_t = einops.rearrange(x_t, "b s d -> b d s")  # Reshape for Conv1d
+
         f_gate = self.linear_f(x_t)
         i_gate = self.linear_i(x_t)
         hidden = self.linear_h(x_t)
+
+        f_gate = einops.rearrange(f_gate, "b d s -> b s d")
+        i_gate = einops.rearrange(i_gate, "b d s -> b s d")
+        hidden = einops.rearrange(hidden, "b d s -> b s d")
 
         diff = F.softplus(-f_gate) - F.softplus(-i_gate)
         log_f = -F.softplus(diff)
@@ -262,6 +272,8 @@ class minLSTM(nn.Module):
         h = self.cell(x_minlstm_conv_act)[:, -1:]
         h = h + (self.learnable_skip * x_minlstm_conv_act)
         h = h * F.silu(z)
+
+        print(h.shape)
 
         x = self.proj_down(h)
 

@@ -11,6 +11,7 @@ from torchvision.transforms import ToTensor
 import sys
 import torch.profiler
 from fvcore.nn import FlopCountAnalysis, parameter_count_table
+from torchinfo import summary
 
 #Device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -56,46 +57,29 @@ print('-------Creating model----------')
 from vision_lstm.vision_minlstm import VisionMinLSTM
 from vision_lstm import VisionLSTM2
 
+model = VisionMinLSTM(
+    dim=192,
+    input_shape=(3, 32, 32),
+    depth=12,
+    output_shape=(10,),
+    pooling="bilateral_flatten",
+    patch_size=4,
+    drop_path_rate=0.0,
+).to(device)
 
-
-# model = VisionMinLSTMConcat(
+# model = VisionLSTM2(
 #     dim=192,  # latent dimension (192 for ViL-T)
-#     depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
+#     depth=1,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
 #     patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
 #     input_shape=(3, 32, 32),  # RGB images with resolution 32x32
 #     output_shape=(10,),  # classifier with 10 classes
-#     #drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
+#     drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
 # ).to(device)
 
-# model = VisionMinLSTM(
-#     dim=192,
-#     input_shape=(3, 32, 32),
-#     depth=12,
-#     output_shape=(10,),
-#     pooling="bilateral_flatten",
-#     patch_size=4,
-#     drop_path_rate=0.0,
-# ).to(device)
-
-model = VisionLSTM2(
-    dim=192,  # latent dimension (192 for ViL-T)
-    depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
-    patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
-    input_shape=(3, 32, 32),  # RGB images with resolution 32x32
-    output_shape=(10,),  # classifier with 10 classes
-    drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
-).to(device)
+summary(model, input_size=(1, 3, 32, 32), depth=6)
 
 print(f"parameters: {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M")
-
-print(model)
 #model = torch.compile(model) #This makes training faster
-
-input_tensor = torch.randn(1, 3, 32, 32)  # Batch size 1, 3 channels, 32x32 input
-input_tensor = input_tensor.to(device)
-
-# flops = FlopCountAnalysis(model, input_tensor)
-# print(f"FLOPS: {flops.total()}")
 
 # Stop execution for debugging
 # sys.exit("Debug: Stopping after printing the model.")
