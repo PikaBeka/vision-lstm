@@ -88,46 +88,17 @@ model = VisionLSTM2(
 
 print(f"parameters: {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M")
 
-def count_parameters_hierarchically(module, indent=0):
-    total_params = 0
-    layer_info = []
-
-    for name, child in module.named_children():
-        # Recursively count parameters in child modules
-        num_params, child_info = count_parameters_hierarchically(child, indent + 2)
-        total_params += num_params
-        layer_info.append((name, num_params, child_info))
-
-    # Count parameters in the current module (not its children)
-    module_params = sum(p.numel() for p in module.parameters(recurse=False) if p.requires_grad)
-    total_params += module_params
-
-    return total_params, layer_info
-
-# Function to pretty-print the hierarchy
-def print_hierarchical_params(info, indent=0):
-    for name, num_params, child_info in info:
-        print(f"{' ' * indent}{name}: {num_params} parameters")
-        print_hierarchical_params(child_info, indent + 2)
-
-# Get hierarchical parameter info
-total_params, hierarchy_info = count_parameters_hierarchically(model)
-
-# Print the hierarchy
-print(f"Total Parameters: {total_params}")
-print_hierarchical_params(hierarchy_info)
-
 print(model)
 #model = torch.compile(model) #This makes training faster
 
 input_tensor = torch.randn(1, 3, 32, 32)  # Batch size 1, 3 channels, 32x32 input
 input_tensor = input_tensor.to(device)
 
-flops = FlopCountAnalysis(model, input_tensor)
-print(f"FLOPS: {flops.total()}")
+# flops = FlopCountAnalysis(model, input_tensor)
+# print(f"FLOPS: {flops.total()}")
 
 # Stop execution for debugging
-sys.exit("Debug: Stopping after printing the model.")
+# sys.exit("Debug: Stopping after printing the model.")
 
 print('-------Initializing optimizer----------')
 # initialize optimizer and learning rate schedule (linear warmup for first 10% -> linear decay)
@@ -200,20 +171,20 @@ for e in range(epochs):
         train_losses.append(loss.item())
         train_accuracies.append(train_accuracy)
 
-    # evaluate
-    num_correct = 0
-    model.eval()
-    for x, y in test_dataloader:
-        x = x.to(device)
-        y = y.to(device)
-        with torch.no_grad():
-            y_hat = model(x)
-            num_correct += (y_hat.argmax(dim=1) == y).sum().item()
-    test_accuracy = num_correct / len(test_dataset)
-    test_accuracies.append(test_accuracy)
-    pbar.set_description(
-        f"train_loss: {loss.item():.4f} "
-        f"train_accuracy: {train_accuracy * 100:4.1f}% "
-        f"test_accuracy: {test_accuracy * 100:4.1f}%"
-    )
+# evaluate
+num_correct = 0
+model.eval()
+for x, y in test_dataloader:
+    x = x.to(device)
+    y = y.to(device)
+    with torch.no_grad():
+        y_hat = model(x)
+        num_correct += (y_hat.argmax(dim=1) == y).sum().item()
+test_accuracy = num_correct / len(test_dataset)
+test_accuracies.append(test_accuracy)
+pbar.set_description(
+    f"train_loss: {loss.item():.4f} "
+    f"train_accuracy: {train_accuracy * 100:4.1f}% "
+    f"test_accuracy: {test_accuracy * 100:4.1f}%"
+)
 pbar.close()
