@@ -273,7 +273,7 @@ class minLSTM(nn.Module):
         h = h + (self.learnable_skip * x_minlstm_conv_act)
         h = h * F.silu(z)
 
-        print(h.shape)
+        # print(h.shape)
 
         x = self.proj_down(h)
 

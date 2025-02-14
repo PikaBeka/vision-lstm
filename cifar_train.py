@@ -12,6 +12,7 @@ import sys
 import torch.profiler
 from fvcore.nn import FlopCountAnalysis, parameter_count_table
 from torchinfo import summary
+from ptflops import get_model_complexity_info
 
 #Device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -57,32 +58,34 @@ print('-------Creating model----------')
 from vision_lstm.vision_minlstm import VisionMinLSTM
 from vision_lstm import VisionLSTM2
 
-model = VisionMinLSTM(
-    dim=192,
-    input_shape=(3, 32, 32),
-    depth=12,
-    output_shape=(10,),
-    pooling="bilateral_flatten",
-    patch_size=4,
-    drop_path_rate=0.0,
-).to(device)
-
-# model = VisionLSTM2(
-#     dim=192,  # latent dimension (192 for ViL-T)
-#     depth=1,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
-#     patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
-#     input_shape=(3, 32, 32),  # RGB images with resolution 32x32
-#     output_shape=(10,),  # classifier with 10 classes
-#     drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
+# model = VisionMinLSTM(
+#     dim=192,
+#     input_shape=(3, 32, 32),
+#     depth=12,
+#     output_shape=(10,),
+#     pooling="bilateral_flatten",
+#     patch_size=4,
+#     drop_path_rate=0.0,
 # ).to(device)
 
-summary(model, input_size=(1, 3, 32, 32), depth=6)
+model = VisionLSTM2(
+    dim=192,  # latent dimension (192 for ViL-T)
+    depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
+    patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
+    input_shape=(3, 32, 32),  # RGB images with resolution 32x32
+    output_shape=(10,),  # classifier with 10 classes
+    drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
+).to(device)
+
+# summary(model, input_size=(1, 3, 32, 32), depth=6)
+macs, params = get_model_complexity_info(model, (3, 32, 32), as_strings=True, print_per_layer_stat=False)
+print(macs, params)
 
 print(f"parameters: {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M")
 #model = torch.compile(model) #This makes training faster
 
 # Stop execution for debugging
-# sys.exit("Debug: Stopping after printing the model.")
+sys.exit("Debug: Stopping after printing the model.")
 
 print('-------Initializing optimizer----------')
 # initialize optimizer and learning rate schedule (linear warmup for first 10% -> linear decay)
