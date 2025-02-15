@@ -58,27 +58,24 @@ print('-------Creating model----------')
 from vision_lstm.vision_minlstm import VisionMinLSTM
 from vision_lstm import VisionLSTM2
 
-# model = VisionMinLSTM(
-#     dim=192,
-#     input_shape=(3, 32, 32),
-#     depth=12,
-#     output_shape=(10,),
-#     pooling="bilateral_flatten",
-#     patch_size=4,
-#     drop_path_rate=0.0,
-# ).to(device)
-
-model = VisionLSTM2(
-    dim=192,  # latent dimension (192 for ViL-T)
-    depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
-    patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
-    input_shape=(3, 32, 32),  # RGB images with resolution 32x32
-    output_shape=(10,),  # classifier with 10 classes
-    drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
+model = VisionMinLSTM(
+    dim=192,
+    input_shape=(3, 32, 32),
+    depth=12,
+    output_shape=(10,),
+    pooling="bilateral_flatten",
+    patch_size=4,
+    drop_path_rate=0.0,
 ).to(device)
 
-macs, params = get_model_complexity_info(model, (3, 224, 224), as_strings=True, print_per_layer_stat=True)
-print(f"FLOPs: {macs}, Parameters: {params}")
+# model = VisionLSTM2(
+#     dim=192,  # latent dimension (192 for ViL-T)
+#     depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
+#     patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
+#     input_shape=(3, 32, 32),  # RGB images with resolution 32x32
+#     output_shape=(10,),  # classifier with 10 classes
+#     drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
+# ).to(device)
 
 optim = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
 total_updates = len(train_dataloader) * epochs
@@ -92,38 +89,16 @@ lrs = torch.concat(
     ],
 )
 
-# update = 0
-# pbar = tqdm(total=total_updates)
-# pbar.update(0)
-# pbar.set_description("train_loss: ????? train_accuracy: ????% test_accuracy: ????%")
-# test_accuracy = 0.0
-# train_losses = []
-# train_accuracies = []
-# test_accuracies = []
-# loss = None
-# train_accuracy = None
-for e in range(10):
-    # train for an epoch
-    model.train()
-    for x, y in train_dataloader:
-        # prepare forward pass
-        x = x.to(device)
-        y = y.to(device)
+total_time = 0
 
-        # schedule learning rate
-        # for param_group in optim.param_groups:
-        #     param_group["lr"] = lrs[update]
-
-        # forward pass (this tutorial doesnt use mixed precision because T4 cards dont support bfloat16)
-        # we recommend bfloat16 mixed precision training
-
-        # print(f"Input x - min: {x.min().item()}, max: {x.max().item()}, mean: {x.mean().item()}")
-        # if torch.isnan(x).any():
-        #     print("NaN detected in input data!")
-
+model.eval()
+for x, y in test_dataloader:
+    x = x.to(device)
+    y = y.to(device)
+    with torch.no_grad():
         start = time.time()
         y_hat = model(x)
         end = time.time()
+        total_time += end - start
 
-        print(end - start)
-# pbar.close()
+print(total_time)
