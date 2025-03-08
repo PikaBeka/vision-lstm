@@ -9,7 +9,7 @@ vars:
 
 datasets:
   train:
-    kind: imagenet1k
+    kind: cifar10 # change to imagenet1k
     split: train
     sample_wrappers:
       - kind: x_transform_wrapper
@@ -30,7 +30,7 @@ datasets:
             contrast: 0.3
             saturation: 0.3
             hue: 0.0
-          - kind: imagenet1k_norm
+          - kind: cifar10_norm
       - kind: one_hot_wrapper
     collators:
       - kind: mix_collator
@@ -42,7 +42,7 @@ datasets:
         lamb_mode: batch
         shuffle_mode: flip
   val:
-    kind: imagenet1k
+    kind: cifar10
     split: val
     sample_wrappers:
       - kind: x_transform_wrapper
@@ -52,7 +52,7 @@ datasets:
             interpolation: bicubic
           - kind: center_crop
             size: ${vars.resolution}
-          - kind: imagenet1k_norm
+          - kind: cifar10_norm
 
 model:
   kind: models.single.vislstm

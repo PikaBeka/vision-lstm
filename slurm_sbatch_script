@@ -10,4 +10,4 @@
 #SBATCH --time=12:00:00 # Specify the time needed for you job
 #SBATCH -q cscc-gpu-qos # To enable the use of up to 8 GPUs
 
-python cifar_train.py # You job script or command
+python src/main_train.py # You job script or command

@@ -2,7 +2,7 @@
 # Copyright (c) NXAI GmbH and its affiliates 2024
 # Maximilian Beck
 import math
-
+import torch.nn.functional as F
 import torch
 
 
@@ -88,3 +88,19 @@ def parallel_stabilized_simple(
     h_tilde_state = C_matrix_normalized @ values  # (B, NH, S, DH)
 
     return h_tilde_state
+
+def parallel_scan_log(log_coeffs, log_values):
+    """
+    log_coeffs: (batch_size, seq_len, input_size)
+    log_values: (batch_size, seq_len + 1, input_size)
+    """
+    eps = 1e-8
+    a_star = torch.cumsum(log_coeffs + eps, dim=1)
+    # print(f"a_star shape: {a_star.shape}")
+    log_h0_plus_b_star = torch.logcumsumexp(log_values - a_star, dim=1)
+    log_h = a_star + log_h0_plus_b_star
+    return torch.exp(log_h)
+
+def log_g(x):
+    eps = 1e-8
+    return torch.where(x >= 0, (F.relu(x)+0.5 + eps).log(), -F.softplus(-x) + eps)

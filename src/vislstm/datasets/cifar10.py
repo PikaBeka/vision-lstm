@@ -17,7 +17,7 @@ class Cifar10(Dataset):
         if local_root is not None:
             self.logger.info(f"cifar10 is an in-memory dataset -> local_root is ignored")
         self.global_root = global_root
-        assert split in ["train", "test"]
+        assert split in ["train", "val"] # was test
         self.split = split
 
         from torchvision.datasets import CIFAR10
