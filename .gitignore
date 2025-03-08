@@ -16,7 +16,7 @@ wandb_config.yaml
 wandb_configs/
 
 hyperparams*.yaml
-static_config.yaml
+# static_config.yaml
 scratchpad*.py
 
 
