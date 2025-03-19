@@ -5,14 +5,14 @@
 
 ```
 # train on a single GPU with index 0
-python main_train.py --devices 0 --hp vislstm/yamls/vil/pretrain/lstm_6M16_e400_bialter_bilatavg_lr1e3_res224.yaml
+python main_train.py --devices 0 --hp vislstm/yamls/pretrain/vil/lstm_6M16_e400_bialter_bilatavg_lr1e3_res224.yaml
 # train on 4 GPUs
-python main_train.py --devices 0,1,2,3 --hp vislstm/yamls/vil/pretrain/lstm_6M16_e400_bialter_bilatavg_lr1e3_res224.yaml
+python main_train.py --devices 0,1,2,3 --hp vislstm/yamls/pretrain/vil/lstm_6M16_e400_bialter_bilatavg_lr1e3_res224.yaml
 # train on 4 specific GPUs
-python main_train.py --devices 0,2,5,6 --hp vislstm/yamls/vil/pretrain/lstm_6M16_e400_bialter_bilatavg_lr1e3_res224.yaml
+python main_train.py --devices 0,2,5,6 --hp vislstm/yamls/pretrain/vil/lstm_6M16_e400_bialter_bilatavg_lr1e3_res224.yaml
 
 # debug run: batchsize, dataset size and number of epochs will be heavily reduced
-python main_train.py --testrun --devices 0 --hp vislstm/yamls/vil/pretrain/lstm_6M16_e400_bialter_bilatavg_lr1e3_res224.yaml
+python main_train.py --testrun --devices 0 --hp vislstm/yamls/pretrain/vil/lstm_6M16_e400_bialter_bilatavg_lr1e3_res224.yaml
 ```
 
 
@@ -39,9 +39,9 @@ your job (via `--time`), the number of nodes (via `--nodes`, defaults to 1) and 
 
 ```
 # start a run on a single node
-python main_sbatch.py --time 24:00:00 --hp vislstm/yamls/vil/pretrain/lstm_6M16_e400_bialter_bilatavg_lr1e3_res224.yaml
+python main_sbatch.py --time 24:00:00 --hp vislstm/yamls/pretrain/vil/lstm_6M16_e400_bialter_bilatavg_lr1e3_res224.yaml
 # train on 4 nodes
-python main_sbatch.py --time 24:00:00 --nodes 4 --hp vislstm/yamls/vil/pretrain/lstm_6M16_e400_bialter_bilatavg_lr1e3_res224.yaml
+python main_sbatch.py --time 24:00:00 --nodes 4 --hp vislstm/yamls/pretrain/vil/lstm_6M16_e400_bialter_bilatavg_lr1e3_res224.yaml
 ```
 
 
