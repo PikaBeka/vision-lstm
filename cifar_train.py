@@ -3,7 +3,7 @@ import torchvision
 import torchvision.transforms as transforms
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Subset
 from tqdm.auto import tqdm
 import torch.nn.functional as F
 from torchvision.datasets import CIFAR10
@@ -13,6 +13,20 @@ import torch.profiler
 from fvcore.nn import FlopCountAnalysis, parameter_count_table
 from torchinfo import summary
 from ptflops import get_model_complexity_info
+import random
+import numpy as np
+from sklearn.metrics import precision_recall_fscore_support, classification_report
+import time
+
+
+# We are going to use two seeds 42 and 52. 
+SEED = 42
+random.seed(SEED)
+np.random.seed(SEED)
+torch.manual_seed(SEED)
+torch.cuda.manual_seed_all(SEED)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
 
 #Device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -37,6 +51,10 @@ train_dataset = CIFAR10(root="./data_cifar", train=True, download=True, transfor
 test_dataset = CIFAR10(root="./data_cifar", train=False, download=False, transform=test_transforms)
 print(f"train_dataset length: {len(train_dataset)}")
 print(f"test_dataset length: {len(test_dataset)}")
+
+#for testing purpose please ignore 
+# train_dataset = Subset(train_dataset, range(150))
+# test_dataset  = Subset(test_dataset, range(150))
 
 print('-------Setting hyperparameters----------')
 # hyperparameters
@@ -85,7 +103,7 @@ print(f"parameters: {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M")
 #model = torch.compile(model) #This makes training faster
 
 # Stop execution for debugging
-sys.exit("Debug: Stopping after printing the model.")
+# sys.exit("Debug: Stopping after printing the model.")
 
 print('-------Initializing optimizer----------')
 # initialize optimizer and learning rate schedule (linear warmup for first 10% -> linear decay)
@@ -114,6 +132,8 @@ train_accuracies = []
 test_accuracies = []
 loss = None
 train_accuracy = None
+train_start = time.time()
+
 for e in range(epochs):
     # train for an epoch
     model.train()
@@ -158,20 +178,43 @@ for e in range(epochs):
         train_losses.append(loss.item())
         train_accuracies.append(train_accuracy)
 
-# evaluate
-num_correct = 0
+# training time calculation
+train_total = time.time() - train_start
+print(f"Total training time: {train_total:.2f}s ({train_total/epochs:.2f}s/epoch)")
+
+
+
+# calulate inference time
+eval_start = time.time()
+
+# evaluate + precision/recall/F1
+y_true, y_pred = [], []
 model.eval()
-for x, y in test_dataloader:
-    x = x.to(device)
-    y = y.to(device)
-    with torch.no_grad():
-        y_hat = model(x)
-        num_correct += (y_hat.argmax(dim=1) == y).sum().item()
-test_accuracy = num_correct / len(test_dataset)
+
+with torch.no_grad():
+    for x, y in test_dataloader:
+        x, y = x.to(device), y.to(device)
+        logits = model(x)
+        preds = logits.argmax(dim=1)
+        y_true.extend(y.cpu().tolist())
+        y_pred.extend(preds.cpu().tolist())
+
+# end of inference time calculation
+eval_total = time.time() - eval_start
+throughput = len(test_dataset) / eval_total
+print(f"Inference time: {eval_total:.2f}s — {throughput:.1f} images/sec")
+
+test_accuracy = sum(p == t for p, t in zip(y_pred, y_true)) / len(y_true)
 test_accuracies.append(test_accuracy)
+
 pbar.set_description(
     f"train_loss: {loss.item():.4f} "
     f"train_accuracy: {train_accuracy * 100:4.1f}% "
     f"test_accuracy: {test_accuracy * 100:4.1f}%"
 )
 pbar.close()
+
+# Compute metrics
+precision, recall, f1, _ = precision_recall_fscore_support(y_true, y_pred, average="macro")
+print(f"\nPrecision: {precision:.4f}  Recall: {recall:.4f}  F1‑score: {f1:.4f}")
+print("\nClassification report:\n", classification_report(y_true, y_pred, digits=4))
