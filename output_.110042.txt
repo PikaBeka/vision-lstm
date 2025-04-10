@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/main_sbatch.py", line 10, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'

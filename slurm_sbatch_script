@@ -10,4 +10,4 @@
 #SBATCH --time=12:00:00 # Specify the time needed for you job
 #SBATCH -q cscc-gpu-qos # To enable the use of up to 8 GPUs
 
-python src/main_sbatch.py --time 12:00:00 --hp src/vislstm/yamls/pretrain/vil/lstm_6M16_e400_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml # You job script or command
+python src/main_sbatch.py --time 24:00:00 --nodes 4 --hp src/vislstm/yamls/pretrain/vil/lstm_6M16_e800_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml # You job script or command

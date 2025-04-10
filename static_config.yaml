@@ -18,7 +18,7 @@ global_dataset_paths:
 # [OPTIONAL] the account name is only used to describe from which account the run was started from
 #   this is more descriptive than the hostname as it also specifies who ran it
 #   default: anonymous
-account_name: dev
+account_name: beknur.kalmakhanbet
 
 
 # [OPTIONAL] set environment variables

@@ -1,0 +1,27 @@
+sbatch: error: invalid partition specified: PARTITION
+sbatch: error: Batch job submission failed: Invalid partition name specified
+#!/bin/bash -l
+#SBATCH --account=beknur.kalmakhanbet
+#SBATCH --nodes=1
+#SBATCH --gpus-per-node=8
+#SBATCH --tasks-per-node=8
+#SBATCH --partition=PARTITION
+#SBATCH --time=48:00:00
+#SBATCH --chdir=/home/beknur.kalmakhanbet/vision-lstm
+#SBATCH --output=/home/beknur.kalmakhanbet/vision-lstm/output_.%A.txt
+
+# set the first node name as master address
+master_addr=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n 1)
+export MASTER_ADDR=$master_addr
+export MASTER_PORT=55555
+# add all hostnames info for logging
+export ALL_HOST_NAMES=$(scontrol show hostnames "$SLURM_JOB_NODELIST")
+
+# activate conda env
+conda activate minLSTM
+
+# write python command to log file -> easy check for which run crashed if there is some config issue
+echo python main_train.py --hp src/vislstm/yamls/pretrain/vil/lstm_6M16_e800_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml
+
+# run
+srun --cpus-per-task 16 python main_train.py --hp src/vislstm/yamls/pretrain/vil/lstm_6M16_e800_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml
