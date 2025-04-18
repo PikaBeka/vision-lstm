@@ -117,7 +117,7 @@ def cutmix_data(x, y, alpha=1.0):
     return x, target_a, target_b, lam
 
 train_dataset = CIFAR100(root="./data_cifar", train=True, download=True, transform=train_transforms)
-test_dataset = CIFAR100(root="./data_cifar", train=False, download=False, transform=test_transforms)
+test_dataset = CIFAR100(root="./data_cifar", train=False, download=True, transform=test_transforms)
 print(f"train_dataset length: {len(train_dataset)}")
 print(f"test_dataset length: {len(test_dataset)}")
 
@@ -139,24 +139,24 @@ print('-------Creating model----------')
 from vision_lstm.vision_minlstm import VisionMinLSTM
 from vision_lstm import VisionLSTM2
 
-# model = VisionMinLSTM(
-#     dim=192,
-#     input_shape=(3, 32, 32),
-#     depth=12,
-#     output_shape=(100,),
-#     pooling="bilateral_flatten",
-#     patch_size=4,
-#     drop_path_rate=0.1,
-# ).to(device)
-
-model = VisionLSTM2(
-    dim=192,  
-    depth=12, 
-    patch_size=4,  
-    input_shape=(3, 32, 32),  
-    output_shape=(100,),  
-    drop_path_rate=0.1, 
+model = VisionMinLSTM(
+    dim=192,
+    input_shape=(3, 32, 32),
+    depth=12,
+    output_shape=(100,),
+    pooling="bilateral_flatten",
+    patch_size=4,
+    drop_path_rate=0.1,
 ).to(device)
+
+# model = VisionLSTM2(
+#     dim=192,  
+#     depth=12, 
+#     patch_size=4,  
+#     input_shape=(3, 32, 32),  
+#     output_shape=(100,),  
+#     drop_path_rate=0.1, 
+# ).to(device)
 
 wandb.watch(model, log_freq=100)
 
