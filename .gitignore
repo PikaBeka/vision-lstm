@@ -147,3 +147,9 @@ dmypy.json
 
 # Datasets
 data_cifar/
+
+checkpoints/
+
+wandb/
+
+training_plots/
