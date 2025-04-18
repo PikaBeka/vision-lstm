@@ -4,10 +4,12 @@
 #SBATCH --nodes=1 # Run all processes on a single node
 #SBATCH --ntasks=1 # Run on a single CPU
 #SBATCH --mem=40G # Total RAM to be used
-#SBATCH --cpus-per-task=64 # Number of CPU cores
-#SBATCH --gres=gpu:1 # Number of GPUs (per node)
+#SBATCH --cpus-per-task=2 # Number of CPU cores
+#SBATCH --gres=gpu:2 # Number of GPUs (per node)
 #SBATCH -p cscc-gpu-p # Use the gpu partition
 #SBATCH --time=12:00:00 # Specify the time needed for you job
 #SBATCH -q cscc-gpu-qos # To enable the use of up to 8 GPUs
 
-python src/main_sbatch.py --time 24:00:00 --nodes 4 --hp src/vislstm/yamls/pretrain/vil/lstm_6M16_e800_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml # You job script or command
+# ACTIVATE ENV 
+
+python src/main_sbatch.py --time 24:00:00 --nodes 1 --hp src/vislstm/yamls/pretrain/vil/lstm_6M16_e800_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml # You job script or command
