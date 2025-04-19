@@ -23,7 +23,7 @@ from datetime import datetime
 import wandb  
 
 
-SEED = 42
+SEED = 52
 random.seed(SEED)
 np.random.seed(SEED)
 torch.manual_seed(SEED)
