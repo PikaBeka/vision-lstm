@@ -15,6 +15,18 @@ from torchinfo import summary
 from ptflops import get_model_complexity_info
 import time
 from sklearn.metrics import precision_recall_fscore_support, classification_report
+import random
+import numpy as np
+import timm
+from timm.models.vision_transformer import VisionTransformer
+
+SEED = 42
+random.seed(SEED)
+np.random.seed(SEED)
+torch.manual_seed(SEED)
+torch.cuda.manual_seed_all(SEED)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
 
 #Device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -43,7 +55,7 @@ print(f"test_dataset length: {len(test_dataset)}")
 print('-------Setting hyperparameters----------')
 # hyperparameters
 batch_size = 256
-epochs = 200
+epochs = 1
 lr = 1e-3
 weight_decay = 0.05
 
@@ -59,16 +71,17 @@ print('-------Creating model----------')
 # from vision_lstm.vision_minLSTM import VisionMinLSTMConcat
 from vision_lstm.vision_minlstm import VisionMinLSTM
 from vision_lstm import VisionLSTM2
+from vision_lstm.vision_transformer import VisionTransformer
 
-model = VisionMinLSTM(
-    dim=192,
-    input_shape=(3, 32, 32),
-    depth=12,
-    output_shape=(10,),
-    pooling="bilateral_flatten",
-    patch_size=4,
-    drop_path_rate=0.0,
-).to(device)
+# model = VisionMinLSTM(
+#     dim=192,
+#     input_shape=(3, 32, 32),
+#     depth=12,
+#     output_shape=(10,),
+#     pooling="bilateral_flatten",
+#     patch_size=4,
+#     drop_path_rate=0.0,
+# ).to(device)
 
 # model = VisionLSTM2(
 #     dim=192,  # latent dimension (192 for ViL-T)
@@ -78,6 +91,16 @@ model = VisionMinLSTM(
 #     output_shape=(10,),  # classifier with 10 classes
 #     drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
 # ).to(device)
+
+model = VisionTransformer(
+    dim=192,  # latent dimension (192 for ViL-T)
+    depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
+    num_heads=6,
+    patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
+    input_shape=(3, 32, 32),  # RGB images with resolution 32x32
+    num_outputs=10,  # classifier with 10 classes
+    drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
+).to(device)
 
 # summary(model, input_size=(1, 3, 32, 32), depth=6)
 macs, params = get_model_complexity_info(model, (3, 32, 32), as_strings=True, print_per_layer_stat=False)
