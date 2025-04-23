@@ -12,6 +12,11 @@ Pytorch implementation and trained models of Vision-minLSTM, an adaption of minL
 
 This code-base supports simple usage of Vision-LSTM with an "architecture-only" implementation and also a full training pipeline on the CIFAR10 dataset.
 
+To install all required packaged please run the command :
+```
+pip install -r requirements.txt
+```
+
 The codes used for training, testing and evalutation are:
 1. cifar10_train.py: code used for training visionXLSTM, visionMinLSTM, ViT, ViM on CIFAR10. Uncomment models to select the model you want to train.
 2. cifar_train.py: code used for training on CIFAR100.
