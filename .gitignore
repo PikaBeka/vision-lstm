@@ -1,6 +1,6 @@
 .idea
 *.json
-*.png
+# *.png
 *.jpg
 *.JPEG
 *.mp4
