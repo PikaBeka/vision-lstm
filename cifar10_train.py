@@ -19,6 +19,7 @@ import random
 import numpy as np
 import timm
 from timm.models.vision_transformer import VisionTransformer
+from vision_lstm.vim import VisionMamba
 
 SEED = 42
 random.seed(SEED)
@@ -55,7 +56,7 @@ print(f"test_dataset length: {len(test_dataset)}")
 print('-------Setting hyperparameters----------')
 # hyperparameters
 batch_size = 256
-epochs = 1
+epochs = 200
 lr = 1e-3
 weight_decay = 0.05
 
@@ -92,14 +93,27 @@ from vision_lstm.vision_transformer import VisionTransformer
 #     drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
 # ).to(device)
 
-model = VisionTransformer(
-    dim=192,  # latent dimension (192 for ViL-T)
-    depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
-    num_heads=6,
-    patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
-    input_shape=(3, 32, 32),  # RGB images with resolution 32x32
-    num_outputs=10,  # classifier with 10 classes
-    drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
+# model = VisionTransformer(
+#     dim=192,  # latent dimension (192 for ViL-T)
+#     depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
+#     num_heads=6,
+#     patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
+#     input_shape=(3, 32, 32),  # RGB images with resolution 32x32
+#     num_outputs=10,  # classifier with 10 classes
+#     drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
+# ).to(device)
+
+model = VisionMamba(
+    img_size=32, 
+    patch_size=4, 
+    stride=4,
+    depth=12, 
+    embed_dim=192,
+    d_state=128,
+    channels=3, 
+    num_classes=10,
+    drop_rate=0.,
+    drop_path_rate=0.0,
 ).to(device)
 
 # summary(model, input_size=(1, 3, 32, 32), depth=6)
@@ -157,6 +171,8 @@ for e in range(epochs):
         #     print("NaN detected in input data!")
 
         y_hat = model(x)
+        if y_hat.ndim == 3:
+            y_hat = y_hat.mean(dim=1)
         loss = F.cross_entropy(y_hat, y)
 
         # backward pass

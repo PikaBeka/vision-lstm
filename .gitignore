@@ -153,3 +153,5 @@ checkpoints/
 wandb/
 
 training_plots/
+
+mamba/
