@@ -1,5 +1,5 @@
 # [REQUIRED] path to store logs/checkpoints
-output_path: ~/Documents/save
+output_path: /home/beknur.kalmakhanbet/save
 
 # [OPTIONAL] path where pretrained models are stored
 #model_path: ~/Documents/models
@@ -7,7 +7,7 @@ output_path: ~/Documents/save
 # global datasets
 global_dataset_paths:
   imagenet1k: /l/users/beknur.kalmakhanbet/imagewoof2-320
-  cifar10: ~/Documents/Research/vision-lstm/data_cifar/
+  cifar10: /home/beknur.kalmakhanbet/vision-lstm/data_cifar
   ade20k: ~/Documents/data/ade20k
 
 # [OPTIONAL] path to (fast, possible non-persistent) local storage

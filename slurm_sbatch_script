@@ -5,14 +5,13 @@
 #SBATCH --ntasks=1 # Run on a single CPU
 #SBATCH --mem=40G # Total RAM to be used
 #SBATCH --cpus-per-task=64 # Number of CPU cores
-#SBATCH --gres=gpu:1 # Number of GPUs (per node)
+#SBATCH --gres=gpu:2 # Number of GPUs (per node)
 #SBATCH -p cscc-gpu-p # Use the gpu partition
-#SBATCH --time=12:00:00 # Specify the time needed for you job
+#SBATCH --time=36:00:00 # Specify the time needed for you job
 #SBATCH -q cscc-gpu-qos # To enable the use of up to 8 GPUs
 
-# ACTIVATE ENV 
-# /home/beknur.kalmakhanbet/miniconda3/bin/activate minLSTM
+# ACTIVATE ENV
+source /home/beknur.kalmakhanbet/miniconda3/etc/profile.d/conda.sh
+conda activate minLSTM
 
-# python src/main_sbatch.py --time 24:00:00 --nodes 1 --hp src/vislstm/yamls/pretrain/vil/lstm_6M16_e800_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml # You job script or command
-
-python ./cifar_train.py
+python src/main_sbatch.py --time 24:00:00 --nodes 1 --hp src/vislstm/yamls/pretrain/vil/lstm_6M16_e800_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml # You job script or command

@@ -1,0 +1,1 @@
+python main_train.py --hp src/vislstm/yamls/pretrain/vil/lstm_6M16_e800_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml --devices 0,1 --name minLSTM --num_workers 4
