@@ -6,7 +6,7 @@ output_path: /home/beknur.kalmakhanbet/save
 
 # global datasets
 global_dataset_paths:
-  imagenet1k: /l/users/beknur.kalmakhanbet/imagewoof2-320
+  imagenet1k: /l/users/jose.viera/datasets/ILSVRC/Data/CLS-LOC
   cifar10: /home/beknur.kalmakhanbet/vision-lstm/data_cifar
   ade20k: ~/Documents/data/ade20k
 

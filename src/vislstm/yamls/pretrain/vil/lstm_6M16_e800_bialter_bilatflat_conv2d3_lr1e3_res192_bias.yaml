@@ -4,12 +4,12 @@ stage_name: in1k
 vars:
   lr: 1.0e-3
   max_epochs: 800
-  batch_size: 2048
+  batch_size: 512 # was 2048
   resolution: 192
 
 datasets:
   train:
-    kind: cifar10 # imagenet1k
+    kind: imagenet1k # imagenet1k
     split: train
     sample_wrappers:
       - kind: x_transform_wrapper
@@ -30,7 +30,7 @@ datasets:
             contrast: 0.3
             saturation: 0.3
             hue: 0.0
-          - kind: cifar10_norm
+          - kind: imagenet1k_norm
       - kind: one_hot_wrapper
     collators:
       - kind: mix_collator
@@ -42,7 +42,7 @@ datasets:
         lamb_mode: batch
         shuffle_mode: flip
   val:
-    kind: cifar10
+    kind: imagenet1k
     split: val
     sample_wrappers:
       - kind: x_transform_wrapper
@@ -52,7 +52,7 @@ datasets:
             interpolation: bicubic
           - kind: center_crop
             size: ${vars.resolution}
-          - kind: cifar10_norm
+          - kind: imagenet1k_norm
 
 model:
   kind: models.single.vislstm

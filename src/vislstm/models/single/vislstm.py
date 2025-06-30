@@ -144,7 +144,7 @@ class VisLSTM(SingleModel):
                 head_in_dim = self.cls_tokens.output_shape[0]
             elif self.pooling is not None:
                 pooling_input_shape = (self.patch_embed.num_patches + self.num_cls_tokens, dim)
-                head_in_dim = np.prod(self.pooling.get_output_shape(pooling_input_shape))
+                head_in_dim = int(np.prod(self.pooling.get_output_shape(pooling_input_shape)))
             else:
                 raise NotImplementedError
             self.head = nn.Sequential(

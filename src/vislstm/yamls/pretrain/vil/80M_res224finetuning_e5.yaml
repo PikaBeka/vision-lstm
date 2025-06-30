@@ -1,12 +1,12 @@
 master_factory_base_path: vislstm
-name: dediwjhv--e5res224
+name: ralia1v1--e5res224
 stage_name: in1k
 vars:
   lr: 1.0e-5
   max_epochs: 5
-  batch_size: 1024
+  batch_size: 512 # was 1024
   resolution: 224
-  stage_id: dediwjhv
+  stage_id: ralia1v1
 
 datasets:
   train:
