@@ -62,9 +62,31 @@ class Runner:
         cli_args = CliArgs.from_cli_args()
         static_config = StaticConfig.from_uri(uri=cli_args.static_config_uri)
         add_global_handlers(log_file_uri=None)
+
+        # --- NEW: set the CUDA device for this rank early ---
+        if cli_args.accelerator == "gpu":
+            lr = get_local_rank()            # provided by ksuit.distributed
+            # critical: tell PyTorch which GPU this rank uses
+            torch.cuda.set_device(lr)
+        # ----------------------------------------------------
+
         with log_from_all_ranks():
-            logging.info(f"initialized process rank={get_rank()} local_rank={get_local_rank()} pid={os.getpid()}")
+            logging.info(
+                f"initialized process rank={get_rank()} local_rank={get_local_rank()} pid={os.getpid()}")
+
+        if cli_args.accelerator == "gpu":
+            logging.info(
+                f"rank={get_rank()} local_rank={get_local_rank()} -> cuda:{torch.cuda.current_device()} "
+                f"(CUDA_VISIBLE_DEVICES={os.environ.get('CUDA_VISIBLE_DEVICES')})"
+            )
+
         barrier()
+        # if cli_args.accelerator == "gpu":
+        #     # prefer torch.distributed directly, passing the device id
+        #     barrier(device_ids=[torch.cuda.current_device()])
+        # else:
+        #     barrier()
+
         logging.info(f"initialized {get_world_size()} processes")
 
         # CUDA_LAUNCH_BLOCKING=1 for debugging
@@ -149,7 +171,8 @@ class Runner:
             stage_name=stage_name,
             stage_id=stage_id,
         )
-        message_counter = add_global_handlers(log_file_uri=path_provider.logfile_uri)
+        message_counter = add_global_handlers(
+            log_file_uri=path_provider.logfile_uri)
 
         # init seed
         run_name = cli_args.name or stage_hp.pop("name", None)
@@ -167,18 +190,22 @@ class Runner:
         if wandb_mode == "disabled":
             wandb_config_dict = {}
             if cli_args.wandb_config is not None:
-                logging.warning(f"wandb_config is defined via CLI but mode is disabled -> wandb_config is not used")
+                logging.warning(
+                    f"wandb_config is defined via CLI but mode is disabled -> wandb_config is not used")
             if wandb_config_uri is not None:
-                logging.warning(f"wandb_config is defined via yaml but mode is disabled -> wandb_config is not used")
+                logging.warning(
+                    f"wandb_config is defined via yaml but mode is disabled -> wandb_config is not used")
         else:
             # retrieve wandb config from yaml
             if wandb_config_uri is not None:
                 wandb_config_uri = Path("wandb_configs") / wandb_config_uri
                 if cli_args.wandb_config is not None:
-                    logging.warning(f"wandb_config is defined via CLI and via yaml -> wandb_config from yaml is used")
+                    logging.warning(
+                        f"wandb_config is defined via CLI and via yaml -> wandb_config from yaml is used")
             # retrieve wandb config from --wandb_config cli arg
             elif cli_args.wandb_config is not None:
-                wandb_config_uri = Path("wandb_configs") / cli_args.wandb_config
+                wandb_config_uri = Path(
+                    "wandb_configs") / cli_args.wandb_config
             # use default wandb_config file
             else:
                 wandb_config_uri = Path("wandb_config.yaml")
@@ -202,7 +229,8 @@ class Runner:
         # log codebase "high-level" version name (git commit is logged anyway)
         # outside git repo -> "fatal: not a git repository (or any of the parent directories): .git"
         # no error handling required as tag is simply "" if not within git repo
-        config_provider["code/tag"] = os.popen("git describe --abbrev=0").read().strip()
+        config_provider["code/tag"] = os.popen(
+            "git describe --abbrev=0").read().strip()
 
         # log setup
         logging.info("------------------")
@@ -215,8 +243,10 @@ class Runner:
         log_distributed_config()
         Hyperparams.log_stage_hp(stage_hp)
         if is_rank0():
-            Hyperparams.save_unresolved_hp(cli_args.hp, path_provider.stage_output_path / "hp_unresolved.yaml")
-            Hyperparams.save_resolved_hp(stage_hp, path_provider.stage_output_path / "hp_resolved.yaml")
+            Hyperparams.save_unresolved_hp(
+                cli_args.hp, path_provider.stage_output_path / "hp_unresolved.yaml")
+            Hyperparams.save_resolved_hp(
+                stage_hp, path_provider.stage_output_path / "hp_resolved.yaml")
 
         logging.info("------------------")
         logging.info(f"training stage '{path_provider.stage_name}'")
@@ -251,9 +281,11 @@ class Runner:
             )
         data_container_kwargs = {}
         if "prefetch_factor" in stage_hp:
-            data_container_kwargs["prefetch_factor"] = stage_hp.pop("prefetch_factor")
+            data_container_kwargs["prefetch_factor"] = stage_hp.pop(
+                "prefetch_factor")
         if "max_num_workers" in stage_hp:
-            data_container_kwargs["max_num_workers"] = stage_hp.pop("max_num_workers")
+            data_container_kwargs["max_num_workers"] = stage_hp.pop(
+                "max_num_workers")
         data_container = DataContainer(
             **datasets,
             num_workers=cli_args.num_workers,
