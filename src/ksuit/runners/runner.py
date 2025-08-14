@@ -63,13 +63,6 @@ class Runner:
         static_config = StaticConfig.from_uri(uri=cli_args.static_config_uri)
         add_global_handlers(log_file_uri=None)
 
-        # --- NEW: set the CUDA device for this rank early ---
-        if cli_args.accelerator == "gpu":
-            lr = get_local_rank()            # provided by ksuit.distributed
-            # critical: tell PyTorch which GPU this rank uses
-            torch.cuda.set_device(lr)
-        # ----------------------------------------------------
-
         with log_from_all_ranks():
             logging.info(
                 f"initialized process rank={get_rank()} local_rank={get_local_rank()} pid={os.getpid()}")

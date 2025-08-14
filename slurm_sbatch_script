@@ -1,5 +1,5 @@
 #! /bin/bash
-#SBATCH --job-name=cifar_train_xlstm # Job name
+#SBATCH --job-name=minLSTM # Job name
 #SBATCH --output=/home/beknur.kalmakhanbet/vision-lstm/output_.%A.txt # Standard output and error.
 #SBATCH --nodes=1 # Run all processes on a single node
 #SBATCH --ntasks=4 # Run on a single CPU
