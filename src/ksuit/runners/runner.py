@@ -272,6 +272,24 @@ class Runner:
                     path_provider=path_provider,
                 ),
             )
+
+            if get_rank() == 0:  # only rank0 to avoid multi-rank complicating things
+                ds = datasets["train"]
+                # Minimal loader to avoid prefetch/threading issues during the probe
+                from torch.utils.data import DataLoader
+                probe_loader = DataLoader(
+                    ds,
+                    batch_size=4,
+                    shuffle=False,
+                    num_workers=0,          # IMPORTANT: no workers for the probe
+                    pin_memory=False,
+                )
+                import time
+                t0 = time.time()
+                x, y = next(iter(probe_loader))
+                print(f"[SANITY] got one train batch: x={tuple(x.shape) if hasattr(x, 'shape') else type(x)}, "
+                      f"y={tuple(y.shape) if hasattr(y, 'shape') else type(y)} in {time.time()-t0:.2f}s")
+
         data_container_kwargs = {}
         if "prefetch_factor" in stage_hp:
             data_container_kwargs["prefetch_factor"] = stage_hp.pop(
