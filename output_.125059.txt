@@ -1,0 +1,1 @@
+slurmstepd-gpu-05: error: *** JOB 125059 ON gpu-05 CANCELLED AT 2025-07-16T17:37:56 ***

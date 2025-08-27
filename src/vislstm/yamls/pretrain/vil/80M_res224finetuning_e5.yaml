@@ -4,7 +4,7 @@ stage_name: in1k
 vars:
   lr: 1.0e-5
   max_epochs: 5
-  batch_size: 1024 # was 1024
+  batch_size: 768 # was 1024
   resolution: 224
   stage_id: ralia1v1
 

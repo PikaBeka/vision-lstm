@@ -1,0 +1,59 @@
+MASTER_ADDR: gpu-05
+CUDA_VISIBLE_DEVICES=0,1,2,3
+Sun Aug 24 22:50:43 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 550.54.14              Driver Version: 550.54.14      CUDA Version: 12.4     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:01:00.0 Off |                    0 |
+| N/A   37C    P0             56W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-40GB          On  |   00000000:41:00.0 Off |                    0 |
+| N/A   36C    P0             55W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-40GB          On  |   00000000:81:00.0 Off |                    0 |
+| N/A   28C    P0             52W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-40GB          On  |   00000000:C1:00.0 Off |                   33 |
+| N/A   30C    P0            ERR! /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+torch: 2.5.1+cu121 cuda: 12.1 cuda available: True
+08-24 22:50:49 I found multiple visible devices (CUDA_VISIBLE_DEVICES=0,1,2,3) -> set CUDA_VISIBLE_DEVICES=0 (local_rank=0)
+08-24 22:50:49 I initializing rank=0 local_rank=0 nodes=1 hostname=gpu-05 master_addr=gpu-05 master_port=55555 (waiting for all 4 processes to connect)
+Traceback (most recent call last):
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/main_train.py", line 9, in <module>
+    main()
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/main_train.py", line 5, in main
+    Runner().run()
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/runners/runner.py", line 46, in run
+    run_managed(
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/distributed/run/managed.py", line 47, in run_managed
+    _run_managed_multiprocess(accelerator, main)
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/distributed/run/managed.py", line 73, in _run_managed_multiprocess
+    init_process_group(backend=get_backend(accelerator), init_method="env://", world_size=world_size, rank=rank)
+  File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/distributed/c10d_logger.py", line 83, in wrapper
+    return func(*args, **kwargs)
+  File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/distributed/c10d_logger.py", line 97, in wrapper
+    func_return = func(*args, **kwargs)
+  File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/distributed/distributed_c10d.py", line 1520, in init_process_group
+    store, rank, world_size = next(rendezvous_iterator)
+  File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/distributed/rendezvous.py", line 269, in _env_rendezvous_handler
+    store = _create_c10d_store(
+  File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/distributed/rendezvous.py", line 189, in _create_c10d_store
+    return TCPStore(
+torch.distributed.DistStoreError: Timed out after 601 seconds waiting for clients. 1/4 clients joined.
