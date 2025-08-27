@@ -82,6 +82,11 @@ trainer:
   backup_precision: float16
   max_epochs: ${vars.max_epochs}
   effective_batch_size: ${vars.batch_size}
+
+  auto_max_batch_size: false
+  batch_size: 32 # per-GPU micro-batch
+  accumulation_steps: 8 # 32 * 8 * 3 GPUs = 768
+
   log_every_n_epochs: 1
   callbacks:
     # save last checkpoint
