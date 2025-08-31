@@ -62,28 +62,10 @@ class Runner:
         cli_args = CliArgs.from_cli_args()
         static_config = StaticConfig.from_uri(uri=cli_args.static_config_uri)
         add_global_handlers(log_file_uri=None)
-
         with log_from_all_ranks():
             logging.info(
                 f"initialized process rank={get_rank()} local_rank={get_local_rank()} pid={os.getpid()}")
-
-        if cli_args.accelerator == "gpu":
-            local_rank = int(get_local_rank())
-            # critical: must be before barrier/DDP
-            torch.cuda.set_device(local_rank)
-
-            logging.info(
-                f"rank={get_rank()} local_rank={get_local_rank()} -> cuda:{torch.cuda.current_device()} "
-                f"(CUDA_VISIBLE_DEVICES={os.environ.get('CUDA_VISIBLE_DEVICES')})"
-            )
-
         barrier()
-        # if cli_args.accelerator == "gpu":
-        #     # prefer torch.distributed directly, passing the device id
-        #     barrier(device_ids=[torch.cuda.current_device()])
-        # else:
-        #     barrier()
-
         logging.info(f"initialized {get_world_size()} processes")
 
         # CUDA_LAUNCH_BLOCKING=1 for debugging
@@ -276,8 +258,6 @@ class Runner:
                     path_provider=path_provider,
                 ),
             )
-            logging.info(f"Finished initializing {dataset_key}")
-
         data_container_kwargs = {}
         if "prefetch_factor" in stage_hp:
             data_container_kwargs["prefetch_factor"] = stage_hp.pop(
