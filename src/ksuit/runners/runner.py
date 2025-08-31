@@ -68,6 +68,10 @@ class Runner:
                 f"initialized process rank={get_rank()} local_rank={get_local_rank()} pid={os.getpid()}")
 
         if cli_args.accelerator == "gpu":
+            local_rank = int(get_local_rank())
+            # critical: must be before barrier/DDP
+            torch.cuda.set_device(local_rank)
+
             logging.info(
                 f"rank={get_rank()} local_rank={get_local_rank()} -> cuda:{torch.cuda.current_device()} "
                 f"(CUDA_VISIBLE_DEVICES={os.environ.get('CUDA_VISIBLE_DEVICES')})"
