@@ -1,6 +1,3 @@
-import contextlib
-import torch.distributed as dist
-
 import inspect
 import logging
 import os
@@ -289,24 +286,24 @@ class SgdTrainer:
         return default_callbacks
 
     def _automatic_max_batch_size(
-        self,
-        effective_batch_size_per_device,
-        model,
-        ddp_model,
+            self,
+            effective_batch_size_per_device,
+            model,
+            ddp_model,
     ):
-        # eval/CPU/non power-of-two: skip probing exactly as before
         if self.end_checkpoint.epoch == 0 or self.end_checkpoint.update == 0 or self.end_checkpoint.sample == 0:
             self.logger.info(f"eval run -> disable gradient accumulation")
             return effective_batch_size_per_device
         if str(model.device) == "cpu":
             self.logger.info(f"device is cpu -> disable gradient accumulation")
             return effective_batch_size_per_device
+        # batchsizes that are not a power of two are not supported
         if not is_power_of_two(effective_batch_size_per_device):
             self.logger.info(
                 f"batchsize is not a power of two -> disable gradient accumulation")
             return effective_batch_size_per_device
 
-        # backup states (same logic as before)
+        # backup state_dict (state_dict doesn't clone tensors -> call .clone on every tensor in the state dict)
         model_state_dict = {k: v.clone()
                             for k, v in model.state_dict().items()}
         if isinstance(model, ModelBase):
@@ -319,8 +316,8 @@ class SgdTrainer:
                 for key in sd.keys():
                     if key == "state":
                         cloned["state"] = {
-                            idx_key: {k: (v.clone() if v is not None else v)
-                                      for k, v in idx_dict.items()}
+                            idx_key: {
+                                k: v.clone() if v is not None else v for k, v in idx_dict.items()}
                             for idx_key, idx_dict in sd["state"].items()
                         }
                     elif key == "param_groups":
@@ -335,77 +332,49 @@ class SgdTrainer:
         else:
             optim_state_dicts = None
 
-        # candidates
+        # compose batch_sizes to try
         batch_sizes = get_powers_of_two(2, effective_batch_size_per_device)
+
+        # make a train_step with decreasing batch_sizes (faster when batchsize is actually correct)
         sample = self.train_dataset[0]
-
-        # helpers
-        is_ddp = dist.is_available() and dist.is_initialized()
-        nosync_ctx = ddp_model.no_sync if (is_ddp and hasattr(
-            ddp_model, "no_sync")) else contextlib.nullcontext
-
         max_batch_size = 1
         for batch_size in reversed(batch_sizes):
             logging.info(f"trying batch_size {batch_size}")
 
-            # build batch
+            # compose batch by repeating samples
+            # NOTE: collator needs to be called seperately (e.g. for creating batch_idx when using sparse tensors)
             batch = self.train_dataset.collator([sample] * batch_size)
 
-            # two updates to include optimizer state allocation
-            # IMPORTANT: suppress DDP gradient communication during probe
-            oom_local = torch.tensor([0], device=self.device)
+            # try 2 update steps
+            # the first update requires less memory because optim states are None
+            # the second update requires the full memory consumption
             try:
                 for _ in range(2):
-                    with self.autocast_context:
-                        # forward via the DDP-wrapped trainer model
-                        losses, _ = ddp_model(batch)
-
-                    # do a backward but without allreduce
-                    with nosync_ctx():
-                        self.grad_scaler.scale(losses["total"]).backward()
-
-                    # we don’t *need* to step for probing, but stepping is OK
-                    # because we fully restore states afterwards.
-                    # safe if fused, no-op otherwise
-                    self.grad_scaler.unscale_(model.optim)
-                    model.optim_zero_grad()
-
+                    # optim step is only taken on (iter_step + 1) % accumulation_steps == 0
+                    self.update(
+                        model=model,
+                        ddp_model=ddp_model,
+                        batch=batch,
+                        iter_step=0,
+                        accumulation_steps=1,
+                    ),
+                max_batch_size = batch_size
+                break
             except RuntimeError as e:
-                if "CUDA out of memory" in str(e) or "CUBLAS_STATUS_ALLOC_FAILED" in str(e):
-                    oom_local[0] = 1
-                    torch.cuda.empty_cache()
-                else:
-                    raise
+                if not str(e).startswith("CUDA out of memory"):
+                    raise e
+                if isinstance(model, ModelBase):
+                    model.clear_buffers()
 
-            # agree across ranks
-            if is_ddp:
-                dist.all_reduce(oom_local, op=dist.ReduceOp.SUM)
-            any_oom = (oom_local.item() > 0)
-
-            if any_oom:
-                # try smaller
-                if is_ddp:
-                    dist.barrier()
-                continue
-
-            # success on all ranks
-            max_batch_size = batch_size
-            # optional: broadcast the winner from rank0 (paranoia)
-            if is_ddp:
-                t = torch.tensor([max_batch_size], device=self.device)
-                dist.broadcast(t, src=0)
-                max_batch_size = int(t.item())
-            break
-
-        # restore states
+        # restore state_dict
         model.load_state_dict(model_state_dict)
         if isinstance(model, ModelBase):
             for name, submodel in model.submodels.items():
                 if submodel is None or submodel.optim is None:
                     continue
                 submodel.optim.load_state_dict(optim_state_dicts[name])
+            # clear buffers if models track something during the forward pass --> e.g. NnclrQueue
             model.clear_buffers()
-
         return max_batch_size
 
     def _calculate_batch_size_and_accumulation_steps(self, model, ddp_model):
