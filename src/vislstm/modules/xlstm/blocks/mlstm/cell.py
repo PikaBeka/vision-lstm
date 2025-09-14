@@ -42,12 +42,12 @@ class mLSTMCell(nn.Module):
 
         # self.outnorm = MultiHeadLayerNorm(ndim=config.embedding_dim, weight=True, bias=config.bias)
 
-        self.register_buffer(
-            "causal_mask",
-            torch.tril(torch.ones(config.context_length,
-                       config.context_length, dtype=torch.bool)),
-            persistent=False,
-        )
+        # self.register_buffer(
+        #     "causal_mask",
+        #     torch.tril(torch.ones(config.context_length,
+        #                config.context_length, dtype=torch.bool)),
+        #     persistent=False,
+        # )
 
         self.reset_parameters()
 
