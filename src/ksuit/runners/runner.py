@@ -34,6 +34,44 @@ from ksuit.utils.version_check import check_versions
 from ksuit.utils.wandb_utils import finish_wandb, init_wandb
 
 from torchsummary import summary
+from torch import nn
+
+
+def print_num_params(model: nn.Module, *, include_buffers: bool = False, only_rank0: bool = True):
+    """Prints parameter count per submodule WITHOUT running forward."""
+    import torch.distributed as dist
+
+    def is_rank0():
+        return (not dist.is_available()) or (not dist.is_initialized()) or dist.get_rank() == 0
+
+    if only_rank0 and not is_rank0():
+        return
+
+    total_params = 0
+    total_buffers = 0
+
+    lines = []
+    for name, module in model.named_modules():
+        # direct (non-recursive) params in this module
+        p = sum(p.numel() for p in module.parameters(recurse=False))
+        b = sum(b.numel() for b in module.buffers(
+            recurse=False)) if include_buffers else 0
+        if p or b:
+            lines.append(f"{name:<60} {p:>12,} params" +
+                         (f"  + {b:>12,} buffers" if include_buffers else ""))
+        total_params += p
+        total_buffers += b
+
+    # pretty print
+    width = max([len(s) for s in lines], default=0)
+    print("\nParameter breakdown (no forward pass):")
+    for s in lines:
+        print(s)
+    print("-" * max(width, 40))
+    print(f"{'TOTAL PARAMETERS':<60} {total_params:>12,}")
+    if include_buffers:
+        print(f"{'TOTAL BUFFERS':<60} {total_buffers:>12,}")
+        print(f"{'TOTAL (PARAMS + BUFFERS)':<60} {total_params + total_buffers:>12,}")
 
 
 class Runner:
@@ -319,7 +357,8 @@ class Runner:
                     data_container=data_container,
                 ),
             )
-            summary(model, input_size=trainer.input_shape)
+            # summary(model, input_size=trainer.input_shape)
+            print_num_params(model, include_buffers=False)
         logging.info(f"model:\n{model}")
         return
 
