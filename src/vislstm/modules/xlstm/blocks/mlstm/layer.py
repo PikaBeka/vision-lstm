@@ -1,6 +1,6 @@
-# # This file is licensed under Apache-2.0
-# # Copyright (c) NXAI GmbH and its affiliates 2024
-# # Maximilian Beck, Benedikt Alkin
+# This file is licensed under Apache-2.0
+# Copyright (c) NXAI GmbH and its affiliates 2024
+# Maximilian Beck, Benedikt Alkin
 # from dataclasses import dataclass
 
 # import einops
