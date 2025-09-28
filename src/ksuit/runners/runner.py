@@ -33,6 +33,8 @@ from ksuit.utils.system_info import get_cli_command, log_system_info
 from ksuit.utils.version_check import check_versions
 from ksuit.utils.wandb_utils import finish_wandb, init_wandb
 
+from torchsummary import summary
+
 
 class Runner:
     def run(self):
@@ -317,7 +319,9 @@ class Runner:
                     data_container=data_container,
                 ),
             )
+            summary(model, input_size=trainer.input_shape)
         logging.info(f"model:\n{model}")
+        return
 
         # train model
         trainer.train(model)
