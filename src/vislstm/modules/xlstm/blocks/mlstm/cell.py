@@ -30,24 +30,12 @@ class mLSTMCell(nn.Module):
 
         self.backend_fn = parallel_scan_log
 
-        # self.igate = nn.Linear(3 * config.embedding_dim, config.num_heads)
-        # self.fgate = nn.Linear(3 * config.embedding_dim, config.num_heads)
-
         self.linear_i = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-                                  kernel_size=1, groups=config.embedding_dim, bias=False)
+                                  kernel_size=1, groups=16, bias=False)
         self.linear_f = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-                                  kernel_size=1, groups=config.embedding_dim, bias=False)
+                                  kernel_size=1, groups=16, bias=False)
         self.linear_h = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-                                  kernel_size=1, groups=config.embedding_dim, bias=False)
-
-        # self.outnorm = MultiHeadLayerNorm(ndim=config.embedding_dim, weight=True, bias=config.bias)
-
-        # self.register_buffer(
-        #     "causal_mask",
-        #     torch.tril(torch.ones(config.context_length,
-        #                config.context_length, dtype=torch.bool)),
-        #     persistent=False,
-        # )
+                                  kernel_size=1, groups=16, bias=False)
 
         self.reset_parameters()
 
@@ -67,7 +55,6 @@ class mLSTMCell(nn.Module):
         diff = F.softplus(-f_gate) - F.softplus(-i_gate)
         log_f = -F.softplus(diff)
         log_i = -F.softplus(-diff)
-        log_h_0 = None
         log_tilde_h = log_g(hidden)
 
         log_values = log_i + log_tilde_h
