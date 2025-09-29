@@ -64,29 +64,6 @@ class mLSTMLayer(nn.Module):
             bias=self.config.bias,
         )
 
-        # num_proj_heads = round(self.config._inner_embedding_dim // self.config.qkv_proj_blocksize)
-        # self.q_proj = LinearHeadwiseExpand(
-        #     config=LinearHeadwiseExpandConfig(
-        #         in_features=self.config._inner_embedding_dim,
-        #         num_heads=num_proj_heads,
-        #         bias=self.config.bias,
-        #     )
-        # )
-        # self.k_proj = LinearHeadwiseExpand(
-        #     config=LinearHeadwiseExpandConfig(
-        #         in_features=self.config._inner_embedding_dim,
-        #         num_heads=num_proj_heads,
-        #         bias=self.config.bias,
-        #     )
-        # )
-        # self.v_proj = LinearHeadwiseExpand(
-        #     config=LinearHeadwiseExpandConfig(
-        #         in_features=self.config._inner_embedding_dim,
-        #         num_heads=num_proj_heads,
-        #         bias=self.config.bias,
-        #     )
-        # )
-
         if self.config.use_conv2d:
             assert not self.config.quaddirectional
             assert self.config.conv1d_kernel_size % 2 == 1
@@ -153,27 +130,6 @@ class mLSTMLayer(nn.Module):
 
         # bidirectional
         if (self.config.bidirectional or self.config.quaddirectional) and not self.config.sharedirs:
-            # self.q_proj_rev = LinearHeadwiseExpand(
-            #     config=LinearHeadwiseExpandConfig(
-            #         in_features=self.config._inner_embedding_dim,
-            #         num_heads=num_proj_heads,
-            #         bias=self.config.bias,
-            #     )
-            # )
-            # self.k_proj_rev = LinearHeadwiseExpand(
-            #     config=LinearHeadwiseExpandConfig(
-            #         in_features=self.config._inner_embedding_dim,
-            #         num_heads=num_proj_heads,
-            #         bias=self.config.bias,
-            #     )
-            # )
-            # self.v_proj_rev = LinearHeadwiseExpand(
-            #     config=LinearHeadwiseExpandConfig(
-            #         in_features=self.config._inner_embedding_dim,
-            #         num_heads=num_proj_heads,
-            #         bias=self.config.bias,
-            #     )
-            # )
             assert self.config.share_conv
             if self.config.use_conv2d:
                 self.conv1d_rev = SequenceConv2d(
@@ -209,27 +165,6 @@ class mLSTMLayer(nn.Module):
             self.learnable_skip_rev = None
 
         if self.config.quaddirectional and not self.config.sharedirs:
-            # self.q_proj_ud = LinearHeadwiseExpand(
-            #     config=LinearHeadwiseExpandConfig(
-            #         in_features=self.config._inner_embedding_dim,
-            #         num_heads=num_proj_heads,
-            #         bias=self.config.bias,
-            #     )
-            # )
-            # self.k_proj_ud = LinearHeadwiseExpand(
-            #     config=LinearHeadwiseExpandConfig(
-            #         in_features=self.config._inner_embedding_dim,
-            #         num_heads=num_proj_heads,
-            #         bias=self.config.bias,
-            #     )
-            # )
-            # self.v_proj_ud = LinearHeadwiseExpand(
-            #     config=LinearHeadwiseExpandConfig(
-            #         in_features=self.config._inner_embedding_dim,
-            #         num_heads=num_proj_heads,
-            #         bias=self.config.bias,
-            #     )
-            # )
             self.conv1d_ud = CausalConv1d(
                 config=CausalConv1dConfig(
                     feature_dim=self.config._inner_embedding_dim,
@@ -245,27 +180,6 @@ class mLSTMLayer(nn.Module):
             )
             self.learnable_skip_ud = nn.Parameter(torch.ones(
                 self.config._inner_embedding_dim, requires_grad=True))
-            # self.q_proj_du = LinearHeadwiseExpand(
-            #     config=LinearHeadwiseExpandConfig(
-            #         in_features=self.config._inner_embedding_dim,
-            #         num_heads=num_proj_heads,
-            #         bias=self.config.bias,
-            #     )
-            # )
-            # self.k_proj_du = LinearHeadwiseExpand(
-            #     config=LinearHeadwiseExpandConfig(
-            #         in_features=self.config._inner_embedding_dim,
-            #         num_heads=num_proj_heads,
-            #         bias=self.config.bias,
-            #     )
-            # )
-            # self.v_proj_du = LinearHeadwiseExpand(
-            #     config=LinearHeadwiseExpandConfig(
-            #         in_features=self.config._inner_embedding_dim,
-            #         num_heads=num_proj_heads,
-            #         bias=self.config.bias,
-            #     )
-            # )
             self.conv1d_du = CausalConv1d(
                 config=CausalConv1dConfig(
                     feature_dim=self.config._inner_embedding_dim,
@@ -347,26 +261,6 @@ class mLSTMLayer(nn.Module):
 
         # mlstm branch
         x_mlstm_conv_act = self.conv_act_fn(self.conv1d(x_mlstm))
-        # if self.config.share_conv:
-        #     x_mlstm_conv_act_q = x_mlstm_conv_act
-        #     x_mlstm_conv_act_k = x_mlstm_conv_act
-        #     if self.config.use_v_conv:
-        #         x_mlstm_conv_act_v = x_mlstm_conv_act
-        #     else:
-        #         x_mlstm_conv_act_v = None
-        # else:
-        #     x_mlstm_conv_act_q = x_mlstm_conv_act
-        #     x_mlstm_conv_act_k = self.conv_act_fn(self.conv1d_k(x_mlstm))
-        #     if self.config.use_v_conv:
-        #         x_mlstm_conv_act_v = self.conv_act_fn(self.conv1d_v(x_mlstm))
-        #     else:
-        #         x_mlstm_conv_act_v = None
-        # q = self.q_proj(x_mlstm_conv_act_q)
-        # k = self.k_proj(x_mlstm_conv_act_k)
-        # if self.config.use_v_conv:
-        #     v = self.v_proj(x_mlstm_conv_act_v)
-        # else:
-        #     v = self.v_proj(x_mlstm)
         h_tilde_state = self.mlstm_cell(x_mlstm_conv_act)[:, -1:]
         h_tilde_state_skip = h_tilde_state + \
             (self.learnable_skip * x_mlstm_conv_act)
@@ -401,26 +295,16 @@ class mLSTMLayer(nn.Module):
         if self.config.bidirectional or self.config.quaddirectional:
             if self.config.sharedirs:
                 conv1d_rev = self.conv1d
-                # q_proj_rev = self.q_proj
-                # k_proj_rev = self.k_proj
-                # v_proj_rev = self.v_proj
                 mlstm_cell_rev = self.mlstm_cell
                 learnable_skip_rev = self.learnable_skip
             else:
                 conv1d_rev = self.conv1d_rev
-                # q_proj_rev = self.q_proj_rev
-                # k_proj_rev = self.k_proj_rev
-                # v_proj_rev = self.v_proj_rev
                 mlstm_cell_rev = self.mlstm_cell_rev
                 learnable_skip_rev = self.learnable_skip_rev
             x_mlstm_rev = x_mlstm.flip(dims=[1])
             z_rev = z.flip(dims=[1])
             x_mlstm_conv_rev = conv1d_rev(x_mlstm_rev)
             x_mlstm_conv_act_rev = self.conv_act_fn(x_mlstm_conv_rev)
-
-            # q_rev = q_proj_rev(x_mlstm_conv_act_rev)
-            # k_rev = k_proj_rev(x_mlstm_conv_act_rev)
-            # v_rev = v_proj_rev(x_mlstm_rev)
 
             h_tilde_state_rev = mlstm_cell_rev(x_mlstm_conv_act_rev)
             h_tilde_state_skip_rev = h_tilde_state_rev + \
@@ -432,28 +316,16 @@ class mLSTMLayer(nn.Module):
         if self.config.quaddirectional:
             if self.config.sharedirs:
                 conv1d_du = self.conv1d
-                # q_proj_du = self.q_proj
-                # k_proj_du = self.k_proj
-                # v_proj_du = self.v_proj
                 mlstm_cell_du = self.mlstm_cell
                 learnable_skip_du = self.learnable_skip
                 conv1d_ud = self.conv1d
-                # q_proj_ud = self.q_proj
-                # k_proj_ud = self.k_proj
-                # v_proj_ud = self.v_proj
                 mlstm_cell_ud = self.mlstm_cell
                 learnable_skip_ud = self.learnable_skip
             else:
                 conv1d_du = self.conv1d_du
-                # q_proj_du = self.q_proj_du
-                # k_proj_du = self.k_proj_du
-                # v_proj_du = self.v_proj_du
                 mlstm_cell_du = self.mlstm_cell_du
                 learnable_skip_du = self.learnable_skip_du
                 conv1d_ud = self.conv1d_ud
-                # q_proj_ud = self.q_proj_ud
-                # k_proj_ud = self.k_proj_ud
-                # v_proj_ud = self.v_proj_ud
                 mlstm_cell_ud = self.mlstm_cell_ud
                 learnable_skip_ud = self.learnable_skip_ud
 
@@ -464,9 +336,6 @@ class mLSTMLayer(nn.Module):
             z_du = einops.rearrange(z, "b (h w) d -> b (w h) d", w=w)
             x_mlstm_conv_du = conv1d_du(x_mlstm_du)
             x_mlstm_conv_act_du = self.conv_act_fn(x_mlstm_conv_du)
-            # q_du = q_proj_du(x_mlstm_conv_act_du)
-            # k_du = k_proj_du(x_mlstm_conv_act_du)
-            # v_du = v_proj_du(x_mlstm_du)
             h_tilde_state_du = mlstm_cell_du(x_mlstm_conv_act_du)
             h_tilde_state_skip_du = h_tilde_state_du + \
                 (learnable_skip_du * x_mlstm_conv_act_du)
@@ -480,9 +349,6 @@ class mLSTMLayer(nn.Module):
                 z, "b (h w) d -> b (w h) d", w=w).flip(dims=[1])
             x_mlstm_conv_ud = conv1d_ud(x_mlstm_ud)
             x_mlstm_conv_act_ud = self.conv_act_fn(x_mlstm_conv_ud)
-            # q_ud = q_proj_ud(x_mlstm_conv_act_ud)
-            # k_ud = k_proj_ud(x_mlstm_conv_act_ud)
-            # v_ud = v_proj_ud(x_mlstm_ud)
             h_tilde_state_ud = mlstm_cell_ud(x_mlstm_conv_act_ud)
             h_tilde_state_skip_ud = h_tilde_state_ud + \
                 (learnable_skip_ud * x_mlstm_conv_act_ud)

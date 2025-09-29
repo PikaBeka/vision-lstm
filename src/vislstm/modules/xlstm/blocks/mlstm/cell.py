@@ -31,11 +31,11 @@ class mLSTMCell(nn.Module):
         self.backend_fn = parallel_scan_log
 
         self.linear_i = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-                                  kernel_size=1, groups=32, bias=False)
+                                  kernel_size=1, groups=64, bias=False)
         self.linear_f = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-                                  kernel_size=1, groups=32, bias=False)
+                                  kernel_size=1, groups=64, bias=False)
         self.linear_h = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-                                  kernel_size=1, groups=32, bias=False)
+                                  kernel_size=1, groups=64, bias=False)
 
         self.reset_parameters()
 
