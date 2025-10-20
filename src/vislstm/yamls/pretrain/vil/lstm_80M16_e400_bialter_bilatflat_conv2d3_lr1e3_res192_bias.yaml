@@ -107,5 +107,5 @@ trainer:
       save_latest_optim: true
     # metrics
     - kind: offline_accuracy_callback
-      every_n_epochs: 1
+      every_n_epochs: 5 # was 1
       dataset_key: val

@@ -1,5 +1,0 @@
-MASTER_ADDR: gpu-05
-CUDA_VISIBLE_DEVICES=0,1,2,3
-slurmstepd-gpu-05: error: *** JOB 130418 ON gpu-05 CANCELLED AT 2025-08-17T16:42:12 ***
-slurmstepd-gpu-05: error: *** JOB 130418 STEPD TERMINATED ON gpu-05 AT 2025-08-17T16:44:12 DUE TO JOB NOT ENDING WITH SIGNALS ***
-slurmstepd-gpu-05: error: Container 676405 in cgroup plugin has 2 processes, giving up after 128 sec

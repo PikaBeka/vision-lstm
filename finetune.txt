@@ -1,0 +1,849 @@
+09-01 11:54:59 I initializing rank=3 local_rank=3 nodes=1 hostname=gpu-03 master_addr=gpu-03 master_port=55555 (waiting for all 4 processes to connect)
+09-01 11:54:59 I initializing rank=1 local_rank=1 nodes=1 hostname=gpu-03 master_addr=gpu-03 master_port=55555 (waiting for all 4 processes to connect)
+09-01 11:54:59 I initializing rank=0 local_rank=0 nodes=1 hostname=gpu-03 master_addr=gpu-03 master_port=55555 (waiting for all 4 processes to connect)
+09-01 11:54:59 I initializing rank=2 local_rank=2 nodes=1 hostname=gpu-03 master_addr=gpu-03 master_port=55555 (waiting for all 4 processes to connect)
+gpu-03:3004422:3004422 [0] NCCL INFO Bootstrap : Using ibp33s0:192.168.63.103<0>
+gpu-03:3004422:3004422 [0] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gpu-03:3004422:3004422 [0] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gpu-03:3004422:3004422 [0] NCCL INFO NET/Plugin: Using internal network plugin.
+gpu-03:3004422:3004422 [0] NCCL INFO cudaDriverVersion 12040
+NCCL version 2.21.5+cuda12.4
+gpu-03:3004422:3004758 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_2:1/IB [RO]; OOB ibp33s0:192.168.63.103<0>
+gpu-03:3004422:3004758 [0] NCCL INFO Using non-device net plugin version 0
+gpu-03:3004422:3004758 [0] NCCL INFO Using network IB
+gpu-03:3004422:3004758 [0] NCCL INFO ncclCommInitRank comm 0x5630e545c070 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 1000 commId 0x48692ffd4b540e36 - Init START
+gpu-03:3004422:3004758 [0] NCCL INFO Setting affinity for GPU 0 to ffff,00000000,00000000,00000000,0000ffff
+gpu-03:3004422:3004758 [0] NCCL INFO NVLS multicast support is not available on dev 0
+gpu-03:3004422:3004758 [0] NCCL INFO comm 0x5630e545c070 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 00/24 :    0   1   2   3
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 01/24 :    0   1   3   2
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 02/24 :    0   2   3   1
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 03/24 :    0   2   1   3
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 04/24 :    0   3   1   2
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 05/24 :    0   3   2   1
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 06/24 :    0   1   2   3
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 07/24 :    0   1   3   2
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 08/24 :    0   2   3   1
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 09/24 :    0   2   1   3
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 10/24 :    0   3   1   2
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 11/24 :    0   3   2   1
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 12/24 :    0   1   2   3
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 13/24 :    0   1   3   2
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 14/24 :    0   2   3   1
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 15/24 :    0   2   1   3
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 16/24 :    0   3   1   2
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 17/24 :    0   3   2   1
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 18/24 :    0   1   2   3
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 19/24 :    0   1   3   2
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 20/24 :    0   2   3   1
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 21/24 :    0   2   1   3
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 22/24 :    0   3   1   2
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 23/24 :    0   3   2   1
+gpu-03:3004422:3004758 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 2/-1/-1->0->-1 [5] 2/-1/-1->0->-1 [6] 2/-1/-1->0->-1 [7] 2/-1/-1->0->-1 [8] 3/-1/-1->0->1 [9] 3/-1/-1->0->1 [10] 3/-1/-1->0->1 [11] 3/-1/-1->0->1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 2/-1/-1->0->-1 [17] 2/-1/-1->0->-1 [18] 2/-1/-1->0->-1 [19] 2/-1/-1->0->-1 [20] 3/-1/-1->0->1 [21] 3/-1/-1->0->1 [22] 3/-1/-1->0->1 [23] 3/-1/-1->0->1
+gpu-03:3004422:3004758 [0] NCCL INFO P2P Chunksize set to 524288
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 02/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 03/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 08/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 09/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 14/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004425 [0] NCCL INFO cudaDriverVersion 12040
+gpu-03:3004425:3004425 [0] NCCL INFO Bootstrap : Using ibp33s0:192.168.63.103<0>
+gpu-03:3004425:3004425 [0] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gpu-03:3004425:3004425 [0] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gpu-03:3004425:3004425 [0] NCCL INFO NET/Plugin: Using internal network plugin.
+gpu-03:3004425:3004760 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_2:1/IB [RO]; OOB ibp33s0:192.168.63.103<0>
+gpu-03:3004425:3004760 [0] NCCL INFO Using non-device net plugin version 0
+gpu-03:3004425:3004760 [0] NCCL INFO Using network IB
+gpu-03:3004425:3004760 [0] NCCL INFO ncclCommInitRank comm 0x556380ff5c60 rank 3 nranks 4 cudaDev 0 nvmlDev 3 busId c1000 commId 0x48692ffd4b540e36 - Init START
+gpu-03:3004425:3004760 [0] NCCL INFO Setting affinity for GPU 3 to ffff,00000000,00000000,00000000,0000ffff,00000000,00000000
+gpu-03:3004425:3004760 [0] NCCL INFO NVLS multicast support is not available on dev 0
+gpu-03:3004425:3004760 [0] NCCL INFO comm 0x556380ff5c60 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
+gpu-03:3004425:3004760 [0] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2 [2] -1/-1/-1->3->2 [3] -1/-1/-1->3->2 [4] -1/-1/-1->3->1 [5] -1/-1/-1->3->1 [6] -1/-1/-1->3->1 [7] -1/-1/-1->3->1 [8] 2/-1/-1->3->0 [9] 2/-1/-1->3->0 [10] 2/-1/-1->3->0 [11] 2/-1/-1->3->0 [12] -1/-1/-1->3->2 [13] -1/-1/-1->3->2 [14] -1/-1/-1->3->2 [15] -1/-1/-1->3->2 [16] -1/-1/-1->3->1 [17] -1/-1/-1->3->1 [18] -1/-1/-1->3->1 [19] -1/-1/-1->3->1 [20] 2/-1/-1->3->0 [21] 2/-1/-1->3->0 [22] 2/-1/-1->3->0 [23] 2/-1/-1->3->0
+gpu-03:3004425:3004760 [0] NCCL INFO P2P Chunksize set to 524288
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 00/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 03/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 06/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 09/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 12/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 15/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 18/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 21/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 02/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 04/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 08/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 10/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 14/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 16/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 20/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 22/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 05/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 07/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 11/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 13/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 17/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 19/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 23/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Connected all rings
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 08/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 10/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004424:3004424 [0] NCCL INFO cudaDriverVersion 12040
+gpu-03:3004424:3004424 [0] NCCL INFO Bootstrap : Using ibp33s0:192.168.63.103<0>
+gpu-03:3004424:3004424 [0] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gpu-03:3004424:3004424 [0] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gpu-03:3004424:3004424 [0] NCCL INFO NET/Plugin: Using internal network plugin.
+gpu-03:3004424:3004761 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_2:1/IB [RO]; OOB ibp33s0:192.168.63.103<0>
+gpu-03:3004424:3004761 [0] NCCL INFO Using non-device net plugin version 0
+gpu-03:3004424:3004761 [0] NCCL INFO Using network IB
+gpu-03:3004424:3004761 [0] NCCL INFO ncclCommInitRank comm 0x55bd1befcb60 rank 2 nranks 4 cudaDev 0 nvmlDev 2 busId 81000 commId 0x48692ffd4b540e36 - Init START
+gpu-03:3004424:3004761 [0] NCCL INFO Setting affinity for GPU 2 to ffff,00000000,00000000,00000000,0000ffff,00000000,00000000
+gpu-03:3004424:3004761 [0] NCCL INFO NVLS multicast support is not available on dev 0
+gpu-03:3004424:3004761 [0] NCCL INFO comm 0x55bd1befcb60 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+gpu-03:3004424:3004761 [0] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 1/-1/-1->2->0 [5] 1/-1/-1->2->0 [6] 1/-1/-1->2->0 [7] 1/-1/-1->2->0 [8] -1/-1/-1->2->3 [9] -1/-1/-1->2->3 [10] -1/-1/-1->2->3 [11] -1/-1/-1->2->3 [12] 3/-1/-1->2->1 [13] 3/-1/-1->2->1 [14] 3/-1/-1->2->1 [15] 3/-1/-1->2->1 [16] 1/-1/-1->2->0 [17] 1/-1/-1->2->0 [18] 1/-1/-1->2->0 [19] 1/-1/-1->2->0 [20] -1/-1/-1->2->3 [21] -1/-1/-1->2->3 [22] -1/-1/-1->2->3 [23] -1/-1/-1->2->3
+gpu-03:3004424:3004761 [0] NCCL INFO P2P Chunksize set to 524288
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 18/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 20/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 01/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 04/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 07/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 10/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 13/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 16/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 19/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 22/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 09/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 15/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 17/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 21/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 23/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Connected all rings
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 03/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004423 [0] NCCL INFO cudaDriverVersion 12040
+gpu-03:3004423:3004423 [0] NCCL INFO Bootstrap : Using ibp33s0:192.168.63.103<0>
+gpu-03:3004423:3004423 [0] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gpu-03:3004423:3004423 [0] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gpu-03:3004423:3004423 [0] NCCL INFO NET/Plugin: Using internal network plugin.
+gpu-03:3004423:3004759 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_2:1/IB [RO]; OOB ibp33s0:192.168.63.103<0>
+gpu-03:3004423:3004759 [0] NCCL INFO Using non-device net plugin version 0
+gpu-03:3004423:3004759 [0] NCCL INFO Using network IB
+gpu-03:3004423:3004759 [0] NCCL INFO ncclCommInitRank comm 0x557626423a00 rank 1 nranks 4 cudaDev 0 nvmlDev 1 busId 41000 commId 0x48692ffd4b540e36 - Init START
+gpu-03:3004423:3004759 [0] NCCL INFO Setting affinity for GPU 1 to ffff,00000000,00000000,00000000,0000ffff
+gpu-03:3004423:3004759 [0] NCCL INFO NVLS multicast support is not available on dev 0
+gpu-03:3004423:3004759 [0] NCCL INFO comm 0x557626423a00 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
+gpu-03:3004423:3004759 [0] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 3/-1/-1->1->2 [5] 3/-1/-1->1->2 [6] 3/-1/-1->1->2 [7] 3/-1/-1->1->2 [8] 0/-1/-1->1->-1 [9] 0/-1/-1->1->-1 [10] 0/-1/-1->1->-1 [11] 0/-1/-1->1->-1 [12] 2/-1/-1->1->0 [13] 2/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0 [16] 3/-1/-1->1->2 [17] 3/-1/-1->1->2 [18] 3/-1/-1->1->2 [19] 3/-1/-1->1->2 [20] 0/-1/-1->1->-1 [21] 0/-1/-1->1->-1 [22] 0/-1/-1->1->-1 [23] 0/-1/-1->1->-1
+gpu-03:3004423:3004759 [0] NCCL INFO P2P Chunksize set to 524288
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 16/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 18/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 22/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 01/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 03/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 07/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 09/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 13/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 15/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 19/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 21/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Connected all rings
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 02/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 03/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 11/0 : 3[3] -> 0[0] via09-01 11:55:01 I initialized process rank=3 local_rank=3 pid=3004425
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 09/0 : 2[2] -> 3[3] via P2P/CUM09-01 11:55:01 I initialized process rank=2 local_rank=2 pid=3004424
+gpu-03:3004422:3004758 [0] NCCL INFO C09-01 11:55:01 I initialized process rank=0 local_rank=0 pid=3004422
+gpu-03:30009-01 11:55:01 I initialized process rank=1 local_rank=1 pid=3004423
+09-01 11:55:01 I initialized 4 processes
+09-01 11:55:01 W disabled cudnn benchmark
+09-01 11:55:01 W enabled cudnn deterministic
+09-01 11:55:01 I log file: /home/beknur.kalmakhanbet/save/in1k/sx0hjr39/log.txt
+09-01 11:55:01 I no seed specified -> using seed=0
+09-01 11:55:01 I ------------------
+09-01 11:55:01 I initializing wandb (mode=disabled)
+09-01 11:55:01 I ------------------
+09-01 11:55:01 I stage_id: sx0hjr39
+09-01 11:55:01 I python main_train.py --hp src/vislstm/yamls/pretrain/vil/80M_res224finetuning_e5.yaml
+09-01 11:55:01 I ------------------
+09-01 11:55:01 I VERSION CHECK
+09-01 11:55:01 I executable: /home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/bin/python
+09-01 11:55:01 I python version: 3.9.21
+09-01 11:55:01 I torch version: 2.5.1+cu121
+09-01 11:55:01 I torch.cuda version: 12.1
+09-01 11:55:01 I torchvision.version: 0.20.1+cu121
+09-01 11:55:03 I torchmetrics version: 1.6.2
+09-01 11:55:03 I kappaschedules version: 0.0.31
+09-01 11:55:03 I kappamodules version: 0.1.76
+09-01 11:55:03 I ------------------
+09-01 11:55:03 I SYSTEM INFO
+09-01 11:55:03 I host name: gpu-03
+09-01 11:55:03 I OS: Linux-5.15.161-ql-generic-13.0-14-x86_64-with-glibc2.35
+09-01 11:55:03 I OS version: #1 SMP Wed Jun 26 16:19:39 UTC 2024
+09-01 11:55:04 I initialized process rank=1 local_rank=1 pid=3004423 hostname=gpu-03
+09-01 11:55:04 I initialized process rank=3 local_rank=3 pid=3004425 hostname=gpu-03
+09-01 11:55:05 I initialized process rank=2 local_rank=2 pid=3004424 hostname=gpu-03
+09-01 11:55:05 I CUDA version: 12.4
+09-01 11:55:05 I current commit hash: c33eb7da953bb91ee362704e5c71248312f21444
+09-01 11:55:05 I latest git tag: 
+09-01 11:55:05 I initialized process rank=0 local_rank=0 pid=3004422 hostname=gpu-03
+09-01 11:55:05 I total_cpu_count: 64
+09-01 11:55:05 I ------------------
+09-01 11:55:05 I STATIC CONFIG
+09-01 11:55:05 I account_name: beknur.kalmakhanbet
+09-01 11:55:05 I output_path: /home/beknur.kalmakhanbet/save
+09-01 11:55:05 I ------------------
+09-01 11:55:05 I CLI ARGS
+09-01 11:55:05 I hp: src/vislstm/yamls/pretrain/vil/80M_res224finetuning_e5.yaml
+09-01 11:55:05 I accelerator: gpu
+09-01 11:55:05 I testrun: False
+09-01 11:55:05 I minmodelrun: False
+09-01 11:55:05 I mindatarun: False
+09-01 11:55:05 I mindurationrun: False
+09-01 11:55:05 I static_config_uri: static_config.yaml
+09-01 11:55:05 I ------------------
+09-01 11:55:05 I DIST CONFIG
+09-01 11:55:05 I rank: 0
+09-01 11:55:05 I local_rank: 0
+09-01 11:55:05 I world_size: 4
+09-01 11:55:05 I nodes: 1
+09-01 11:55:05 I backend: nccl
+09-01 11:55:05 I slurm job id: 132043
+09-01 11:55:05 I ------------------
+master_factory_base_path: vislstm
+stage_name: in1k
+datasets:
+  train:
+    kind: imagenet1k
+    split: train
+    sample_wrappers:
+    - kind: x_transform_wrapper
+      transform:
+      - kind: random_resized_crop
+        size: 224
+        scale:
+        - 0.08
+        - 1.0
+        interpolation: bicubic
+      - kind: random_horizontal_flip
+      - kind: transforms.three_augment
+        blur_sigma:
+        - 0.1
+        - 2.0
+      - kind: color_jitter
+        brightness: 0.3
+        contrast: 0.3
+        saturation: 0.3
+        hue: 0.0
+      - kind: imagenet1k_norm
+    - kind: one_hot_wrapper
+    collators:
+    - kind: mix_collator
+      mixup_alpha: 0.8
+      cutmix_alpha: 1.0
+      mixup_p: 0.5
+      cutmix_p: 0.5
+      apply_mode: batch
+      lamb_mode: batch
+      shuffle_mode: flip
+  val:
+    kind: imagenet1k
+    split: val
+    sample_wrappers:
+    - kind: x_transform_wrapper
+      transform:
+      - kind: resize
+        size: 224
+        interpolation: bicubic
+      - kind: center_crop
+        size: 224
+      - kind: imagenet1k_norm
+model:
+  initializers:
+  - kind: previous_run_initializer
+    stage_id: ralia1v1
+    stage_name: in1k
+    model_name: vislstm
+    checkpoint: last
+    use_checkpoint_kwargs: true
+  optim:
+    kind: adamw
+    lr: 1.0e-05
+    betas:
+    - 0.9
+    - 0.999
+    weight_decay: 0.05
+    schedule:
+      kind: linear_warmup_cosine_decay_schedule
+      warmup_epochs: 1
+      end_value: 1.0e-06
+    lr_scaler:
+      kind: linear_lr_scaler
+      divisor: 1024
+trainer:
+  kind: classification_trainer
+  precision: bfloat16
+  backup_precision: float16
+  max_epochs: 5
+  effective_batch_size: 256
+  log_every_n_epochs: 1
+  callbacks:
+  - kind: checkpoint_callback
+  - kind: checkpoint_callback
+    every_n_epochs: 10
+    save_latest_weights: true
+    save_latest_optim: true
+  - kind: offline_accuracy_callback
+    every_n_epochs: 1
+    dataset_key: val
+09-01 11:55:05 I copied unresolved hp to /home/beknur.kalmakhanbet/save/in1k/sx0hjr39/hp_unresolved.yaml
+09-01 11:55:05 I dumped resolved hp to /home/beknur.kalmakhanbet/save/in1k/sx0hjr39/hp_resolved.yaml
+09-01 11:55:05 I ------------------
+09-01 11:55:05 I training stage 'in1k'
+09-01 11:55:05 I using different seeds per process (seed+rank)
+09-01 11:55:05 I set seed to 0
+09-01 11:55:05 I ------------------
+09-01 11:55:05 I initializing datasets
+09-01 11:55:05 I initializing train
+09-01 11:55:10 I instantiating sample_wrapper x_transform_wrapper
+09-01 11:55:10 I instantiating sample_wrapper one_hot_wrapper
+09-01 11:55:10 I initializing val
+09-01 11:55:11 I instantiating sample_wrapper x_transform_wrapper
+09-01 11:55:11 I ------------------
+09-01 11:55:11 I initializing trainer
+09-01 11:55:11 I using precision: torch.bfloat16 (desired=bfloat16 backup=float16)
+09-01 11:55:11 I main_sampler: DistributedSampler(num_repeats=1, shuffle=True)
+09-01 11:55:11 I ------------------
+09-01 11:55:11 I creating model
+09-01 11:55:12 I input_shape: (3, 224, 224)
+09-01 11:55:13 I loaded model kwargs from /home/beknur.kalmakhanbet/save/in1k/ralia1v1/checkpoints/vislstm cp=last model.th
+09-01 11:55:13 I loaded model kwargs: {'patch_size': 16, 'dim': 768, 'depth': 24, 'bidirectional': False, 'alternation': 'bidirectional', 'conv1d_kernel_size': 3, 'use_conv2d': True, 'bias': True, 'pos_embed_mode': 'learnable', 'drop_path_rate': 0.2, 'drop_path_decay': False, 'mode': 'classifier', 'pooling': {'kind': 'bilateral', 'aggregate': 'flatten'}, 'kind': 'models.single.vislstm'}
+09-01 11:55:13 I postprocessed checkpoint kwargs:
+initializers:
+- kind: previous_run_initializer
+  stage_id: ralia1v1
+  stage_name: in1k
+  model_name: vislstm
+  checkpoint: last
+optim:
+  kind: adamw
+  lr: 1.0e-05
+  betas:
+  - 0.9
+  - 0.999
+  weight_decay: 0.05
+  schedule:
+    kind: linear_warmup_cosine_decay_schedule
+    warmup_epochs: 1
+    end_value: 1.0e-06
+  lr_scaler:
+    kind: linear_lr_scaler
+    divisor: 1024
+patch_size: 16
+dim: 768
+depth: 24
+bidirectional: false
+alternation: bidirectional
+conv1d_kernel_size: 3
+use_conv2d: true
+bias: true
+pos_embed_mode: learnable
+drop_path_rate: 0.2
+drop_path_decay: false
+mode: classifier
+pooling:
+  kind: bilateral
+  aggregate: flatten
+09-01 11:55:14 I pos_embed.is_learnable=True
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+09-01 11:55:17 I drop_path_rate: 0.2
+09-01 11:55:17 I model:
+VisLSTM(
+  (pooling): Bilateral(aggregate=flatten)
+  (patch_embed): VitPatchEmbed(
+    (proj): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+    (norm): Identity()
+  )
+  (pos_embed): VitPosEmbed2d()
+  (xlstm): xLSTMBlockStack(
+    (blocks): ModuleList(
+      (0-23): 24 x mLSTMBlock(
+        (drop_path1): DropPath(drop_prob=0.200)
+        (xlstm_norm): LayerNorm()
+        (xlstm): mLSTMLayer(
+          (proj_up): Linear(in_features=768, out_features=3072, bias=True)
+          (q_proj): LinearHeadwiseExpand(in_features=1536, num_heads=384, expand_factor_up=1, bias=True, trainable_weight=True, trainable_bias=True, )
+          (k_proj): LinearHeadwiseExpand(in_features=1536, num_heads=384, expand_factor_up=1, bias=True, trainable_weight=True, trainable_bias=True, )
+          (v_proj): LinearHeadwiseExpand(in_features=1536, num_heads=384, expand_factor_up=1, bias=True, trainable_weight=True, trainable_bias=True, )
+          (conv1d): SequenceConv2d(1536, 1536, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=1536)
+          (conv_act_fn): SiLU()
+          (mlstm_cell): mLSTMCell(
+            (igate): Linear(in_features=4608, out_features=4, bias=True)
+            (fgate): Linear(in_features=4608, out_features=4, bias=True)
+            (outnorm): MultiHeadLayerNorm()
+          )
+          (ogate_act_fn): SiLU()
+          (proj_down): Linear(in_features=1536, out_features=768, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (layerscale): Identity()
+        )
+      )
+    )
+    (post_blocks_norm): LayerNorm()
+  )
+  (head): Sequential(
+    (0): LayerNorm((1536,), eps=1e-06, elementwise_affine=True)
+    (1): Linear(in_features=1536, out_features=1000, bias=True)
+  )
+)
+09-01 11:55:17 I vislstm initialize optimizer
+09-01 11:55:17 I base lr: 1e-5
+09-01 11:55:17 I scaled lr: 2.5e-6
+09-01 11:55:17 I lr_scaler=LinearLrScaler(divisor=1024)
+09-01 11:55:17 I lr_scale_factor=256
+09-01 11:55:17 I exclude_bias_from_wd=True exclude_norm_from_wd=True param_group_modifiers=[WeightDecayByNameModifier(name=pos_embed.embed)]
+09-01 11:55:17 I using 2 param groups:
+09-01 11:55:17 I len(params)=194
+09-01 11:55:17 I weight_decay=0.0 len(params)=319
+09-01 11:55:17 I interpolate pos_embed: torch.Size([1, 12, 12, 768]) -> torch.Size([1, 14, 14, 768])
+09-01 11:55:17 I loaded weights of vislstm from /home/beknur.kalmakhanbet/save/in1k/ralia1v1/checkpoints/vislstm cp=last model.th
+09-01 11:55:17 I added default DatasetStatsCallback
+09-01 11:55:17 I added default ParamCountCallback
+09-01 11:55:17 I added default CopyPreviousConfigCallback
+09-01 11:55:17 I added default CopyPreviousSummaryCallback
+09-01 11:55:17 I added default ProgressCallback(every_n_epochs=1)
+09-01 11:55:17 I added default TrainTimeCallback(every_n_epochs=1)
+09-01 11:55:17 I added default OnlineLossCallback(every_n_epochs=1)
+09-01 11:55:17 I added default LrCallback(every_n_updates=50)
+09-01 11:55:17 I added default FreezerCallback(every_n_updates=50)
+09-01 11:55:17 I added default OnlineLossCallback(every_n_updates=50)
+4423:3004759 [0] NCCL INFO Channel 05/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 07/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 13/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 14/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 15/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 17/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 19/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 04/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 05/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 06/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 16/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 17/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 18/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 21/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004423:3004759 [0] NCCL INFO Connected all trees
+gpu-03:3004423:3004759 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gpu-03:3004423:3004759 [0] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+gpu-03:3004423:3004759 [0] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gpu-03:3004423:3004759 [0] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gpu-03:3004423:3004759 [0] NCCL INFO ncclCommInitRank comm 0x557626423a00 rank 1 nranks 4 cudaDev 0 nvmlDev 1 busId 41000 commId 0x48692ffd4b540e36 - Init COMPLETE
+hannel 15/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 20/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 21/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 04/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 05/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 10/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 11/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 16/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 17/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 22/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 23/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Connected all rings
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 04/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 05/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 06/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 07/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 16/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 17/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 18/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 19/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 08/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 09/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 20/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Channel 21/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004422:3004758 [0] NCCL INFO Connected all trees
+gpu-03:3004422:3004758 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gpu-03:3004422:3004758 [0] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+gpu-03:3004422:3004758 [0] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gpu-03:3004422:3004758 [0] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gpu-03:3004422:3004758 [0] NCCL INFO ncclCommInitRank comm 0x5630e545c070 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 1000 commId 0x48692ffd4b540e36 - Init COMPLETE
+ P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 20/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 22/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 23/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 05/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 06/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 07/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 17/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 18/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 19/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 02/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 03/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 08/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 09/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 10/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 12/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 14/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 15/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 20/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 21/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Channel 22/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gpu-03:3004425:3004760 [0] NCCL INFO Connected all trees
+gpu-03:3004425:3004760 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gpu-03:3004425:3004760 [0] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+gpu-03:3004425:3004760 [0] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gpu-03:3004425:3004760 [0] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gpu-03:3004425:3004760 [0] NCCL INFO ncclCommInitRank comm 0x556380ff5c60 rank 3 nranks 4 cudaDev 0 nvmlDev 3 busId c1000 commId 0x48692ffd4b540e36 - Init COMPLETE
+EM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 10/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 11/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 13/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 15/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 21/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 22/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 23/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 05/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 06/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 17/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 18/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 02/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 04/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 06/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 07/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 12/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 13/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 14/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 16/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 18/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Channel 19/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gpu-03:3004424:3004761 [0] NCCL INFO Connected all trees
+gpu-03:3004424:3004761 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gpu-03:3004424:3004761 [0] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+gpu-03:3004424:3004761 [0] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gpu-03:3004424:3004761 [0] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gpu-03:3004424:3004761 [0] NCCL INFO ncclCommInitRank comm 0x55bd1befcb60 rank 2 nranks 4 cudaDev 0 nvmlDev 2 busId 81000 commId 0x48692ffd4b540e36 - Init COMPLETE
+09-01 11:55:17 I replacing BatchNorm layers with SyncBatchNorm
+09-01 11:55:17 I torch.compile not used (use_torch_compile == False)
+09-01 11:55:17 I ------------------
+09-01 11:55:17 I PREPARE TRAINER
+09-01 11:55:17 I calculating batch_size and accumulation_steps (effective_batch_size=256)
+09-01 11:55:17 I effective_batch_size: 256
+09-01 11:55:17 I effective_batch_size_per_device: 64
+09-01 11:55:17 I world_size: 4
+09-01 11:55:17 I calculating automatic max_batch_size
+09-01 11:55:17 I trying batch_size 64
+09-01 11:55:23 I automatic max_batch_size: 64
+09-01 11:55:23 I batch_size: 64
+09-01 11:55:23 I accumulation_steps: 1
+09-01 11:55:23 I train_batches per epoch: 5004 (world_size=4 batch_size=64)
+09-01 11:55:23 I initializing dataloader
+09-01 11:55:23 I OfflineAccuracyCallback(every_n_epochs=1) registered InterleavedSamplerConfig(every_n_epochs=1) dataset_mode='x class'
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+09-01 11:55:23 W total_cpu_count != cpus_per_task (64 != 16)
+09-01 11:55:23 I created dataloader (batch_size=64 num_workers=15 pin_memory=True total_cpu_count=64 prefetch_factor=2)
+09-01 11:55:23 I concatenated dataset properties:
+09-01 11:55:23 I - mode='index x class' len=1281167 root_dataset=<vislstm.datasets.imagenet1k.Imagenet1k object at 0x1547807f3e80>
+09-01 11:55:23 I - mode='x class' len=50000 root_dataset=<vislstm.datasets.imagenet1k.Imagenet1k object at 0x15477206ec70>
+09-01 11:55:23 I ------------------
+09-01 11:55:23 I BEFORE TRAINING
+09-01 11:55:23 I train: 1281167 samples
+09-01 11:55:23 I val: 50000 samples
+09-01 11:55:23 I parameter counts (trainable | frozen)
+09-01 11:55:23 I 89,263,528 | 0 | vislstm
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=196, _num_blocks=1, _inner_embedding_dim=1536)
+09-01 11:55:23 I estimated checkpoint size: 1.0GB
+09-01 11:55:23 I estimated weight checkpoint size: 357.0MB
+09-01 11:55:23 I estimated optim checkpoint size: 714.1MB
+09-01 11:55:23 I estimated size for 1 checkpoints: 357.0MB
+09-01 11:55:23 I estimated checkpoint size: 1.0GB
+09-01 11:55:23 I estimated weight checkpoint size: 357.0MB
+09-01 11:55:23 I estimated optim checkpoint size: 714.1MB
+09-01 11:55:23 I estimated size for 1 checkpoints: 357.0MB
+09-01 11:55:23 I ------------------
+09-01 11:55:23 I DatasetStatsCallback
+09-01 11:55:23 I ParamCountCallback
+09-01 11:55:23 I CopyPreviousConfigCallback
+09-01 11:55:23 I CopyPreviousSummaryCallback
+09-01 11:55:23 I ProgressCallback(every_n_epochs=1)
+09-01 11:55:23 I TrainTimeCallback(every_n_epochs=1)
+09-01 11:55:23 I OnlineLossCallback(every_n_epochs=1)
+09-01 11:55:23 I LrCallback(every_n_updates=50)
+09-01 11:55:23 I FreezerCallback(every_n_updates=50)
+09-01 11:55:23 I OnlineLossCallback(every_n_updates=50)
+09-01 11:55:23 I OnlineAccuracyCallback(every_n_updates=50)
+09-01 11:55:23 I OnlineAccuracyCallback(every_n_epochs=1)
+09-01 11:55:23 I CheckpointCallback()
+09-01 11:55:23 I CheckpointCallback(every_n_epochs=10)
+09-01 11:55:23 I OfflineAccuracyCallback(every_n_epochs=1)
+09-01 11:55:23 I ------------------
+09-01 11:55:23 I START TRAINING
+09-01 11:55:23 I initializing dataloader workers
+09-01 11:55:24 I initialized dataloader workers
+09-01 11:55:27 I 0 unused parameters
+09-01 12:31:49 I ------------------
+09-01 12:31:49 I Epoch 1/5 (E1_U5004_S1281024)
+09-01 12:31:49 I ETA: 09.01 14.57.34 estimated_duration: 03:02:10.77 time_since_last_log: 00:36:26.15 time_per_update: 00:00:00.43 
+09-01 12:31:49 I data=[0.00, 0.00, 0.00, 0.00] update=[0.43, 0.43, 0.43, 0.43]
+09-01 12:31:49 I loss/online/main/E1: 1.6374012231826782
+09-01 12:31:49 I loss/online/total/E1: 1.6374012231826782
+09-01 12:31:49 I accuracy1/online/main/E1: 0.725726
+09-01 12:32:26 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.19
+09-01 12:32:26 I accuracy1/val/main: 0.821760
+09-01 12:32:26 I loss/val/main: 0.76171875
+09-01 13:08:48 I ------------------
+09-01 13:08:48 I Epoch 2/5 (E2_U10008_S2562048)
+09-01 13:08:48 I ETA: 09.01 14.59.46 estimated_duration: 02:27:56.92 time_since_last_log: 00:36:59.23 time_per_update: 00:00:00.44 
+09-01 13:08:48 I data=[0.00, 0.00, 0.00, 0.00] update=[0.43, 0.43, 0.43, 0.43]
+09-01 13:08:48 I loss/online/main/E1: 1.6348419189453125
+09-01 13:08:48 I loss/online/total/E1: 1.6348419189453125
+09-01 13:08:48 I accuracy1/online/main/E1: 0.726718
+09-01 13:09:25 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.19
+09-01 13:09:25 I accuracy1/val/main: 0.822440
+09-01 13:09:25 I loss/val/main: 0.7578125
+09-01 13:45:46 I ------------------
+09-01 13:45:46 I Epoch 3/5 (E3_U15012_S3843072)
+09-01 13:45:46 I ETA: 09.01 14.59.44 estimated_duration: 02:27:54.52 time_since_last_log: 00:36:58.03 time_per_update: 00:00:00.44 
+09-01 13:45:46 I data=[0.00, 0.00, 0.00, 0.00] update=[0.43, 0.43, 0.43, 0.43]
+09-01 13:45:46 I loss/online/main/E1: 1.6357604265213013
+09-01 13:45:46 I loss/online/total/E1: 1.6357604265213013
+09-01 13:45:46 I accuracy1/online/main/E1: 0.725556
+09-01 13:46:23 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.19
+09-01 13:46:23 I accuracy1/val/main: 0.822260
+09-01 13:46:23 I loss/val/main: 0.76171875
+09-01 14:22:45 I ------------------
+09-01 14:22:45 I Epoch 4/5 (E4_U20016_S5124096)
+09-01 14:22:45 I ETA: 09.01 14.59.43 estimated_duration: 02:27:54.14 time_since_last_log: 00:36:58.34 time_per_update: 00:00:00.44 
+09-01 14:22:45 I data=[0.00, 0.00, 0.00, 0.00] update=[0.43, 0.43, 0.43, 0.43]
+09-01 14:22:45 I loss/online/main/E1: 1.6327388286590576
+09-01 14:22:45 I loss/online/total/E1: 1.6327388286590576
+09-01 14:22:45 I accuracy1/online/main/E1: 0.726071
+09-01 14:23:21 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.19
+09-01 14:23:21 I accuracy1/val/main: 0.821980
+09-01 14:23:21 I loss/val/main: 0.76171875
+09-01 14:59:43 I ------------------
+09-01 14:59:43 I Epoch 5/5 (E5_U25020_S6405120)
+09-01 14:59:43 I ETA: 09.01 14.59.43 estimated_duration: 02:27:54.37 time_since_last_log: 00:36:58.76 time_per_update: 00:00:00.44 
+09-01 14:59:43 I data=[0.00, 0.00, 0.00, 0.00] update=[0.43, 0.43, 0.43, 0.43]
+09-01 14:59:43 I loss/online/main/E1: 1.632861614227295
+09-01 14:59:43 I loss/online/total/E1: 1.632861614227295
+09-01 14:59:43 I accuracy1/online/main/E1: 0.725074
+09-01 15:00:20 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.19
+09-01 15:00:20 I accuracy1/val/main: 0.821480
+09-01 15:00:20 I loss/val/main: 0.76171875
+09-01 15:00:24 I ------------------
+09-01 15:00:24 I AFTER TRAINING
+09-01 15:00:27 I ------------------
+09-01 15:00:27 I total_train_data_time:   [ 8.75,  9.36,  9.49, 10.26]
+09-01 15:00:27 I total_update_time: [10715.76, 10709.38, 10709.41, 10710.09]
+09-01 15:00:27 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/sx0hjr39/checkpoints/vislstm cp=last model.th
+09-01 15:00:27 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/sx0hjr39/checkpoints/trainer cp=last.th
+09-01 15:00:28 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/sx0hjr39/checkpoints/vislstm cp=last model.th
+09-01 15:00:29 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/sx0hjr39/checkpoints/vislstm cp=latest model.th
+09-01 15:00:30 I saved vislstm optim to /home/beknur.kalmakhanbet/save/in1k/sx0hjr39/checkpoints/vislstm cp=latest optim.th
+09-01 15:00:30 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/sx0hjr39/checkpoints/trainer cp=last.th
+09-01 15:00:30 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/sx0hjr39/checkpoints/trainer cp=latest.th
+09-01 15:00:30 I ------------------
+09-01 15:00:30 I offline_accuracy_callback dataset_key=val.x.class
+09-01 15:00:30 I total_data_time:    [0.00, 0.00, 0.00, 0.00]
+09-01 15:00:30 I total_forward_time: [0.93, 0.93, 0.93, 0.93]
+09-01 15:00:30 I writing 506 log entries to /home/beknur.kalmakhanbet/save/in1k/sx0hjr39/primitive/entries.th
+09-01 15:00:30 I ------------------
+09-01 15:00:30 I summarize logvalues
+09-01 15:00:30 I loss/online/main/U50/min: 1.5542843341827393
+09-01 15:00:30 I loss/online/total/U50/min: 1.5542843341827393
+09-01 15:00:30 I accuracy1/online/main/U50/max: 0.7504687309265137
+09-01 15:00:30 I loss/online/main/E1/min: 1.6327388286590576
+09-01 15:00:30 I loss/online/total/E1/min: 1.6327388286590576
+09-01 15:00:30 I accuracy1/online/main/E1/max: 0.7267178297042847
+09-01 15:00:30 I accuracy1/val/main/max: 0.8224400281906128
+09-01 15:00:30 I loss/val/main/min: 0.7578125
+09-01 15:00:30 W cuda profiling is not activated -> all cuda calls are executed asynchronously -> this will result in inaccurate profiling times where the time for all asynchronous cuda operation will be attributed to the first synchronous cuda operation https://github.com/BenediktAlkin/KappaProfiler?tab=readme-ov-file#time-async-operations
+09-01 15:00:30 I full profiling times:
+ 11113.39 train
+     0.00 train.DatasetStatsCallback.before_training
+     0.00 train.ParamCountCallback.before_training
+     0.04 train.CopyPreviousConfigCallback.before_training
+     0.01 train.CopyPreviousSummaryCallback.before_training
+     0.00 train.ProgressCallback(every_n_epochs=1).before_training
+     0.00 train.OnlineAccuracyCallback(every_n_updates=50).before_training
+     0.00 train.OnlineAccuracyCallback(every_n_epochs=1).before_training
+     0.00 train.CheckpointCallback().before_training
+     0.00 train.CheckpointCallback(every_n_epochs=10).before_training
+     0.00 train.OfflineAccuracyCallback(every_n_epochs=1).before_training
+     1.34 train.iterator
+     8.75 train.data_loading
+ 10715.76 train.update
+     0.24 train.OnlineLossCallback(every_n_epochs=1).track_after_accumulation_step
+     0.15 train.OnlineLossCallback(every_n_updates=50).track_after_accumulation_step
+    12.09 train.OnlineAccuracyCallback(every_n_updates=50).track_after_accumulation_step
+     7.71 train.OnlineAccuracyCallback(every_n_epochs=1).track_after_accumulation_step
+     0.14 train.TrainTimeCallback(every_n_epochs=1).track_after_update_step
+     0.03 train.LrCallback(every_n_updates=50).after_update
+     0.00 train.FreezerCallback(every_n_updates=50).after_update
+    12.88 train.OnlineLossCallback(every_n_updates=50).after_update
+     0.73 train.OnlineAccuracyCallback(every_n_updates=50).after_update
+     0.01 train.ProgressCallback(every_n_epochs=1).after_epoch
+     0.14 train.TrainTimeCallback(every_n_epochs=1).after_epoch
+     0.15 train.OnlineLossCallback(every_n_epochs=1).after_epoch
+     0.09 train.OnlineAccuracyCallback(every_n_epochs=1).after_epoch
+   183.63 train.OfflineAccuracyCallback(every_n_epochs=1).after_epoch
+     2.60 train.TrainTimeCallback(every_n_epochs=1).after_training
+     0.74 train.CheckpointCallback().after_training
+     2.83 train.CheckpointCallback(every_n_epochs=10).after_training
+09-01 15:00:30 I ------------------
+09-01 15:00:30 I CLEANUP
+09-01 15:00:30 I ------------------
+09-01 15:00:30 I encountered 2 warnings
+09-01 15:00:30 I encountered 0 errors
+gpu-03:3004423:3004776 [0] NCCL INFO [Service thread] Connection closed by localRank 1
+gpu-03:3004423:3016406 [0] NCCL INFO comm 0x557626423a00 rank 1 nranks 4 cudaDev 0 busId 41000 - Abort COMPLETE
+gpu-03:3004424:3004773 [0] NCCL INFO [Service thread] Connection closed by localRank 2
+gpu-03:3004424:3016407 [0] NCCL INFO comm 0x55bd1befcb60 rank 2 nranks 4 cudaDev 0 busId 81000 - Abort COMPLETE
+gpu-03:3004425:3004772 [0] NCCL INFO [Service thread] Connection closed by localRank 3
+gpu-03:3004425:3016408 [0] NCCL INFO comm 0x556380ff5c60 rank 3 nranks 4 cudaDev 0 busId c1000 - Abort COMPLETE
+gpu-03:3004422:3004770 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+gpu-03:3004422:3016405 [0] NCCL INFO comm 0x5630e545c070 rank 0 nranks 4 cudaDev 0 busId 1000 - Abort COMPLETE
