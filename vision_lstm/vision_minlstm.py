@@ -9,9 +9,11 @@ from torch import nn
 
 from .vision_lstm_util import interpolate_sincos, to_ntuple, VitPatchEmbed, VitPosEmbed2d, DropPath, SequenceConv2d
 
+
 class SequenceTraversal(Enum):
     ROWWISE_FROM_TOP_LEFT = "rowwise_from_top_left"
     ROWWISE_FROM_BOT_RIGHT = "rowwise_from_bot_right"
+
 
 def small_init_(param: torch.Tensor, dim: int) -> torch.Tensor:
     """
@@ -23,11 +25,13 @@ def small_init_(param: torch.Tensor, dim: int) -> torch.Tensor:
     torch.nn.init.normal_(param, mean=0.0, std=std)
     return param
 
+
 def wang_init_(param: torch.Tensor, dim: int, num_blocks: int):
     """ Adopted from https://github.com/EleutherAI/gpt-neox/blob/main/megatron/model/init_functions.py. """
     std = 2 / num_blocks / math.sqrt(dim)
     torch.nn.init.normal_(param, mean=0.0, std=std)
     return param
+
 
 def parallel_scan_log(log_coeffs, log_values):
     """
@@ -41,9 +45,11 @@ def parallel_scan_log(log_coeffs, log_values):
     log_h = a_star + log_h0_plus_b_star
     return torch.exp(log_h)
 
+
 def log_g(x):
     eps = 1e-8
     return torch.where(x >= 0, (F.relu(x)+0.5 + eps).log(), -F.softplus(-x) + eps)
+
 
 class CausalConv1d(nn.Module):
     """
@@ -90,21 +96,25 @@ class CausalConv1d(nn.Module):
         x = einops.rearrange(x, "b d l -> b l d")
         return x
 
+
 class minLSTMCell(nn.Module):
     def __init__(self, input_dim, hidden_dim):
         super().__init__()
         self.input_dim = input_dim
         self.hidden_dim = hidden_dim
-        
+
         # self.linear_i = nn.Linear(input_dim, hidden_dim, bias=False)
         # self.linear_f = nn.Linear(input_dim, hidden_dim, bias=False)
         # self.linear_h = nn.Linear(input_dim, hidden_dim, bias=False)
 
-        self.linear_i = nn.Conv1d(input_dim, hidden_dim, kernel_size=1, groups=input_dim, bias=False)
-        self.linear_f = nn.Conv1d(input_dim, hidden_dim, kernel_size=1, groups=input_dim, bias=False)
-        self.linear_h = nn.Conv1d(input_dim, hidden_dim, kernel_size=1, groups=input_dim, bias=False)
+        self.linear_i = nn.Conv1d(
+            input_dim, hidden_dim, kernel_size=1, groups=input_dim, bias=False)
+        self.linear_f = nn.Conv1d(
+            input_dim, hidden_dim, kernel_size=1, groups=input_dim, bias=False)
+        self.linear_h = nn.Conv1d(
+            input_dim, hidden_dim, kernel_size=1, groups=input_dim, bias=False)
 
-    def forward(self, x_t, pre_h = None):
+    def forward(self, x_t, pre_h=None):
         """
         x_t: (batch_size, sequence_length, input_size)
         """
@@ -132,16 +142,17 @@ class minLSTMCell(nn.Module):
         else:
             log_values = log_i + log_tilde_h
             log_coeffs = log_f
-        
+
         h_t = parallel_scan_log(log_coeffs, log_values)
         out = h_t[:, -S:]
 
         return out
-    
+
     def reset_parameters(self):
         small_init_(self.linear_f.weight, dim=self.hidden_dim)
         small_init_(self.linear_i.weight, dim=self.hidden_dim)
         small_init_(self.linear_h.weight, dim=self.hidden_dim)
+
 
 class LayerNorm(nn.Module):
     """ LayerNorm but with an optional bias. PyTorch doesn't support simply bias=False. """
@@ -189,20 +200,21 @@ class LayerNorm(nn.Module):
         if self.bias is not None:
             nn.init.zeros_(self.bias)
 
+
 class minLSTM(nn.Module):
     def __init__(
-            self, 
-            dim, 
-            direction, 
-            conv_kind="2d", 
-            conv_kernel_size=4, 
-            expansion=2,
-            conv_bias=True,
-            seqlens=None,
-            proj_bias=True,
-            init_weights="original",
-            norm_bias=True,
-        ):
+        self,
+        dim,
+        direction,
+        conv_kind="2d",
+        conv_kernel_size=4,
+        expansion=2,
+        conv_bias=True,
+        seqlens=None,
+        proj_bias=True,
+        init_weights="original",
+        norm_bias=True,
+    ):
         super().__init__()
         self.dim = dim
         self.direction = direction
@@ -234,7 +246,7 @@ class minLSTM(nn.Module):
                 bias=conv_bias,
                 seqlens=seqlens,
             )
-        
+
         self.learnable_skip = nn.Parameter(torch.ones(inner_dim))
 
         self.cell = minLSTMCell(inner_dim, inner_dim)
@@ -246,7 +258,6 @@ class minLSTM(nn.Module):
         )
 
         self.reset_parameters()
-
 
     def forward(self, x):
         B, S, _ = x.shape
@@ -283,9 +294,9 @@ class minLSTM(nn.Module):
             x = x.flip(dims=[1])
         else:
             raise NotImplementedError
-    
+
         return x  # (batch_size, seq_len, hidden_dim)
-    
+
     def reset_parameters(self):
         small_init_(self.proj_up.weight, dim=self.dim)
         if self.proj_up.bias is not None:
@@ -294,7 +305,8 @@ class minLSTM(nn.Module):
         if self.init_weights == "original":
             wang_init_(self.proj_down.weight, dim=self.dim, num_blocks=1)
         elif self.init_weights == "original-fixed":
-            wang_init_(self.proj_down.weight, dim=self.dim, num_blocks=self.num_blocks)
+            wang_init_(self.proj_down.weight, dim=self.dim,
+                       num_blocks=self.num_blocks)
         else:
             raise NotImplementedError
         if self.proj_down.bias is not None:
@@ -302,6 +314,7 @@ class minLSTM(nn.Module):
 
         nn.init.ones_(self.learnable_skip)
         self.cell.reset_parameters()
+
 
 class minLSTMBlcok(nn.Module):
     def __init__(
@@ -328,7 +341,7 @@ class minLSTMBlcok(nn.Module):
         self.drop_path = DropPath(drop_prob=drop_path)
         self.norm = LayerNorm(ndim=dim, weight=True, bias=norm_bias)
         self.layer = minLSTM(
-            dim, 
+            dim,
             direction,
             conv_kind=conv_kind,
             conv_kernel_size=conv_kernel_size,
@@ -351,6 +364,7 @@ class minLSTMBlcok(nn.Module):
     def reset_parameters(self):
         self.layer.reset_parameters()
         self.norm.reset_parameters()
+
 
 class minLSTMPair(nn.Module):
     def __init__(
@@ -390,11 +404,12 @@ class minLSTMPair(nn.Module):
             num_blocks=None,
             init_weights="original",
         )
-    
+
     def forward(self, x):
         x = self.rowwise_from_top_left(x)
         x = self.rowwise_from_bot_right(x)
         return x
+
 
 class VisionMinLSTM(nn.Module):
     def __init__(
@@ -430,7 +445,8 @@ class VisionMinLSTM(nn.Module):
         )
 
         # Positional embedding
-        self.pos_embed = VitPosEmbed2d(seqlens=self.patch_embed.seqlens, dim=dim)
+        self.pos_embed = VitPosEmbed2d(
+            seqlens=self.patch_embed.seqlens, dim=dim)
 
         # Stacked minLSTM layers
         self.layers = nn.ModuleList([minLSTMPair(dim) for _ in range(depth)])
@@ -483,12 +499,14 @@ class VisionMinLSTM(nn.Module):
         elif self.pooling == "bilateral_avg":
             x = (x[:, 0] + x[:, -1]) / 2
         elif self.pooling == "to_image":
-            x = einops.rearrange(x, "b (h w) c -> b c h w", h=self.patch_embed.seqlens[0], w=self.patch_embed.seqlens[1])
+            x = einops.rearrange(
+                x, "b (h w) c -> b c h w", h=self.patch_embed.seqlens[0], w=self.patch_embed.seqlens[1])
         else:
-            raise NotImplementedError(f"Pooling mode '{self.pooling}' is not implemented")
+            raise NotImplementedError(
+                f"Pooling mode '{self.pooling}' is not implemented")
 
         # Classification head
         if self.head is not None:
             x = self.head(x)
-        
+
         return x
