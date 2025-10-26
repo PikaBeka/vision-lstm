@@ -357,7 +357,7 @@ class Runner:
                     data_container=data_container,
                 ),
             )
-            summary(model, input_size=trainer.input_shape)
+            # summary(model, input_size=trainer.input_shape)
             # print_num_params(model, include_buffers=False)
         logging.info(f"model:\n{model}")
         # return

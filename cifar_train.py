@@ -146,29 +146,30 @@ print('-------Creating model----------')
 # from vision_lstm.vision_minLSTM import VisionMinLSTMConcat
 
 model = VisionMinLSTM(
-    dim=192,
-    input_shape=(3, 32, 32),
-    depth=12,
-    output_shape=(100,),
+    dim=768,
+    input_shape=(3, 224, 224),
+    depth=24,
+    output_shape=(1000,),
     pooling="bilateral_flatten",
-    patch_size=4,
+    patch_size=16,
     drop_path_rate=0.1,
 ).to(device)
 
-# model = VisionLSTM2(
-#     dim=192,
-#     depth=12,
-#     patch_size=4,
-#     input_shape=(3, 32, 32),
-#     output_shape=(100,),
-#     drop_path_rate=0.1,
-# ).to(device)
+model = VisionLSTM2(
+    dim=768,
+    input_shape=(3, 224, 224),
+    depth=24,
+    output_shape=(1000,),
+    pooling="bilateral_flatten",
+    patch_size=16,
+    drop_path_rate=0.1,
+).to(device)
 
 wandb.watch(model, log_freq=100)
 
 # summary(model, input_size=(1, 3, 32, 32), depth=6)
 macs, params = get_model_complexity_info(
-    model, (3, 32, 32), as_strings=True, print_per_layer_stat=False)
+    model, (3, 224, 224), as_strings=True, print_per_layer_stat=False)
 print(macs, params)
 
 # Log model complexity metrics to wandb
@@ -180,8 +181,10 @@ wandb.log({
 print(f"parameters: {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M")
 # model = torch.compile(model)  # This makes training faster
 
+print(model)
+
 # Stop execution for debugging
-# sys.exit("Debug: Stopping after printing the model.")
+sys.exit("Debug: Stopping after printing the model.")
 
 print('-------Initializing optimizer----------')
 # initialize optimizer and learning rate schedule (linear warmup for first 10% -> linear decay)
