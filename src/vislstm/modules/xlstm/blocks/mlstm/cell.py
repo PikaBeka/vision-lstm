@@ -6,7 +6,7 @@ from dataclasses import dataclass
 import torch
 from torch import nn
 
-from ...components.init import bias_linspace_init_
+from ...components.init import small_init_init_, wang_init_
 from ...components.ln import MultiHeadLayerNorm
 from .backends import parallel_scan_log, log_g
 import einops
@@ -21,6 +21,30 @@ class mLSTMCellConfig:
     bias: bool = False
 
 
+class FeedForward(nn.Module):
+    def __init__(self, d_model: int, d_ff: int, dropout: float = 0.1):
+        super().__init__()
+        self.linear1 = nn.Linear(d_model, d_ff)
+        self.activation = nn.ReLU()
+        self.dropout = nn.Dropout(dropout)
+        self.linear2 = nn.Linear(d_ff, d_model)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        x = self.linear1(x)
+        x = self.activation(x)
+        x = self.dropout(x)
+        x = self.linear2(x)
+        return x
+
+    def reset_parameters(self):
+        small_init_init_(self.linear1.weight, dim=self.linear1.in_features)
+        small_init_init_(self.linear2.weight, dim=self.linear2.in_features)
+        if self.linear1.bias is not None:
+            nn.init.zeros_(self.linear1.bias)
+        if self.linear2.bias is not None:
+            nn.init.zeros_(self.linear2.bias)
+
+
 class mLSTMCell(nn.Module):
     config_class = mLSTMCellConfig
 
@@ -30,27 +54,34 @@ class mLSTMCell(nn.Module):
 
         self.backend_fn = parallel_scan_log
 
-        self.linear_i = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-                                  kernel_size=1, groups=128, bias=False)
-        self.linear_f = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-                                  kernel_size=1, groups=128, bias=False)
-        self.linear_h = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-                                  kernel_size=1, groups=128, bias=False)
+        # self.linear_i = nn.Conv1d(config.embedding_dim, config.embedding_dim,
+        #                           kernel_size=1, groups=128, bias=False)
+        # self.linear_f = nn.Conv1d(config.embedding_dim, config.embedding_dim,
+        #                           kernel_size=1, groups=128, bias=False)
+        # self.linear_h = nn.Conv1d(config.embedding_dim, config.embedding_dim,
+        #                           kernel_size=1, groups=128, bias=False)
+
+        self.linear_h = FeedForward(
+            config.embedding_dim, config.embedding_dim//32)
+        self.linear_i = FeedForward(
+            config.embedding_dim, config.embedding_dim//32)
+        self.linear_f = FeedForward(
+            config.embedding_dim, config.embedding_dim//32)
 
         self.reset_parameters()
 
     def forward(self, x_t: torch.Tensor, **kwargs) -> torch.Tensor:
         B, S, _ = x_t.shape
 
-        x_t = einops.rearrange(x_t, "b s d -> b d s")  # Reshape for Conv1d
+        # x_t = einops.rearrange(x_t, "b s d -> b d s")  # Reshape for Conv1d
 
         f_gate = self.linear_f(x_t)
         i_gate = self.linear_i(x_t)
         hidden = self.linear_h(x_t)
 
-        f_gate = einops.rearrange(f_gate, "b d s -> b s d")
-        i_gate = einops.rearrange(i_gate, "b d s -> b s d")
-        hidden = einops.rearrange(hidden, "b d s -> b s d")
+        # f_gate = einops.rearrange(f_gate, "b d s -> b s d")
+        # i_gate = einops.rearrange(i_gate, "b d s -> b s d")
+        # hidden = einops.rearrange(hidden, "b d s -> b s d")
 
         diff = F.softplus(-f_gate) - F.softplus(-i_gate)
         log_f = -F.softplus(diff)
@@ -66,11 +97,13 @@ class mLSTMCell(nn.Module):
         return out
 
     def reset_parameters(self):
-        # forget gate initialization
-        torch.nn.init.zeros_(self.linear_i.weight)
-        # input gate initialization
-        torch.nn.init.zeros_(self.linear_f.weight)
-        torch.nn.init.zeros_(self.linear_h.weight)
+        # torch.nn.init.zeros_(self.linear_i.weight)
+        # torch.nn.init.zeros_(self.linear_f.weight)
+        # torch.nn.init.zeros_(self.linear_h.weight)
+
+        self.linear_f.reset_parameters()
+        self.linear_i.reset_parameters()
+        self.linear_h.reset_parameters()
 
 # # This file is licensed under Apache-2.0
 # # Copyright (c) NXAI GmbH and its affiliates 2024
