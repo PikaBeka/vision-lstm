@@ -8,6 +8,7 @@ from torch import nn
 
 from ...components.init import small_init_init_, wang_init_
 from ...components.ln import MultiHeadLayerNorm
+from ...components.dynamic_tanh import DynamicTanh
 from .backends import parallel_scan_log, log_g
 import einops
 import torch.nn.functional as F
@@ -68,6 +69,9 @@ class mLSTMCell(nn.Module):
         self.linear_f = FeedForward(
             config.embedding_dim, config.embedding_dim//128)
 
+        self.norm = DynamicTanh(
+            normalized_shape=config.embedding_dim, channels_last=True)
+
         self.reset_parameters()
 
     def forward(self, x_t: torch.Tensor, **kwargs) -> torch.Tensor:
@@ -75,9 +79,11 @@ class mLSTMCell(nn.Module):
 
         # x_t = einops.rearrange(x_t, "b s d -> b d s")  # Reshape for Conv1d
 
-        f_gate = self.linear_f(x_t)
-        i_gate = self.linear_i(x_t)
-        hidden = self.linear_h(x_t)
+        x_t_norm = self.norm(x_t)
+
+        f_gate = self.linear_f(x_t_norm)
+        i_gate = self.linear_i(x_t_norm)
+        hidden = self.linear_h(x_t_norm)
 
         # f_gate = einops.rearrange(f_gate, "b d s -> b s d")
         # i_gate = einops.rearrange(i_gate, "b d s -> b s d")
