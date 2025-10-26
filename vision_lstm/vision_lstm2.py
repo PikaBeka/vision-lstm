@@ -20,7 +20,8 @@ class SequenceTraversal(Enum):
 
 def bias_linspace_init_(param: torch.Tensor, start: float = 3.4, end: float = 6.0) -> torch.Tensor:
     """Linearly spaced bias init across dimensions."""
-    assert param.dim() == 1, f"param must be 1-dimensional (typically a bias), got {param.dim()}"
+    assert param.dim(
+    ) == 1, f"param must be 1-dimensional (typically a bias), got {param.dim()}"
     n_dims = param.shape[0]
     init_vals = torch.linspace(start, end, n_dims)
     with torch.no_grad():
@@ -97,21 +98,27 @@ def parallel_stabilized_simple(
     # for each batch/head this is a matrix of shape (S+1, S+1) containing the cumsum of the log forget gate values
     # in the second dimension (colum dimension). Each row has the same is a copy of the first row.
     # First entry of each row is zero.
-    rep_log_fgates_cumsum = log_fgates_cumsum.repeat(1, 1, 1, S + 1)  # (B, NH, S+1, S+1)
+    rep_log_fgates_cumsum = log_fgates_cumsum.repeat(
+        1, 1, 1, S + 1)  # (B, NH, S+1, S+1)
     # Now in each row cut off / subtract the forgetgate values of the later timesteps
     # where col j > row i
-    _log_fg_matrix = rep_log_fgates_cumsum - rep_log_fgates_cumsum.transpose(-2, -1)  # (B, NH, S+1, S+1)
+    _log_fg_matrix = rep_log_fgates_cumsum - \
+        rep_log_fgates_cumsum.transpose(-2, -1)  # (B, NH, S+1, S+1)
     # Causal masking & selection of the correct submatrix, such that forgetgate at timestep t is not applied
     # to the input at timestep t
-    log_fg_matrix = torch.where(ltr, _log_fg_matrix[:, :, 1:, 1:], -float("inf"))  # (B, NH, S, S)
+    log_fg_matrix = torch.where(
+        ltr, _log_fg_matrix[:, :, 1:, 1:], -float("inf"))  # (B, NH, S, S)
 
     # gate decay matrix D (combination of forget gate and input gate)
-    log_D_matrix = log_fg_matrix + igate_preact.transpose(-2, -1)  # (B, NH, S, S)
+    log_D_matrix = log_fg_matrix + \
+        igate_preact.transpose(-2, -1)  # (B, NH, S, S)
     # D matrix stabilization
     if stabilize_rowwise:
-        max_log_D, _ = torch.max(log_D_matrix, dim=-1, keepdim=True)  # (B, NH, S, 1)
+        max_log_D, _ = torch.max(log_D_matrix, dim=-1,
+                                 keepdim=True)  # (B, NH, S, 1)
     else:
-        max_log_D = torch.max(log_D_matrix.view(B, NH, -1), dim=-1, keepdim=True)[0].unsqueeze(-1)
+        max_log_D = torch.max(log_D_matrix.view(
+            B, NH, -1), dim=-1, keepdim=True)[0].unsqueeze(-1)
         # (B, NH, 1, 1)
     log_D_matrix_stabilized = log_D_matrix - max_log_D  # (B, NH, S, S)
     D_matrix = torch.exp(log_D_matrix_stabilized)  # (B, NH, S, S)
@@ -121,7 +128,8 @@ def parallel_stabilized_simple(
     # combination matrix C
     qk_matrix = queries @ keys_scaled.transpose(-2, -1)  # (B, NH, S, S)
     C_matrix = qk_matrix * D_matrix  # (B, NH, S, S)
-    normalizer = torch.maximum(C_matrix.sum(dim=-1, keepdim=True).abs(), torch.exp(-max_log_D))  # (B, NH, S, 1)
+    normalizer = torch.maximum(C_matrix.sum(
+        dim=-1, keepdim=True).abs(), torch.exp(-max_log_D))  # (B, NH, S, 1)
     # (B, NH, S, S)
     C_matrix_normalized = C_matrix / (normalizer + eps)
 
@@ -144,7 +152,8 @@ class LinearHeadwiseExpand(nn.Module):
         self.num_heads = num_heads
 
         dim_per_head = dim // num_heads
-        self.weight = nn.Parameter(torch.empty(num_heads, dim_per_head, dim_per_head))
+        self.weight = nn.Parameter(torch.empty(
+            num_heads, dim_per_head, dim_per_head))
         if bias:
             self.bias = nn.Parameter(torch.empty(dim))
         else:
@@ -152,7 +161,8 @@ class LinearHeadwiseExpand(nn.Module):
         self.reset_parameters()
 
     def reset_parameters(self):
-        nn.init.normal_(self.weight.data, mean=0.0, std=math.sqrt(2 / 5 / self.weight.shape[-1]))
+        nn.init.normal_(self.weight.data, mean=0.0,
+                        std=math.sqrt(2 / 5 / self.weight.shape[-1]))
         if self.bias is not None:
             nn.init.zeros_(self.bias.data)
 
@@ -296,7 +306,8 @@ class MatrixLSTMCell(nn.Module):
 
         self.igate = nn.Linear(3 * dim, num_heads)
         self.fgate = nn.Linear(3 * dim, num_heads)
-        self.outnorm = MultiHeadLayerNorm(ndim=dim, weight=True, bias=norm_bias)
+        self.outnorm = MultiHeadLayerNorm(
+            ndim=dim, weight=True, bias=norm_bias)
         self.causal_mask_cache = {}
         self.reset_parameters()
 
@@ -314,15 +325,18 @@ class MatrixLSTMCell(nn.Module):
 
         # compute input and forget gate pre-activations
         igate_preact = self.igate(if_gate_input)  # (B, S, NH) (1, 64, 4)
-        igate_preact = igate_preact.transpose(-1, -2).unsqueeze(-1)  # (B, NH, S, 1) (1, 4, 64, 1)
+        # (B, NH, S, 1) (1, 4, 64, 1)
+        igate_preact = igate_preact.transpose(-1, -2).unsqueeze(-1)
         fgate_preact = self.fgate(if_gate_input)  # (B, S, NH) (1, 64, 4)
-        fgate_preact = fgate_preact.transpose(-1, -2).unsqueeze(-1)  # (B, NH, S, 1) (1, 4, 64, 1)
+        # (B, NH, S, 1) (1, 4, 64, 1)
+        fgate_preact = fgate_preact.transpose(-1, -2).unsqueeze(-1)
 
         # cache causal mask to avoid memory allocation in every iteration
         if S in self.causal_mask_cache:
             causal_mask = self.causal_mask_cache[(S, str(q.device))]
         else:
-            causal_mask = torch.tril(torch.ones(S, S, dtype=torch.bool, device=q.device))
+            causal_mask = torch.tril(torch.ones(
+                S, S, dtype=torch.bool, device=q.device))
             self.causal_mask_cache[(S, str(q.device))] = causal_mask
 
         h_state = parallel_stabilized_simple(
@@ -335,7 +349,8 @@ class MatrixLSTMCell(nn.Module):
         )  # (B, NH, S, DH) (1, 4, 64, 96)
 
         h_state_norm = self.outnorm(h_state)  # (B, NH, S, DH) (1, 4, 64, 96)
-        h_state_norm = h_state_norm.transpose(1, 2).reshape(B, S, -1)  # (B, NH, S, DH) (1, 4, 64, 96) -> (B, S, NH, DH) (1, 64, 4, 96) -> (B, S, H) (1, 64, 384)
+        # (B, NH, S, DH) (1, 4, 64, 96) -> (B, S, NH, DH) (1, 64, 4, 96) -> (B, S, H) (1, 64, 384)
+        h_state_norm = h_state_norm.transpose(1, 2).reshape(B, S, -1)
 
         return h_state_norm
 
@@ -457,7 +472,8 @@ class ViLLayer(nn.Module):
         k = self.k_proj(x_mlstm_conv_act)
         v = self.v_proj(x_mlstm)
         h_tilde_state = self.mlstm_cell(q=q, k=k, v=v)
-        h_tilde_state_skip = h_tilde_state + (self.learnable_skip * x_mlstm_conv_act)
+        h_tilde_state_skip = h_tilde_state + \
+            (self.learnable_skip * x_mlstm_conv_act)
 
         # output / z branch
         h_state = h_tilde_state_skip * F.silu(z)
@@ -484,7 +500,8 @@ class ViLLayer(nn.Module):
         if self.init_weights == "original":
             wang_init_(self.proj_down.weight, dim=self.dim, num_blocks=1)
         elif self.init_weights == "original-fixed":
-            wang_init_(self.proj_down.weight, dim=self.dim, num_blocks=self.num_blocks)
+            wang_init_(self.proj_down.weight, dim=self.dim,
+                       num_blocks=self.num_blocks)
         else:
             raise NotImplementedError
         if self.proj_down.bias is not None:
@@ -656,7 +673,8 @@ class VisionLSTM2(nn.Module):
         )
 
         # pos embed
-        self.pos_embed = VitPosEmbed2d(seqlens=self.patch_embed.seqlens, dim=dim)
+        self.pos_embed = VitPosEmbed2d(
+            seqlens=self.patch_embed.seqlens, dim=dim)
 
         # calculate stochastic depth per block
         if drop_path_decay and drop_path_rate > 0.:
@@ -695,14 +713,16 @@ class VisionLSTM2(nn.Module):
         # head
         if mode == "features":
             if self.output_shape is not None:
-                warnings.warn(f"passed mode=features -> output_shape is ignored ({self.output_shape})")
+                warnings.warn(
+                    f"passed mode=features -> output_shape is ignored ({self.output_shape})")
             self.head = None
             if self.pooling is None:
                 self.output_shape = (self.patch_embed.num_patches, dim)
             elif self.pooling == "to_image":
                 self.output_shape = (dim, *self.patch_embed.seqlens)
             else:
-                warnings.warn(f"passed invalid pooling -> pooling is ignored ({self.pooling})")
+                warnings.warn(
+                    f"passed invalid pooling -> pooling is ignored ({self.pooling})")
                 self.pooling = None
         elif mode == "classifier":
             # linear classification head
@@ -719,7 +739,8 @@ class VisionLSTM2(nn.Module):
         # interpolate pos_embed for different resolution (e.g. for fine-tuning on higher-resolution)
         old_pos_embed = state_dict["pos_embed.embed"]
         if old_pos_embed.shape != self.pos_embed.embed.shape:
-            state_dict["pos_embed.embed"] = interpolate_sincos(embed=old_pos_embed, seqlens=self.pos_embed.seqlens)
+            state_dict["pos_embed.embed"] = interpolate_sincos(
+                embed=old_pos_embed, seqlens=self.pos_embed.seqlens)
         # remove head and adapt layernorm for feature extraction
         if self.mode == "features":
             state_dict.pop("head.weight", None)
@@ -769,7 +790,8 @@ class VisionLSTM2(nn.Module):
             x = torch.concat([x[:, 0], x[:, -1]], dim=1)
             x = self.legacy_norm(x)
         else:
-            raise NotImplementedError(f"pooling '{self.pooling}' is not implemented")
+            raise NotImplementedError(
+                f"pooling '{self.pooling}' is not implemented")
 
         # head
         if self.head is not None:
