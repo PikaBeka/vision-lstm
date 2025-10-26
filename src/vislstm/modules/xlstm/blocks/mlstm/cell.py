@@ -62,11 +62,11 @@ class mLSTMCell(nn.Module):
         #                           kernel_size=1, groups=128, bias=False)
 
         self.linear_h = FeedForward(
-            config.embedding_dim, config.embedding_dim//32)
+            config.embedding_dim, config.embedding_dim//64)
         self.linear_i = FeedForward(
-            config.embedding_dim, config.embedding_dim//32)
+            config.embedding_dim, config.embedding_dim//64)
         self.linear_f = FeedForward(
-            config.embedding_dim, config.embedding_dim//32)
+            config.embedding_dim, config.embedding_dim//64)
 
         self.reset_parameters()
 
