@@ -55,39 +55,39 @@ class mLSTMCell(nn.Module):
 
         self.backend_fn = parallel_scan_log
 
-        # self.linear_i = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-        #                           kernel_size=1, groups=128, bias=False)
-        # self.linear_f = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-        #                           kernel_size=1, groups=128, bias=False)
-        # self.linear_h = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-        #                           kernel_size=1, groups=128, bias=False)
+        self.linear_i = nn.Conv1d(config.embedding_dim, config.embedding_dim,
+                                  kernel_size=1, groups=128, bias=False)
+        self.linear_f = nn.Conv1d(config.embedding_dim, config.embedding_dim,
+                                  kernel_size=1, groups=128, bias=False)
+        self.linear_h = nn.Conv1d(config.embedding_dim, config.embedding_dim,
+                                  kernel_size=1, groups=128, bias=False)
 
-        self.linear_h = FeedForward(
-            config.embedding_dim, config.embedding_dim//128)
-        self.linear_i = FeedForward(
-            config.embedding_dim, config.embedding_dim//128)
-        self.linear_f = FeedForward(
-            config.embedding_dim, config.embedding_dim//128)
+        # self.linear_h = FeedForward(
+        #     config.embedding_dim, config.embedding_dim//128)
+        # self.linear_i = FeedForward(
+        #     config.embedding_dim, config.embedding_dim//128)
+        # self.linear_f = FeedForward(
+        #     config.embedding_dim, config.embedding_dim//128)
 
-        self.norm = DynamicTanh(
-            normalized_shape=config.embedding_dim, channels_last=True)
+        # self.norm = DynamicTanh(
+        #     normalized_shape=config.embedding_dim, channels_last=True)
 
         self.reset_parameters()
 
     def forward(self, x_t: torch.Tensor, **kwargs) -> torch.Tensor:
         B, S, _ = x_t.shape
 
-        # x_t = einops.rearrange(x_t, "b s d -> b d s")  # Reshape for Conv1d
+        x_t = einops.rearrange(x_t, "b s d -> b d s")  # Reshape for Conv1d
 
-        x_t_norm = self.norm(x_t)
+        # x_t_norm = self.norm(x_t)
 
-        f_gate = self.linear_f(x_t_norm)
-        i_gate = self.linear_i(x_t_norm)
-        hidden = self.linear_h(x_t_norm)
+        f_gate = self.linear_f(x_t)
+        i_gate = self.linear_i(x_t)
+        hidden = self.linear_h(x_t)
 
-        # f_gate = einops.rearrange(f_gate, "b d s -> b s d")
-        # i_gate = einops.rearrange(i_gate, "b d s -> b s d")
-        # hidden = einops.rearrange(hidden, "b d s -> b s d")
+        f_gate = einops.rearrange(f_gate, "b d s -> b s d")
+        i_gate = einops.rearrange(i_gate, "b d s -> b s d")
+        hidden = einops.rearrange(hidden, "b d s -> b s d")
 
         diff = F.softplus(-f_gate) - F.softplus(-i_gate)
         log_f = -F.softplus(diff)
@@ -103,13 +103,13 @@ class mLSTMCell(nn.Module):
         return out
 
     def reset_parameters(self):
-        # torch.nn.init.zeros_(self.linear_i.weight)
-        # torch.nn.init.zeros_(self.linear_f.weight)
-        # torch.nn.init.zeros_(self.linear_h.weight)
+        torch.nn.init.zeros_(self.linear_i.weight)
+        torch.nn.init.zeros_(self.linear_f.weight)
+        torch.nn.init.zeros_(self.linear_h.weight)
 
-        self.linear_f.reset_parameters()
-        self.linear_i.reset_parameters()
-        self.linear_h.reset_parameters()
+        # self.linear_f.reset_parameters()
+        # self.linear_i.reset_parameters()
+        # self.linear_h.reset_parameters()
 
 # # This file is licensed under Apache-2.0
 # # Copyright (c) NXAI GmbH and its affiliates 2024
