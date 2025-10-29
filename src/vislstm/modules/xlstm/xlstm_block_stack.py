@@ -87,10 +87,10 @@ class xLSTMBlockStack(nn.Module):
 
         self.blocks = self._create_blocks(config=config)
         if config.add_post_blocks_norm:
-            self.post_blocks_norm = DynamicTanh(
-                normalized_shape=config.embedding_dim, channels_last=True)
-            # self.post_blocks_norm = LayerNorm(
-            #     ndim=config.embedding_dim, bias=config.mlstm_block.mlstm.bias)
+            # self.post_blocks_norm = DynamicTanh(
+            #     normalized_shape=config.embedding_dim, channels_last=True)
+            self.post_blocks_norm = LayerNorm(
+                ndim=config.embedding_dim, bias=config.mlstm_block.mlstm.bias)
         else:
             self.post_blocks_norm = nn.Identity()
 

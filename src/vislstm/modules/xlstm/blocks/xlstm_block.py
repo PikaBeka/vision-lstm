@@ -70,10 +70,10 @@ class xLSTMBlock(nn.Module):
         )
 
         self.drop_path1 = DropPath(drop_prob=config.drop_path)
-        self.xlstm_norm = DynamicTanh(
-            normalized_shape=embedding_dim, channels_last=True)
-        # self.xlstm_norm = LayerNorm(
-        #     ndim=embedding_dim, weight=True, bias=config.mlstm.bias)
+        # self.xlstm_norm = DynamicTanh(
+        #     normalized_shape=embedding_dim, channels_last=True)
+        self.xlstm_norm = LayerNorm(
+            ndim=embedding_dim, weight=True, bias=config.mlstm.bias)
 
         if self.config.mlstm is not None:
             self.xlstm = mLSTMLayer(config=self.config.mlstm)
@@ -83,11 +83,11 @@ class xLSTMBlock(nn.Module):
             raise ValueError("Either mlstm or slstm must be provided")
 
         if self.config.feedforward is not None:
-            self.ffn_norm = DynamicTanh(
-                normalized_shape=embedding_dim, channels_last=True)
-            # self.ffn_norm = LayerNorm(
-            #     ndim=self.config.feedforward.embedding_dim, weight=True, bias=False
-            # )
+            # self.ffn_norm = DynamicTanh(
+            #     normalized_shape=embedding_dim, channels_last=True)
+            self.ffn_norm = LayerNorm(
+                ndim=self.config.feedforward.embedding_dim, weight=True, bias=False
+            )
             self.ffn = create_feedforward(config=self.config.feedforward)
         else:
             self.ffn_norm = None

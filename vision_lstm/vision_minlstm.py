@@ -227,16 +227,16 @@ class minLSTMCell(nn.Module):
         # self.linear_h = nn.Linear(input_dim, hidden_dim, bias=False)
 
         # self.mixer = LoRAAroundShared(hidden_dim, rank=4)
-        self.linear_h = FeedForward(hidden_dim, hidden_dim//32)
-        self.linear_i = FeedForward(hidden_dim, hidden_dim//32)
-        self.linear_f = FeedForward(hidden_dim, hidden_dim//32)
+        # self.linear_h = FeedForward(hidden_dim, hidden_dim//32)
+        # self.linear_i = FeedForward(hidden_dim, hidden_dim//32)
+        # self.linear_f = FeedForward(hidden_dim, hidden_dim//32)
 
-        # self.linear_i = nn.Conv1d(
-        #     input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
-        # self.linear_f = nn.Conv1d(
-        #     input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
-        # self.linear_h = nn.Conv1d(
-        #     input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
+        self.linear_i = nn.Conv1d(
+            input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
+        self.linear_f = nn.Conv1d(
+            input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
+        self.linear_h = nn.Conv1d(
+            input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
 
     def forward(self, x_t, pre_h=None):
         """

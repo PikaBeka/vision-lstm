@@ -56,11 +56,11 @@ class mLSTMCell(nn.Module):
         self.backend_fn = parallel_scan_log
 
         self.linear_i = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-                                  kernel_size=1, groups=128, bias=False)
+                                  kernel_size=3, padding=1, groups=128, bias=False)
         self.linear_f = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-                                  kernel_size=1, groups=128, bias=False)
+                                  kernel_size=3, padding=1, groups=128, bias=False)
         self.linear_h = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-                                  kernel_size=1, groups=128, bias=False)
+                                  kernel_size=3, padding=1, groups=128, bias=False)
 
         # self.linear_h = FeedForward(
         #     config.embedding_dim, config.embedding_dim//128)
@@ -68,9 +68,6 @@ class mLSTMCell(nn.Module):
         #     config.embedding_dim, config.embedding_dim//128)
         # self.linear_f = FeedForward(
         #     config.embedding_dim, config.embedding_dim//128)
-
-        # self.norm = DynamicTanh(
-        #     normalized_shape=config.embedding_dim, channels_last=True)
 
         self.reset_parameters()
 
