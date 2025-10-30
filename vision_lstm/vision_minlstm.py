@@ -108,11 +108,11 @@ class minLSTMCell(nn.Module):
         # self.linear_h = nn.Linear(input_dim, hidden_dim, bias=False)
 
         self.linear_i = nn.Conv1d(
-            input_dim, hidden_dim, kernel_size=1, groups=input_dim, bias=False)
+            input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
         self.linear_f = nn.Conv1d(
-            input_dim, hidden_dim, kernel_size=1, groups=input_dim, bias=False)
+            input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
         self.linear_h = nn.Conv1d(
-            input_dim, hidden_dim, kernel_size=1, groups=input_dim, bias=False)
+            input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
 
     def forward(self, x_t, pre_h=None):
         """
