@@ -97,6 +97,125 @@ class CausalConv1d(nn.Module):
         return x
 
 
+class LowRankFFN(nn.Module):
+    def __init__(self, dim: int, rank: int, bias: bool = False, act=True):
+        super().__init__()
+        self.down = nn.Linear(dim, rank, bias=bias)
+        self.up = nn.Linear(rank, dim, bias=bias)
+        self.act = nn.SiLU() if act else nn.Identity()
+
+    def forward(self, x):           # (B,S,D)
+        return self.up(self.act(self.down(x)))
+
+    def reset_parameters(self):
+        small_init_(self.down.weight, dim=self.down.in_features)
+        small_init_(self.up.weight, dim=self.up.in_features)
+        if self.down.bias is not None:
+            nn.init.zeros_(self.down.bias)
+        if self.up.bias is not None:
+            nn.init.zeros_(self.up.bias)
+
+
+class DPLRLinear(nn.Module):
+    def __init__(self, dim: int, rank: int, bias: bool = False):
+        super().__init__()
+        self.d = nn.Parameter(torch.ones(dim))
+        self.U = nn.Linear(dim, rank, bias=bias)
+        self.V = nn.Linear(rank, dim, bias=bias)
+
+    def forward(self, x):  # (B,S,D)
+        return x * self.d + self.V(F.silu(self.U(x)))
+
+    def reset_parameters(self):
+        nn.init.ones_(self.d)
+        small_init_(self.U.weight, dim=self.U.in_features)
+        small_init_(self.V.weight, dim=self.V.in_features)
+        if self.U.bias is not None:
+            nn.init.zeros_(self.U.bias)
+        if self.V.bias is not None:
+            nn.init.zeros_(self.V.bias)
+
+
+class LoRAAroundShared(nn.Module):
+    def __init__(self, dim: int, rank: int):
+        super().__init__()
+        self.W = nn.Linear(dim, dim, bias=False)     # shared
+        self.Ai = nn.Linear(dim, rank, bias=False)
+        self.Bi = nn.Linear(rank, dim, bias=False)
+        self.Af = nn.Linear(dim, rank, bias=False)
+        self.Bf = nn.Linear(rank, dim, bias=False)
+        self.Ah = nn.Linear(dim, rank, bias=False)
+        self.Bh = nn.Linear(rank, dim, bias=False)
+
+    def forward_i(self, x): return self.W(x) + self.Bi(F.silu(self.Ai(x)))
+    def forward_f(self, x): return self.W(x) + self.Bf(F.silu(self.Af(x)))
+    def forward_h(self, x): return self.W(x) + self.Bh(F.silu(self.Ah(x)))
+
+    def reset_parameters(self):
+        small_init_(self.W.weight, dim=self.W.in_features)
+        small_init_(self.Ai.weight, dim=self.Ai.in_features)
+        small_init_(self.Bi.weight, dim=self.Bi.in_features)
+        small_init_(self.Af.weight, dim=self.Af.in_features)
+        small_init_(self.Bf.weight, dim=self.Bf.in_features)
+        small_init_(self.Ah.weight, dim=self.Ah.in_features)
+        small_init_(self.Bh.weight, dim=self.Bh.in_features)
+        if self.Ai.bias is not None:
+            nn.init.zeros_(self.Ai.bias)
+        if self.Bi.bias is not None:
+            nn.init.zeros_(self.Bi.bias)
+        if self.Af.bias is not None:
+            nn.init.zeros_(self.Af.bias)
+        if self.Bf.bias is not None:
+            nn.init.zeros_(self.Bf.bias)
+        if self.Ah.bias is not None:
+            nn.init.zeros_(self.Ah.bias)
+        if self.Bh.bias is not None:
+            nn.init.zeros_(self.Bh.bias)
+
+
+class BottleneckMLP(nn.Module):
+    def __init__(self, dim: int, inner: int):
+        super().__init__()
+        self.down = nn.Linear(dim, inner, bias=False)
+        self.mix = nn.Linear(inner, inner, bias=False)  # optional
+        self.up = nn.Linear(inner, dim, bias=False)
+
+    def forward(self, x):
+        z = F.silu(self.down(x))
+        z = F.silu(self.mix(z)) if self.mix.weight is not None else z
+        return self.up(z)
+
+    def reset_parameters(self):
+        small_init_(self.down.weight, dim=self.down.in_features)
+        small_init_(self.up.weight, dim=self.up.in_features)
+        if self.mix.weight is not None:
+            small_init_(self.mix.weight, dim=self.mix.in_features)
+
+
+class FeedForward(nn.Module):
+    def __init__(self, d_model: int, d_ff: int, dropout: float = 0.1):
+        super().__init__()
+        self.linear1 = nn.Linear(d_model, d_ff)
+        self.activation = nn.ReLU()
+        self.dropout = nn.Dropout(dropout)
+        self.linear2 = nn.Linear(d_ff, d_model)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        x = self.linear1(x)
+        x = self.activation(x)
+        x = self.dropout(x)
+        x = self.linear2(x)
+        return x
+
+    def reset_parameters(self):
+        small_init_(self.linear1.weight, dim=self.linear1.in_features)
+        small_init_(self.linear2.weight, dim=self.linear2.in_features)
+        if self.linear1.bias is not None:
+            nn.init.zeros_(self.linear1.bias)
+        if self.linear2.bias is not None:
+            nn.init.zeros_(self.linear2.bias)
+
+
 class minLSTMCell(nn.Module):
     def __init__(self, input_dim, hidden_dim):
         super().__init__()
@@ -106,6 +225,11 @@ class minLSTMCell(nn.Module):
         # self.linear_i = nn.Linear(input_dim, hidden_dim, bias=False)
         # self.linear_f = nn.Linear(input_dim, hidden_dim, bias=False)
         # self.linear_h = nn.Linear(input_dim, hidden_dim, bias=False)
+
+        # self.mixer = LoRAAroundShared(hidden_dim, rank=4)
+        # self.linear_h = FeedForward(hidden_dim, hidden_dim//32)
+        # self.linear_i = FeedForward(hidden_dim, hidden_dim//32)
+        # self.linear_f = FeedForward(hidden_dim, hidden_dim//32)
 
         self.linear_i = nn.Conv1d(
             input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
@@ -120,15 +244,19 @@ class minLSTMCell(nn.Module):
         """
         B, S, _ = x_t.shape
 
-        x_t = einops.rearrange(x_t, "b s d -> b d s")  # Reshape for Conv1d
+        # x_t = einops.rearrange(x_t, "b s d -> b d s")  # Reshape for Conv1d
 
         f_gate = self.linear_f(x_t)
         i_gate = self.linear_i(x_t)
         hidden = self.linear_h(x_t)
 
-        f_gate = einops.rearrange(f_gate, "b d s -> b s d")
-        i_gate = einops.rearrange(i_gate, "b d s -> b s d")
-        hidden = einops.rearrange(hidden, "b d s -> b s d")
+        # i_gate = self.mixer.forward_i(x_t)
+        # f_gate = self.mixer.forward_f(x_t)
+        # hidden = self.mixer.forward_h(x_t)
+
+        # f_gate = einops.rearrange(f_gate, "b d s -> b s d")
+        # i_gate = einops.rearrange(i_gate, "b d s -> b s d")
+        # hidden = einops.rearrange(hidden, "b d s -> b s d")
 
         diff = F.softplus(-f_gate) - F.softplus(-i_gate)
         log_f = -F.softplus(diff)
@@ -149,9 +277,43 @@ class minLSTMCell(nn.Module):
         return out
 
     def reset_parameters(self):
-        small_init_(self.linear_f.weight, dim=self.hidden_dim)
-        small_init_(self.linear_i.weight, dim=self.hidden_dim)
-        small_init_(self.linear_h.weight, dim=self.hidden_dim)
+        # small_init_(self.linear_f.weight, dim=self.hidden_dim)
+        # small_init_(self.linear_i.weight, dim=self.hidden_dim)
+        # small_init_(self.linear_h.weight, dim=self.hidden_dim)
+
+        self.linear_f.reset_parameters()
+        self.linear_i.reset_parameters()
+        self.linear_h.reset_parameters()
+
+        # self.mixer.reset_parameters()
+
+
+class DynamicTanh(nn.Module):
+    def __init__(self, normalized_shape, channels_last, alpha_init_value=0.5):
+        super().__init__()
+        self.normalized_shape = normalized_shape
+        self.alpha_init_value = alpha_init_value
+        self.channels_last = channels_last
+
+        self.alpha = nn.Parameter(torch.ones(1) * alpha_init_value)
+        self.weight = nn.Parameter(torch.ones(normalized_shape))
+        self.bias = nn.Parameter(torch.zeros(normalized_shape))
+
+    def forward(self, x):
+        x = torch.tanh(self.alpha * x)
+        if self.channels_last:
+            x = x * self.weight + self.bias
+        else:
+            x = x * self.weight[:, None, None] + self.bias[:, None, None]
+        return x
+
+    def reset_parameters(self):
+        nn.init.ones_(self.weight)
+        nn.init.zeros_(self.bias)
+        nn.init.constant_(self.alpha, self.alpha_init_value)
+
+    def extra_repr(self):
+        return f"normalized_shape={self.normalized_shape}, alpha_init_value={self.alpha_init_value}, channels_last={self.channels_last}"
 
 
 class LayerNorm(nn.Module):
@@ -339,7 +501,8 @@ class minLSTMBlcok(nn.Module):
         self.init_weights = init_weights
 
         self.drop_path = DropPath(drop_prob=drop_path)
-        self.norm = LayerNorm(ndim=dim, weight=True, bias=norm_bias)
+        self.norm = DynamicTanh(normalized_shape=dim, channels_last=True)
+        # self.norm = LayerNorm(ndim=dim, weight=True, bias=norm_bias)
         self.layer = minLSTM(
             dim,
             direction,
@@ -452,7 +615,8 @@ class VisionMinLSTM(nn.Module):
         self.layers = nn.ModuleList([minLSTMPair(dim) for _ in range(depth)])
 
         # Normalization
-        self.norm = LayerNorm(dim, bias=norm_bias, eps=1e-6)
+        self.norm = DynamicTanh(normalized_shape=dim, channels_last=True)
+        # self.norm = LayerNorm(dim, bias=norm_bias, eps=1e-6)
 
         if pooling == "bilateral_flatten" and mode == "classifier":
             head_dim = dim * 2
@@ -460,7 +624,9 @@ class VisionMinLSTM(nn.Module):
             head_dim = dim
 
         if legacy_norm:
-            self.legacy_norm = nn.LayerNorm(head_dim)
+            self.legacy_norm = DynamicTanh(
+                normalized_shape=head_dim, channels_last=True)
+            # self.legacy_norm = nn.LayerNorm(head_dim)
         else:
             self.legacy_norm = nn.Identity()
 

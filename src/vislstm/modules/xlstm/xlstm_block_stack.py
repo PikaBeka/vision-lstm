@@ -11,6 +11,7 @@ from torch import nn
 from .blocks.mlstm.block import mLSTMBlock, mLSTMBlockConfig
 # from .blocks.slstm.block import sLSTMBlock, sLSTMBlockConfig
 from .components.ln import LayerNorm
+from .components.dynamic_tanh import DynamicTanh
 
 
 @dataclass
@@ -86,7 +87,10 @@ class xLSTMBlockStack(nn.Module):
 
         self.blocks = self._create_blocks(config=config)
         if config.add_post_blocks_norm:
-            self.post_blocks_norm = LayerNorm(ndim=config.embedding_dim, bias=config.mlstm_block.mlstm.bias)
+            # self.post_blocks_norm = DynamicTanh(
+            #     normalized_shape=config.embedding_dim, channels_last=True)
+            self.post_blocks_norm = LayerNorm(
+                ndim=config.embedding_dim, bias=config.mlstm_block.mlstm.bias)
         else:
             self.post_blocks_norm = nn.Identity()
 
@@ -101,7 +105,8 @@ class xLSTMBlockStack(nn.Module):
                     config.__post_init__()
                 blocks.append(mLSTMBlock(config=config))
             elif block_type_int == 1:
-                raise NotImplementedError("bidirectional implementation doesnt support slstm")
+                raise NotImplementedError(
+                    "bidirectional implementation doesnt support slstm")
                 # config = deepcopy(self.config.slstm_block)
                 # if hasattr(config, "_block_idx"):
                 #     config._block_idx = block_idx

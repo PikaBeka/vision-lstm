@@ -9,6 +9,7 @@ from torch import nn
 
 from ..components.feedforward import FeedForwardConfig, create_feedforward
 from ..components.ln import LayerNorm
+from ..components.dynamic_tanh import DynamicTanh
 from .mlstm.layer import mLSTMLayer, mLSTMLayerConfig
 from .slstm.layer import sLSTMLayer, sLSTMLayerConfig
 
@@ -66,7 +67,10 @@ class xLSTMBlock(nn.Module):
             else self.config.slstm.embedding_dim
         )
 
-        self.xlstm_norm = LayerNorm(ndim=embedding_dim, weight=True, bias=False)
+        # self.xlstm_norm = DynamicTanh(
+        #     normalized_shape=embedding_dim, channels_last=True)
+        self.xlstm_norm = LayerNorm(
+            ndim=embedding_dim, weight=True, bias=False)
 
         if self.config.mlstm is not None:
             self.xlstm = mLSTMLayer(config=self.config.mlstm)
@@ -76,6 +80,8 @@ class xLSTMBlock(nn.Module):
             raise ValueError("Either mlstm or slstm must be provided")
 
         if self.config.feedforward is not None:
+            # self.ffn_norm = DynamicTanh(
+            #     normalized_shape=embedding_dim, channels_last=True)
             self.ffn_norm = LayerNorm(
                 ndim=self.config.feedforward.embedding_dim, weight=True, bias=False
             )
