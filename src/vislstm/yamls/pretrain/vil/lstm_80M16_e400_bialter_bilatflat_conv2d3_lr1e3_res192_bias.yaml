@@ -60,7 +60,7 @@ model:
   kind: models.single.vislstm
   patch_size: 16
   dim: 768
-  depth: 24
+  depth: 64
   bidirectional: false
   alternation: bidirectional
   conv1d_kernel_size: 3
@@ -76,7 +76,7 @@ model:
   optim:
     kind: adamw
     lr: ${vars.lr}
-    betas: [ 0.9, 0.999 ]
+    betas: [0.9, 0.999]
     weight_decay: 0.05
     clip_grad_norm: 1.0
     schedule:
@@ -86,7 +86,6 @@ model:
     lr_scaler:
       kind: linear_lr_scaler
       divisor: 1024
-
 
 trainer:
   kind: classification_trainer
