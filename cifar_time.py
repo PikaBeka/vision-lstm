@@ -63,20 +63,17 @@ test_dataloader = DataLoader(test_dataset, batch_size=batch_size)
 print('-------Creating model----------')
 # from vision_lstm.vision_minLSTM import VisionMinLSTMConcat
 
-# model = VisionMinLSTM(
-#     dim=192,
-#     input_shape=(3, 32, 32),
-#     depth=12,
-#     output_shape=(10,),
-#     pooling="bilateral_flatten",
-#     patch_size=4,
-#     drop_path_rate=0.0,
-# ).to(device)
+model = VisionMinLSTM(
+    dim=192,
+    input_shape=(3, 32, 32),
+    depth=12,
+    output_shape=(10,),
+    pooling="bilateral_flatten",
+    patch_size=4,
+    drop_path_rate=0.0,
+).to(device)
 
-# Model class must be defined somewhere
-model = torch.load(
-    "checkpoints/3i471hv1/checkpoints/vislstm cp=latest model.th", weights_only=False)
-model.to(device)
+print(model)
 
 print("MODEL LOADED")
 

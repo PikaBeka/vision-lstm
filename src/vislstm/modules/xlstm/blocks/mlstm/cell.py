@@ -12,6 +12,7 @@ from ...components.dynamic_tanh import DynamicTanh
 from .backends import parallel_scan_log, log_g
 import einops
 import torch.nn.functional as F
+from torch.nn import Linear
 
 
 @dataclass
@@ -62,12 +63,18 @@ class mLSTMCell(nn.Module):
         # self.linear_h = nn.Conv1d(config.embedding_dim, config.embedding_dim,
         #                           kernel_size=3, padding=1, groups=128, bias=False)
 
-        self.linear_h = FeedForward(
-            config.embedding_dim, config.embedding_dim//192)
-        self.linear_i = FeedForward(
-            config.embedding_dim, config.embedding_dim//192)
-        self.linear_f = FeedForward(
-            config.embedding_dim, config.embedding_dim//192)
+        # self.linear_h = FeedForward(
+        #     config.embedding_dim, config.embedding_dim//192)
+        # self.linear_i = FeedForward(
+        #     config.embedding_dim, config.embedding_dim//192)
+        # self.linear_f = FeedForward(
+        #     config.embedding_dim, config.embedding_dim//192)
+
+        self.linear_h = Linear(config.embedding_dim, 2*config.embedding_dim)
+        self.linear_i = Linear(config.embedding_dim, 2*config.embedding_dim)
+        self.linear_f = Linear(config.embedding_dim, 2*config.embedding_dim)
+
+        self.to_out = nn.Linear(2*config.embedding_dim, config.embedding_dim)
 
         self.reset_parameters()
 
@@ -97,16 +104,32 @@ class mLSTMCell(nn.Module):
         h_t = parallel_scan_log(log_coeffs, log_values)
         out = h_t[:, -S:]
 
-        return out
+        return self.to_out(out)
 
     def reset_parameters(self):
         # torch.nn.init.zeros_(self.linear_i.weight)
         # torch.nn.init.zeros_(self.linear_f.weight)
         # torch.nn.init.zeros_(self.linear_h.weight)
 
-        self.linear_f.reset_parameters()
-        self.linear_i.reset_parameters()
-        self.linear_h.reset_parameters()
+        # self.linear_f.reset_parameters()
+        # self.linear_i.reset_parameters()
+        # self.linear_h.reset_parameters()
+
+        small_init_init_(self.linear_h.weight, dim=self.config.embedding_dim)
+        if self.linear_h.bias is not None:
+            nn.init.zeros_(self.linear_h.bias)
+
+        small_init_init_(self.linear_i.weight, dim=self.config.embedding_dim)
+        if self.linear_i.bias is not None:
+            nn.init.zeros_(self.linear_i.bias)
+
+        small_init_init_(self.linear_f.weight, dim=self.config.embedding_dim)
+        if self.linear_f.bias is not None:
+            nn.init.zeros_(self.linear_f.bias)
+
+        small_init_init_(self.to_out.weight, dim=self.config.embedding_dim)
+        if self.to_out.bias is not None:
+            nn.init.zeros_(self.to_out.bias)
 
 # # This file is licensed under Apache-2.0
 # # Copyright (c) NXAI GmbH and its affiliates 2024
@@ -120,14 +143,12 @@ class mLSTMCell(nn.Module):
 # from ...components.ln import MultiHeadLayerNorm
 # from .backends import parallel_stabilized_simple
 
-
 # @dataclass
 # class mLSTMCellConfig:
 #     context_length: int = -1
 #     embedding_dim: int = -1
 #     num_heads: int = -1
 #     bias: bool = False
-
 
 # class mLSTMCell(nn.Module):
 #     config_class = mLSTMCellConfig
