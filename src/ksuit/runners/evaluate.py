@@ -36,6 +36,9 @@ from ksuit.utils.wandb_utils import finish_wandb, init_wandb
 from torchsummary import summary
 from torch import nn
 
+from fvcore.nn import FlopCountAnalysis, parameter_count_table
+from torchsummary import summary
+
 
 class Runner_evaluate():
     def run(self):
@@ -325,9 +328,13 @@ class Runner_evaluate():
         logging.info(f"model:\n{model}")
         # return
 
-        logging.info(f"model:\n{model}")
+        flops = FlopCountAnalysis(model, torch.randn(1, 3, 192, 192).to(
+            memory_format=torch.channels_last))
+        print("Total FLOPs:", flops.total())
 
-        # ===================== BEGIN INFERENCE BENCHMARK =====================
+        total_params = sum(p.numel() for p in model.parameters())
+        print(f"Total number of parameters in PyTorch model: {total_params}")
+
         # Pull input shape from the trainer (C, H, W)
         C, H, W = trainer.input_shape
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
