@@ -486,39 +486,39 @@ class mLSTMLayer(nn.Module):
             assert self.config.conv1d_kernel_size % 2 == 1
             if self.config.share_conv:
                 self.conv1d = SequenceConv2d(
-                    in_channels=self.config._inner_embedding_dim,
-                    out_channels=self.config._inner_embedding_dim,
+                    in_channels=branch_dim,
+                    out_channels=branch_dim,
                     kernel_size=self.config.conv1d_kernel_size,
                     padding=self.config.conv1d_kernel_size // 2,
-                    groups=self.config._inner_embedding_dim,
+                    groups=branch_dim,
                     bias=True,
                 )
                 self.conv1d_k = None
                 self.conv1d_v = None
             else:
                 self.conv1d = SequenceConv2d(
-                    in_channels=self.config._inner_embedding_dim,
-                    out_channels=self.config._inner_embedding_dim,
+                    in_channels=branch_dim,
+                    out_channels=branch_dim,
                     kernel_size=self.config.conv1d_kernel_size,
                     padding=self.config.conv1d_kernel_size // 2,
-                    groups=self.config._inner_embedding_dim,
+                    groups=branch_dim,
                     bias=True,
                 )
                 self.conv1d_k = SequenceConv2d(
-                    in_channels=self.config._inner_embedding_dim,
-                    out_channels=self.config._inner_embedding_dim,
+                    in_channels=branch_dim,
+                    out_channels=branch_dim,
                     kernel_size=self.config.conv1d_kernel_size,
                     padding=self.config.conv1d_kernel_size // 2,
-                    groups=self.config._inner_embedding_dim,
+                    groups=branch_dim,
                     bias=True,
                 )
                 if self.config.use_v_conv:
                     self.conv1d_v = SequenceConv2d(
-                        in_channels=self.config._inner_embedding_dim,
-                        out_channels=self.config._inner_embedding_dim,
+                        in_channels=branch_dim,
+                        out_channels=branch_dim,
                         kernel_size=self.config.conv1d_kernel_size,
                         padding=self.config.conv1d_kernel_size // 2,
-                        groups=self.config._inner_embedding_dim,
+                        groups=branch_dim,
                         bias=True,
                     )
                 else:
@@ -527,7 +527,7 @@ class mLSTMLayer(nn.Module):
             assert self.config.share_conv
             self.conv1d = CausalConv1d(
                 config=CausalConv1dConfig(
-                    feature_dim=self.config._inner_embedding_dim,
+                    feature_dim=branch_dim,
                     kernel_size=self.config.conv1d_kernel_size,
                 )
             )
@@ -535,7 +535,7 @@ class mLSTMLayer(nn.Module):
         self.mlstm_cell = mLSTMCell(
             config=mLSTMCellConfig(
                 context_length=self.config.context_length,
-                embedding_dim=self.config._inner_embedding_dim,
+                embedding_dim=branch_dim,
                 num_heads=self.config.num_heads,
                 bias=self.config.bias,
             )
@@ -543,7 +543,13 @@ class mLSTMLayer(nn.Module):
         self.ogate_act_fn = nn.SiLU()
 
         self.learnable_skip = nn.Parameter(torch.ones(
-            self.config._inner_embedding_dim, requires_grad=True))
+            branch_dim, requires_grad=True))
+
+        self.proj_up = nn.Linear(
+            in_features=branch_dim,
+            out_features=2 * branch_dim,
+            bias=self.config.bias,
+        )
 
         # bidirectional
         if (self.config.bidirectional or self.config.quaddirectional) and not self.config.sharedirs:
@@ -571,29 +577,29 @@ class mLSTMLayer(nn.Module):
             assert self.config.share_conv
             if self.config.use_conv2d:
                 self.conv1d_rev = SequenceConv2d(
-                    in_channels=self.config._inner_embedding_dim,
-                    out_channels=self.config._inner_embedding_dim,
+                    in_channels=branch_dim,
+                    out_channels=branch_dim,
                     kernel_size=self.config.conv1d_kernel_size,
                     padding=self.config.conv1d_kernel_size // 2,
-                    groups=self.config._inner_embedding_dim,
+                    groups=branch_dim,
                     bias=True,
                 )
             else:
                 self.conv1d_rev = CausalConv1d(
                     config=CausalConv1dConfig(
-                        feature_dim=self.config._inner_embedding_dim,
+                        feature_dim=branch_dim,
                         kernel_size=self.config.conv1d_kernel_size,
                     )
                 )
             self.mlstm_cell_rev = mLSTMCell(
                 config=mLSTMCellConfig(
                     context_length=self.config.context_length,
-                    embedding_dim=self.config._inner_embedding_dim,
+                    embedding_dim=branch_dim,
                     num_heads=self.config.num_heads,
                 )
             )
             self.learnable_skip_rev = nn.Parameter(torch.ones(
-                self.config._inner_embedding_dim, requires_grad=True))
+                branch_dim, requires_grad=True))
         else:
             self.q_proj_rev = None
             self.k_proj_rev = None
@@ -626,14 +632,14 @@ class mLSTMLayer(nn.Module):
             )
             self.conv1d_ud = CausalConv1d(
                 config=CausalConv1dConfig(
-                    feature_dim=self.config._inner_embedding_dim,
+                    feature_dim=branch_dim,
                     kernel_size=self.config.conv1d_kernel_size,
                 )
             )
             self.mlstm_cell_ud = mLSTMCell(
                 config=mLSTMCellConfig(
                     context_length=self.config.context_length,
-                    embedding_dim=self.config._inner_embedding_dim,
+                    embedding_dim=branch_dim,
                     num_heads=self.config.num_heads,
                 )
             )
@@ -662,19 +668,19 @@ class mLSTMLayer(nn.Module):
             )
             self.conv1d_du = CausalConv1d(
                 config=CausalConv1dConfig(
-                    feature_dim=self.config._inner_embedding_dim,
+                    feature_dim=branch_dim,
                     kernel_size=self.config.conv1d_kernel_size,
                 )
             )
             self.mlstm_cell_du = mLSTMCell(
                 config=mLSTMCellConfig(
                     context_length=self.config.context_length,
-                    embedding_dim=self.config._inner_embedding_dim,
+                    embedding_dim=branch_dim,
                     num_heads=self.config.num_heads,
                 )
             )
             self.learnable_skip_du = nn.Parameter(torch.ones(
-                self.config._inner_embedding_dim, requires_grad=True))
+                branch_dim, requires_grad=True))
         else:
             self.q_proj_ud = None
             self.k_proj_ud = None
@@ -689,11 +695,11 @@ class mLSTMLayer(nn.Module):
             self.mlstm_cell_du = None
             self.learnable_skip_du = None
 
-        self.proj_down = nn.Linear(
-            in_features=self.config._inner_embedding_dim,
-            out_features=self.config.embedding_dim,
-            bias=self.config.bias,
-        )
+        # self.proj_down = nn.Linear(
+        #     in_features=self.config._inner_embedding_dim,
+        #     out_features=self.config.embedding_dim,
+        #     bias=self.config.bias,
+        # )
         self.dropout = nn.Dropout(self.config.dropout)
         if self.config.layerscale is None:
             self.layerscale = nn.Identity()
@@ -706,9 +712,9 @@ class mLSTMLayer(nn.Module):
         B, S, _ = x.shape
 
         # up-projection
-        x_inner = self.proj_up(x)
+        # x_inner = self.proj_up(x)
         x_mlstm, z = torch.split(
-            x_inner, split_size_or_sections=self.config._inner_embedding_dim, dim=-1)
+            x, split_size_or_sections=self.config.embedding_dim // 2, dim=-1)
 
         # alternate direction in successive layers
         if self.config.alternation is None:
@@ -885,7 +891,7 @@ class mLSTMLayer(nn.Module):
             h_state = h_state + out_ud.flip(dims=[1])
 
         # down-projection
-        y = self.dropout(self.proj_down(h_state))
+        y = self.dropout(self.proj_up(h_state))
 
         # layerscale
         y = self.layerscale(y)
@@ -898,10 +904,10 @@ class mLSTMLayer(nn.Module):
         if self.proj_up.bias is not None:
             nn.init.zeros_(self.proj_up.bias)
         # init outproj
-        wang_init_(self.proj_down.weight, dim=self.config.embedding_dim,
-                   num_blocks=self.config._num_blocks)
-        if self.proj_down.bias is not None:
-            nn.init.zeros_(self.proj_down.bias)
+        # wang_init_(self.proj_down.weight, dim=self.config.embedding_dim,
+        #            num_blocks=self.config._num_blocks)
+        # if self.proj_down.bias is not None:
+        #     nn.init.zeros_(self.proj_down.bias)
 
         nn.init.ones_(self.learnable_skip)
         if self.learnable_skip_rev is not None:

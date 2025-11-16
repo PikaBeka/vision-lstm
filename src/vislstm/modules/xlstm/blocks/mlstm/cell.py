@@ -14,6 +14,7 @@ from ...components.dynamic_tanh import DynamicTanh
 from .backends import parallel_scan_log, log_g
 import einops
 import torch.nn.functional as F
+from torch.nn import Linear
 
 
 @dataclass
@@ -99,7 +100,7 @@ class mLSTMCell(nn.Module):
         h_t = parallel_scan_log(log_coeffs, log_values)
         out = h_t[:, -S:]
 
-        return out
+        return self.to_out(out)
 
     def reset_parameters(self):
         torch.nn.init.zeros_(self.linear_i.weight)
@@ -110,10 +111,17 @@ class mLSTMCell(nn.Module):
         # self.linear_i.reset_parameters()
         # self.linear_h.reset_parameters()
 
+# # This file is licensed under Apache-2.0
+# # Copyright (c) NXAI GmbH and its affiliates 2024
+# # Maximilian Beck
+# from dataclasses import dataclass
 
-# This file is licensed under Apache-2.0
-# Copyright (c) NXAI GmbH and its affiliates 2024
-# Maximilian Beck
+# import torch
+# from torch import nn
+
+# from ...components.init import bias_linspace_init_
+# from ...components.ln import MultiHeadLayerNorm
+# from .backends import parallel_stabilized_simple
 
 # @dataclass
 # class mLSTMCellConfig:
@@ -121,7 +129,6 @@ class mLSTMCell(nn.Module):
 #     embedding_dim: int = -1
 #     num_heads: int = -1
 #     bias: bool = False
-
 
 # class mLSTMCell(nn.Module):
 #     config_class = mLSTMCellConfig

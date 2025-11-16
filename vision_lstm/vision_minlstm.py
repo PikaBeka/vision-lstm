@@ -222,21 +222,23 @@ class minLSTMCell(nn.Module):
         self.input_dim = input_dim
         self.hidden_dim = hidden_dim
 
-        # self.linear_i = nn.Linear(input_dim, hidden_dim, bias=False)
-        # self.linear_f = nn.Linear(input_dim, hidden_dim, bias=False)
-        # self.linear_h = nn.Linear(input_dim, hidden_dim, bias=False)
+        self.linear_i = nn.Linear(input_dim, 2 * hidden_dim, bias=False)
+        self.linear_f = nn.Linear(input_dim, 2 * hidden_dim, bias=False)
+        self.linear_h = nn.Linear(input_dim, 2 * hidden_dim, bias=False)
+
+        self.to_out = nn.Linear(2 * hidden_dim, hidden_dim)
 
         # self.mixer = LoRAAroundShared(hidden_dim, rank=4)
         # self.linear_h = FeedForward(hidden_dim, hidden_dim//32)
         # self.linear_i = FeedForward(hidden_dim, hidden_dim//32)
         # self.linear_f = FeedForward(hidden_dim, hidden_dim//32)
 
-        self.linear_i = nn.Conv1d(
-            input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
-        self.linear_f = nn.Conv1d(
-            input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
-        self.linear_h = nn.Conv1d(
-            input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
+        # self.linear_i = nn.Conv1d(
+        #     input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
+        # self.linear_f = nn.Conv1d(
+        #     input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
+        # self.linear_h = nn.Conv1d(
+        #     input_dim, hidden_dim, kernel_size=1, groups=128, bias=False)
 
     def forward(self, x_t, pre_h=None):
         """
@@ -274,16 +276,27 @@ class minLSTMCell(nn.Module):
         h_t = parallel_scan_log(log_coeffs, log_values)
         out = h_t[:, -S:]
 
-        return out
+        return self.to_out(out)
 
     def reset_parameters(self):
         # small_init_(self.linear_f.weight, dim=self.hidden_dim)
         # small_init_(self.linear_i.weight, dim=self.hidden_dim)
         # small_init_(self.linear_h.weight, dim=self.hidden_dim)
 
-        self.linear_f.reset_parameters()
-        self.linear_i.reset_parameters()
-        self.linear_h.reset_parameters()
+        # self.linear_f.reset_parameters()
+        # self.linear_i.reset_parameters()
+        # self.linear_h.reset_parameters()
+
+        small_init_(self.linear_h.weight, dim=self.input_dim)
+        small_init_(self.linear_i.weight, dim=self.input_dim)
+        small_init_(self.linear_f.weight, dim=self.input_dim)
+
+        if self.linear_h.bias is not None:
+            nn.init.zeros_(self.linear_h.bias)
+        if self.linear_i.bias is not None:
+            nn.init.zeros_(self.linear_i.bias)
+        if self.linear_f.bias is not None:
+            nn.init.zeros_(self.linear_f.bias)
 
         # self.mixer.reset_parameters()
 
@@ -382,17 +395,13 @@ class minLSTM(nn.Module):
         self.direction = direction
         self.init_weights = init_weights
 
-        inner_dim = expansion * dim
+        branch_dim = dim // 2
 
-        self.proj_up = nn.Linear(
-            in_features=dim,
-            out_features=2 * inner_dim,
-            bias=proj_bias,
-        )
+        # inner_dim = expansion * dim
 
         if conv_kind == "causal1d":
             self.conv = CausalConv1d(
-                dim=inner_dim,
+                dim=dim,
                 kernel_size=conv_kernel_size,
                 bias=conv_bias,
             )
@@ -400,21 +409,27 @@ class minLSTM(nn.Module):
             assert conv_kernel_size % 2 == 1, \
                 f"same output shape as input shape is required -> even kernel sizes not supported"
             self.conv = SequenceConv2d(
-                in_channels=inner_dim,
-                out_channels=inner_dim,
+                in_channels=branch_dim,
+                out_channels=branch_dim,
                 kernel_size=conv_kernel_size,
                 padding=conv_kernel_size // 2,
-                groups=inner_dim,
+                groups=branch_dim,
                 bias=conv_bias,
                 seqlens=seqlens,
             )
 
-        self.learnable_skip = nn.Parameter(torch.ones(inner_dim))
+        self.learnable_skip = nn.Parameter(torch.ones(branch_dim))
 
-        self.cell = minLSTMCell(inner_dim, inner_dim)
+        self.cell = minLSTMCell(branch_dim, branch_dim)
 
-        self.proj_down = nn.Linear(
-            in_features=inner_dim,
+        # self.proj_down = nn.Linear(
+        #     in_features=inner_dim,
+        #     out_features=dim,
+        #     bias=proj_bias,
+        # )
+
+        self.proj_up = nn.Linear(
+            in_features=branch_dim,
             out_features=dim,
             bias=proj_bias,
         )
@@ -431,8 +446,8 @@ class minLSTM(nn.Module):
         else:
             raise NotImplementedError
 
-        x_inner = self.proj_up(x)
-        x_minlstm, z = torch.chunk(x_inner, chunks=2, dim=-1)
+        # x_inner = self.proj_up(x)
+        x_minlstm, z = torch.chunk(x, chunks=2, dim=-1)
 
         x_minlstm_conv = self.conv(x_minlstm)
         x_minlstm_conv_act = F.silu(x_minlstm_conv)
@@ -448,7 +463,7 @@ class minLSTM(nn.Module):
 
         # print(h.shape)
 
-        x = self.proj_down(h)
+        x = self.proj_up(h)
 
         if self.direction == SequenceTraversal.ROWWISE_FROM_TOP_LEFT:
             pass
@@ -460,19 +475,19 @@ class minLSTM(nn.Module):
         return x  # (batch_size, seq_len, hidden_dim)
 
     def reset_parameters(self):
-        small_init_(self.proj_up.weight, dim=self.dim)
-        if self.proj_up.bias is not None:
-            nn.init.zeros_(self.proj_up.bias)
-        # init outproj (original mLSTM uses num_blocks=1)
-        if self.init_weights == "original":
-            wang_init_(self.proj_down.weight, dim=self.dim, num_blocks=1)
-        elif self.init_weights == "original-fixed":
-            wang_init_(self.proj_down.weight, dim=self.dim,
-                       num_blocks=self.num_blocks)
-        else:
-            raise NotImplementedError
-        if self.proj_down.bias is not None:
-            nn.init.zeros_(self.proj_down.bias)
+        # small_init_(self.proj_up.weight, dim=self.dim)
+        # if self.proj_up.bias is not None:
+        #     nn.init.zeros_(self.proj_up.bias)
+        # # init outproj (original mLSTM uses num_blocks=1)
+        # if self.init_weights == "original":
+        #     wang_init_(self.proj_down.weight, dim=self.dim, num_blocks=1)
+        # elif self.init_weights == "original-fixed":
+        #     wang_init_(self.proj_down.weight, dim=self.dim,
+        #                num_blocks=self.num_blocks)
+        # else:
+        #     raise NotImplementedError
+        # if self.proj_down.bias is not None:
+        #     nn.init.zeros_(self.proj_down.bias)
 
         nn.init.ones_(self.learnable_skip)
         self.cell.reset_parameters()
