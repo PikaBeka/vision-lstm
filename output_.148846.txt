@@ -1,0 +1,795 @@
+MASTER_ADDR: gpu-02
+CUDA_VISIBLE_DEVICES=0,1,2,3
+Mon Oct 27 14:03:22 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 550.54.14              Driver Version: 550.54.14      CUDA Version: 12.4     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:01:00.0 Off |                    0 |
+| N/A   40C    P0             57W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-40GB          On  |   00000000:41:00.0 Off |                    0 |
+| N/A   42C    P0             57W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-40GB          On  |   00000000:81:00.0 Off |                    0 |
+| N/A   33C    P0             56W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-40GB          On  |   00000000:C1:00.0 Off |                    0 |
+| N/A   33C    P0             55W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+torch: 2.5.1+cu121 cuda: 12.1 cuda available: True
+10-27 14:03:37 I initializing rank=1 local_rank=1 nodes=1 hostname=gpu-02 master_addr=gpu-02 master_port=55555 (waiting for all 4 processes to connect)
+10-27 14:03:37 I initializing rank=3 local_rank=3 nodes=1 hostname=gpu-02 master_addr=gpu-02 master_port=55555 (waiting for all 4 processes to connect)
+10-27 14:03:37 I initializing rank=0 local_rank=0 nodes=1 hostname=gpu-02 master_addr=gpu-02 master_port=55555 (waiting for all 4 processes to connect)
+10-27 14:03:37 I initializing rank=2 local_rank=2 nodes=1 hostname=gpu-02 master_addr=gpu-02 master_port=55555 (waiting for all 4 processes to connect)
+[rank2]:[W1027 14:03:37.455897064 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 2]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank3]:[W1027 14:03:38.044111375 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 3]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank1]:[W1027 14:03:38.169103458 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 1]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank0]:[W1027 14:03:38.174525808 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+10-27 14:03:39 I initialized process rank=2 local_rank=2 pid=1057517
+10-27 14:03:39 I initialized process rank=3 local_rank=3 pid=1057518
+10-27 14:03:39 I initialized process rank=1 local_rank=1 pid=1057516
+10-27 14:03:39 I initialized process rank=0 local_rank=0 pid=1057515
+10-27 14:03:39 I initialized 4 processes
+10-27 14:03:39 W disabled cudnn benchmark
+10-27 14:03:39 W enabled cudnn deterministic
+10-27 14:03:39 I log file: /home/beknur.kalmakhanbet/save/in1k/y7yvymle/log.txt
+10-27 14:03:39 I no seed specified -> using seed=0
+10-27 14:03:39 I ------------------
+10-27 14:03:39 I initializing wandb (mode=online)
+10-27 14:03:39 I logging into wandb (host=https://api.wandb.ai/ rank=0)
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+fatal: No annotated tags can describe 'fe6dbdcf362243962bd1c8ff80a046ab6dc19f43'.
+However, there were unannotated tags: try --tags.
+fatal: No annotated tags can describe 'fe6dbdcf362243962bd1c8ff80a046ab6dc19f43'.
+However, there were unannotated tags: try --tags.
+fatal: No annotated tags can describe 'fe6dbdcf362243962bd1c8ff80a046ab6dc19f43'.
+However, there were unannotated tags: try --tags.
+wandb: Currently logged in as: beka-kalmahanbet (ml710_project) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+10-27 14:03:40 I logged into wandb (host=https://api.wandb.ai/)
+wandb: Tracking run with wandb version 0.19.8
+wandb: Run data is saved locally in /home/beknur.kalmakhanbet/save/in1k/y7yvymle/wandb/run-20251027_140340-y7yvymle
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run in1k-lstm-80m16-e400res192-bialter-bilatflat-lr1e3-conv2d3-bias/in1k
+wandb: ⭐️ View project at https://wandb.ai/beka-kalmahanbet-mbzuai/minLSTM
+wandb: 🚀 View run at https://wandb.ai/beka-kalmahanbet-mbzuai/minLSTM/runs/y7yvymle
+fatal: No annotated tags can describe 'fe6dbdcf362243962bd1c8ff80a046ab6dc19f43'.
+However, there were unannotated tags: try --tags.
+10-27 14:03:41 I ------------------
+10-27 14:03:41 I stage_id: y7yvymle
+10-27 14:03:41 I python main_train.py --hp src/vislstm/yamls/pretrain/vil/lstm_80M16_e400_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml --num_workers 5
+10-27 14:03:41 I ------------------
+10-27 14:03:41 I VERSION CHECK
+10-27 14:03:41 I executable: /home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/bin/python
+10-27 14:03:41 I python version: 3.9.21
+10-27 14:03:41 I torch version: 2.5.1+cu121
+10-27 14:03:41 I torch.cuda version: 12.1
+10-27 14:03:41 I torchvision.version: 0.20.1+cu121
+10-27 14:03:42 I torchmetrics version: 1.6.2
+10-27 14:03:42 I kappaschedules version: 0.0.31
+10-27 14:03:42 I kappamodules version: 0.1.76
+10-27 14:03:42 I ------------------
+10-27 14:03:42 I SYSTEM INFO
+10-27 14:03:42 I host name: gpu-02
+10-27 14:03:42 I OS: Linux-5.15.161-ql-generic-13.0-14-x86_64-with-glibc2.35
+10-27 14:03:42 I OS version: #1 SMP Wed Jun 26 16:19:39 UTC 2024
+fatal: No annotated tags can describe 'fe6dbdcf362243962bd1c8ff80a046ab6dc19f43'.
+However, there were unannotated tags: try --tags.
+10-27 14:03:42 I initialized process rank=3 local_rank=3 pid=1057518 hostname=gpu-02
+fatal: No annotated tags can describe 'fe6dbdcf362243962bd1c8ff80a046ab6dc19f43'.
+However, there were unannotated tags: try --tags.
+10-27 14:03:43 I initialized process rank=2 local_rank=2 pid=1057517 hostname=gpu-02
+fatal: No annotated tags can describe 'fe6dbdcf362243962bd1c8ff80a046ab6dc19f43'.
+However, there were unannotated tags: try --tags.
+10-27 14:03:43 I initialized process rank=1 local_rank=1 pid=1057516 hostname=gpu-02
+10-27 14:03:43 I CUDA version: 12.4
+10-27 14:03:43 I current commit hash: fe6dbdcf362243962bd1c8ff80a046ab6dc19f43
+fatal: No annotated tags can describe 'fe6dbdcf362243962bd1c8ff80a046ab6dc19f43'.
+However, there were unannotated tags: try --tags.
+10-27 14:03:44 I latest git tag: 
+10-27 14:03:44 I initialized process rank=0 local_rank=0 pid=1057515 hostname=gpu-02
+10-27 14:03:44 I total_cpu_count: 64
+10-27 14:03:44 I ------------------
+10-27 14:03:44 I STATIC CONFIG
+10-27 14:03:44 I account_name: beknur.kalmakhanbet
+10-27 14:03:44 I output_path: /home/beknur.kalmakhanbet/save
+10-27 14:03:44 I ------------------
+10-27 14:03:44 I CLI ARGS
+10-27 14:03:44 I hp: src/vislstm/yamls/pretrain/vil/lstm_80M16_e400_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml
+10-27 14:03:44 I accelerator: gpu
+10-27 14:03:44 I num_workers: 5
+10-27 14:03:44 I testrun: False
+10-27 14:03:44 I minmodelrun: False
+10-27 14:03:44 I mindatarun: False
+10-27 14:03:44 I mindurationrun: False
+10-27 14:03:44 I static_config_uri: static_config.yaml
+10-27 14:03:44 I ------------------
+10-27 14:03:44 I DIST CONFIG
+10-27 14:03:44 I rank: 0
+10-27 14:03:44 I local_rank: 0
+10-27 14:03:44 I world_size: 4
+10-27 14:03:44 I nodes: 1
+10-27 14:03:44 I backend: nccl
+10-27 14:03:44 I slurm job id: 148846
+10-27 14:03:44 I hostnames: gpu-02
+10-27 14:03:44 I ------------------
+master_factory_base_path: vislstm
+stage_name: in1k
+datasets:
+  train:
+    kind: imagenet1k
+    split: train
+    sample_wrappers:
+    - kind: x_transform_wrapper
+      transform:
+      - kind: random_resized_crop
+        size: 192
+        scale:
+        - 0.08
+        - 1.0
+        interpolation: bicubic
+      - kind: random_horizontal_flip
+      - kind: transforms.three_augment
+        blur_sigma:
+        - 0.1
+        - 2.0
+      - kind: color_jitter
+        brightness: 0.3
+        contrast: 0.3
+        saturation: 0.3
+        hue: 0.0
+      - kind: imagenet1k_norm
+    - kind: one_hot_wrapper
+    collators:
+    - kind: mix_collator
+      mixup_alpha: 0.8
+      cutmix_alpha: 1.0
+      mixup_p: 0.5
+      cutmix_p: 0.5
+      apply_mode: batch
+      lamb_mode: batch
+      shuffle_mode: flip
+  val:
+    kind: imagenet1k
+    split: val
+    sample_wrappers:
+    - kind: x_transform_wrapper
+      transform:
+      - kind: resize
+        size: 192
+        interpolation: bicubic
+      - kind: center_crop
+        size: 192
+      - kind: imagenet1k_norm
+model:
+  kind: models.single.vislstm
+  patch_size: 16
+  dim: 768
+  depth: 24
+  bidirectional: false
+  alternation: bidirectional
+  conv1d_kernel_size: 3
+  use_conv2d: true
+  bias: true
+  pos_embed_mode: learnable
+  drop_path_rate: 0.2
+  drop_path_decay: false
+  mode: classifier
+  pooling:
+    kind: bilateral
+    aggregate: flatten
+  optim:
+    kind: adamw
+    lr: 0.001
+    betas:
+    - 0.9
+    - 0.999
+    weight_decay: 0.05
+    clip_grad_norm: 1.0
+    schedule:
+      kind: linear_warmup_cosine_decay_schedule
+      warmup_epochs: 5
+      end_value: 1.0e-06
+    lr_scaler:
+      kind: linear_lr_scaler
+      divisor: 1024
+trainer:
+  kind: classification_trainer
+  precision: bfloat16
+  backup_precision: float16
+  max_epochs: 400
+  effective_batch_size: 512
+  log_every_n_epochs: 1
+  use_torch_compile: true
+  callbacks:
+  - kind: checkpoint_callback
+  - kind: checkpoint_callback
+    every_n_epochs: 10
+    save_weights: false
+    save_latest_weights: true
+    save_latest_optim: true
+  - kind: offline_accuracy_callback
+    every_n_epochs: 5
+    dataset_key: val
+10-27 14:03:44 I copied unresolved hp to /home/beknur.kalmakhanbet/save/in1k/y7yvymle/hp_unresolved.yaml
+10-27 14:03:44 I dumped resolved hp to /home/beknur.kalmakhanbet/save/in1k/y7yvymle/hp_resolved.yaml
+10-27 14:03:44 I ------------------
+10-27 14:03:44 I training stage 'in1k'
+10-27 14:03:44 I using different seeds per process (seed+rank)
+10-27 14:03:44 I set seed to 0
+10-27 14:03:44 I ------------------
+10-27 14:03:44 I initializing datasets
+10-27 14:03:44 I initializing train
+10-27 14:03:49 I instantiating sample_wrapper x_transform_wrapper
+10-27 14:03:49 I instantiating sample_wrapper one_hot_wrapper
+10-27 14:03:49 I initializing val
+10-27 14:03:50 I instantiating sample_wrapper x_transform_wrapper
+10-27 14:03:50 I ------------------
+10-27 14:03:50 I initializing trainer
+10-27 14:03:50 I using precision: torch.bfloat16 (desired=bfloat16 backup=float16)
+10-27 14:03:50 I main_sampler: DistributedSampler(num_repeats=1, shuffle=True)
+10-27 14:03:50 I ------------------
+10-27 14:03:50 I creating model
+10-27 14:03:50 I input_shape: (3, 192, 192)
+10-27 14:03:50 I pos_embed.is_learnable=True
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+10-27 14:03:52 I drop_path_rate: 0.2
+10-27 14:03:52 I model:
+VisLSTM(
+  (pooling): Bilateral(aggregate=flatten)
+  (patch_embed): VitPatchEmbed(
+    (proj): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+    (norm): Identity()
+  )
+  (pos_embed): VitPosEmbed2d()
+  (xlstm): xLSTMBlockStack(
+    (blocks): ModuleList(
+      (0-23): 24 x mLSTMBlock(
+        (drop_path1): DropPath(drop_prob=0.200)
+        (xlstm_norm): DynamicTanh(normalized_shape=768, alpha_init_value=0.5, channels_last=True)
+        (xlstm): mLSTMLayer(
+          (proj_up): Linear(in_features=768, out_features=3072, bias=True)
+          (conv1d): SequenceConv2d(1536, 1536, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=1536)
+          (conv_act_fn): SiLU()
+          (mlstm_cell): mLSTMCell(
+            (linear_i): Conv1d(1536, 1536, kernel_size=(1,), stride=(1,), groups=128, bias=False)
+            (linear_f): Conv1d(1536, 1536, kernel_size=(1,), stride=(1,), groups=128, bias=False)
+            (linear_h): Conv1d(1536, 1536, kernel_size=(1,), stride=(1,), groups=128, bias=False)
+          )
+          (ogate_act_fn): SiLU()
+          (proj_down): Linear(in_features=1536, out_features=768, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (layerscale): Identity()
+        )
+      )
+    )
+    (post_blocks_norm): DynamicTanh(normalized_shape=768, alpha_init_value=0.5, channels_last=True)
+  )
+  (head): Sequential(
+    (0): LayerNorm((1536,), eps=1e-06, elementwise_affine=True)
+    (1): Linear(in_features=1536, out_features=1000, bias=True)
+  )
+)
+10-27 14:03:52 I vislstm initialize optimizer
+10-27 14:03:52 I base lr: 1e-3
+10-27 14:03:52 I scaled lr: 5e-4
+10-27 14:03:52 I lr_scaler=LinearLrScaler(divisor=1024)
+10-27 14:03:52 I lr_scale_factor=512
+10-27 14:03:52 I exclude_bias_from_wd=True exclude_norm_from_wd=True param_group_modifiers=[WeightDecayByNameModifier(name=pos_embed.embed)]
+10-27 14:03:52 I using 2 param groups:
+10-27 14:03:52 I len(params)=146
+10-27 14:03:52 I weight_decay=0.0 len(params)=176
+10-27 14:03:52 I added default DatasetStatsCallback
+10-27 14:03:52 I added default ParamCountCallback
+10-27 14:03:52 I added default CopyPreviousConfigCallback
+10-27 14:03:52 I added default CopyPreviousSummaryCallback
+10-27 14:03:52 I added default ProgressCallback(every_n_epochs=1)
+10-27 14:03:52 I added default TrainTimeCallback(every_n_epochs=1)
+10-27 14:03:52 I added default OnlineLossCallback(every_n_epochs=1)
+10-27 14:03:52 I added default LrCallback(every_n_updates=50)
+10-27 14:03:52 I added default FreezerCallback(every_n_updates=50)
+10-27 14:03:52 I added default OnlineLossCallback(every_n_updates=50)
+10-27 14:03:52 I replacing BatchNorm layers with SyncBatchNorm
+10-27 14:03:52 I wrapping model with torch.compile
+10-27 14:03:53 I ------------------
+10-27 14:03:53 I PREPARE TRAINER
+10-27 14:03:53 I calculating batch_size and accumulation_steps (effective_batch_size=512)
+10-27 14:03:53 I torch.compile is used -> automatic batchsize not supported
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+10-27 14:03:53 I train_batches per epoch: 2502 (world_size=4 batch_size=128)
+10-27 14:03:53 I initializing dataloader
+10-27 14:03:53 I OfflineAccuracyCallback(every_n_epochs=5) registered InterleavedSamplerConfig(every_n_epochs=5) dataset_mode='x class'
+10-27 14:03:53 I created dataloader (batch_size=128 num_workers=5 pin_memory=True total_cpu_count=64 prefetch_factor=2)
+10-27 14:03:53 I concatenated dataset properties:
+10-27 14:03:53 I - mode='index x class' len=1281167 root_dataset=<vislstm.datasets.imagenet1k.Imagenet1k object at 0x14d19f46ee50>
+10-27 14:03:53 I - mode='x class' len=50000 root_dataset=<vislstm.datasets.imagenet1k.Imagenet1k object at 0x14d19f5b7eb0>
+10-27 14:03:53 I ------------------
+10-27 14:03:53 I BEFORE TRAINING
+10-27 14:03:53 I train: 1281167 samples
+10-27 14:03:53 I val: 50000 samples
+10-27 14:03:53 I parameter counts (trainable | frozen)
+10-27 14:03:53 I 89,039,105 | 0 | vislstm
+10-27 14:03:53 I estimated checkpoint size: 1.0GB
+10-27 14:03:53 I estimated weight checkpoint size: 356.1MB
+10-27 14:03:53 I estimated optim checkpoint size: 712.3MB
+10-27 14:03:53 I estimated size for 1 checkpoints: 356.1MB
+10-27 14:03:53 I estimated checkpoint size: 1.0GB
+10-27 14:03:53 I estimated weight checkpoint size: 356.1MB
+10-27 14:03:53 I estimated optim checkpoint size: 712.3MB
+10-27 14:03:53 I estimated size for 41 checkpoints: 0.0B
+10-27 14:03:53 I ------------------
+10-27 14:03:53 I DatasetStatsCallback
+10-27 14:03:53 I ParamCountCallback
+10-27 14:03:53 I CopyPreviousConfigCallback
+10-27 14:03:53 I CopyPreviousSummaryCallback
+10-27 14:03:53 I ProgressCallback(every_n_epochs=1)
+10-27 14:03:53 I TrainTimeCallback(every_n_epochs=1)
+10-27 14:03:53 I OnlineLossCallback(every_n_epochs=1)
+10-27 14:03:53 I LrCallback(every_n_updates=50)
+10-27 14:03:53 I FreezerCallback(every_n_updates=50)
+10-27 14:03:53 I OnlineLossCallback(every_n_updates=50)
+10-27 14:03:53 I OnlineAccuracyCallback(every_n_updates=50)
+10-27 14:03:53 I OnlineAccuracyCallback(every_n_epochs=1)
+10-27 14:03:53 I CheckpointCallback()
+10-27 14:03:53 I CheckpointCallback(every_n_epochs=10)
+10-27 14:03:53 I OfflineAccuracyCallback(every_n_epochs=5)
+10-27 14:03:53 I ------------------
+10-27 14:03:53 I START TRAINING
+10-27 14:03:53 I initializing dataloader workers
+10-27 14:03:53 I initialized dataloader workers
+[rank0]:W1027 14:03:54.909582 1057515 site-packages/torch/_logging/_internal.py:1081] [0/0] Profiler function <class 'torch.autograd.profiler.record_function'> will be ignored
+[rank2]:W1027 14:03:54.952230 1057517 site-packages/torch/_logging/_internal.py:1081] [0/0] Profiler function <class 'torch.autograd.profiler.record_function'> will be ignored
+[rank1]:W1027 14:03:54.986677 1057516 site-packages/torch/_logging/_internal.py:1081] [0/0] Profiler function <class 'torch.autograd.profiler.record_function'> will be ignored
+[rank3]:W1027 14:03:55.032201 1057518 site-packages/torch/_logging/_internal.py:1081] [0/0] Profiler function <class 'torch.autograd.profiler.record_function'> will be ignored
+/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/autograd/graph.py:825: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
+grad.sizes() = [1536, 1, 3, 3], strides() = [9, 1, 3, 1]
+bucket_view.sizes() = [1536, 1, 3, 3], strides() = [9, 9, 3, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:327.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/autograd/graph.py:825: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
+grad.sizes() = [1536, 1, 3, 3], strides() = [9, 1, 3, 1]
+bucket_view.sizes() = [1536, 1, 3, 3], strides() = [9, 9, 3, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:327.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/autograd/graph.py:825: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
+grad.sizes() = [1536, 1, 3, 3], strides() = [9, 1, 3, 1]
+bucket_view.sizes() = [1536, 1, 3, 3], strides() = [9, 9, 3, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:327.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/autograd/graph.py:825: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
+grad.sizes() = [1536, 1, 3, 3], strides() = [9, 1, 3, 1]
+bucket_view.sizes() = [1536, 1, 3, 3], strides() = [9, 9, 3, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:327.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+10-27 14:05:09 I 0 unused parameters
+10-27 14:32:08 I ------------------
+10-27 14:32:08 I Epoch 1/400 (E1_U2502_S1281024)
+10-27 14:32:08 I ETA: 11.04 10.23.29 estimated_duration: 7-20:19:36.33 time_since_last_log: 00:28:14.94 time_per_update: 00:00:00.67 
+10-27 14:32:08 I data=[0.00, 0.00, 0.00, 0.00] update=[0.67, 0.67, 0.67, 0.67]
+10-27 14:32:08 I loss/online/main/E1: 6.856634140014648
+10-27 14:32:08 I loss/online/total/E1: 6.856634140014648
+10-27 14:32:08 I accuracy1/online/main/E1: 0.003391
+10-27 14:58:59 I ------------------
+10-27 14:58:59 I Epoch 2/400 (E2_U5004_S2562048)
+10-27 14:58:59 I ETA: 11.04 01.06.17 estimated_duration: 7-10:34:08.59 time_since_last_log: 00:26:51.14 time_per_update: 00:00:00.64 
+10-27 14:58:59 I data=[0.00, 0.00, 0.00, 0.00] update=[0.64, 0.64, 0.64, 0.64]
+10-27 14:58:59 I loss/online/main/E1: 6.762803554534912
+10-27 14:58:59 I loss/online/total/E1: 6.762803554534912
+10-27 14:58:59 I accuracy1/online/main/E1: 0.005665
+10-27 15:25:51 I ------------------
+10-27 15:25:51 I Epoch 3/400 (E3_U7506_S3843072)
+10-27 15:25:51 I ETA: 11.04 01.08.35 estimated_duration: 7-10:36:27.15 time_since_last_log: 00:26:51.84 time_per_update: 00:00:00.64 
+10-27 15:25:51 I data=[0.00, 0.00, 0.00, 0.00] update=[0.64, 0.64, 0.64, 0.64]
+10-27 15:25:51 I loss/online/main/E1: 6.724583148956299
+10-27 15:25:51 I loss/online/total/E1: 6.724583148956299
+10-27 15:25:51 I accuracy1/online/main/E1: 0.006507
+10-27 15:52:47 I ------------------
+10-27 15:52:47 I Epoch 4/400 (E4_U10008_S5124096)
+10-27 15:52:47 I ETA: 11.04 01.19.15 estimated_duration: 7-10:47:06.65 time_since_last_log: 00:26:56.30 time_per_update: 00:00:00.64 
+10-27 15:52:47 I data=[0.00, 0.00, 0.00, 0.00] update=[0.64, 0.64, 0.64, 0.64]
+10-27 15:52:47 I loss/online/main/E1: 6.796730995178223
+10-27 15:52:47 I loss/online/total/E1: 6.796730995178223
+10-27 15:52:47 I accuracy1/online/main/E1: 0.004855
+10-27 16:19:40 I ------------------
+10-27 16:19:40 I Epoch 5/400 (E5_U12510_S6405120)
+10-27 16:19:40 I ETA: 11.04 01.19.13 estimated_duration: 7-10:47:04.72 time_since_last_log: 00:26:53.07 time_per_update: 00:00:00.64 
+10-27 16:19:40 I data=[0.00, 0.00, 0.00, 0.00] update=[0.64, 0.64, 0.64, 0.64]
+10-27 16:19:40 I loss/online/main/E1: 6.8886542320251465
+10-27 16:19:40 I loss/online/total/E1: 6.8886542320251465
+10-27 16:19:40 I accuracy1/online/main/E1: 0.002560
+10-27 16:20:16 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.36
+10-27 16:20:16 I accuracy1/val/main: 0.001020
+10-27 16:20:16 I loss/val/main: 6.90625
+10-27 16:47:12 I ------------------
+10-27 16:47:12 I Epoch 6/400 (E6_U15012_S7686144)
+10-27 16:47:12 I ETA: 11.04 02.10.13 estimated_duration: 7-11:38:04.99 time_since_last_log: 00:27:31.44 time_per_update: 00:00:00.66 
+10-27 16:47:12 I data=[0.00, 0.00, 0.00, 0.00] update=[0.64, 0.64, 0.64, 0.64]
+10-27 16:47:12 I loss/online/main/E1: 6.912813663482666
+10-27 16:47:12 I loss/online/total/E1: 6.912813663482666
+10-27 16:47:12 I accuracy1/online/main/E1: 0.001033
+10-27 17:14:00 I ------------------
+10-27 17:14:00 I Epoch 7/400 (E7_U17514_S8967168)
+10-27 17:14:00 I ETA: 11.04 01.55.40 estimated_duration: 7-11:23:32.29 time_since_last_log: 00:26:47.64 time_per_update: 00:00:00.64 
+10-27 17:14:00 I data=[0.00, 0.00, 0.00, 0.00] update=[0.64, 0.64, 0.64, 0.64]
+10-27 17:14:00 I loss/online/main/E1: 6.909022331237793
+10-27 17:14:00 I loss/online/total/E1: 6.909022331237793
+10-27 17:14:00 I accuracy1/online/main/E1: 0.001203
+10-27 17:38:04 E encountered nan loss (104 nans): tensor([6.9036, 6.8867, 6.8944, 6.9014, 6.9123, 6.8897, 6.9014, 6.8999, 6.8969,
+        6.9070, 6.8855, 6.9266, 6.8959, 6.8977, 6.9023, 6.8975, 6.9016, 6.9001,
+        6.8897, 6.8943, 6.9089, 6.9109, 6.8841, 6.9047,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan, 6.8933, 6.8789, 6.9050, 6.9054,
+        6.9104, 6.9055, 6.8978, 6.8936, 6.8901, 6.8939, 6.9094, 6.8986, 6.9007,
+        6.8927, 6.8964, 6.8892, 6.9085, 6.8985, 6.8951, 6.8908, 6.9003, 6.8937,
+        6.9025, 6.8861,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan, 6.8942, 6.9012, 6.9021, 6.9015, 6.9042, 6.8970, 6.9040, 6.8989,
+        6.9000, 6.9153, 6.8828, 6.8973, 6.8828, 6.9026, 6.8939, 6.9057, 6.8921,
+        6.9107, 6.9061, 6.9033, 6.8885, 6.8879, 6.9002, 6.8889,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan, 6.9055, 6.9041, 6.8818,
+        6.9017, 6.8955, 6.9064, 6.8836, 6.8982, 6.8954, 6.9066, 6.9018, 6.9158,
+        6.9032, 6.9072, 6.8936, 6.8931, 6.9172, 6.8887, 6.9089, 6.8982, 6.9118,
+        6.8890, 6.8960, 6.9091,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan], device='cuda:0')
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/main_train.py", line 9, in <module>
+[rank1]:     main()
+[rank1]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/main_train.py", line 5, in main
+[rank1]:     Runner().run()
+[rank1]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/runners/runner.py", line 86, in run
+[rank1]:     run_managed(
+[rank1]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/distributed/run/managed.py", line 47, in run_managed
+[rank1]:     _run_managed_multiprocess(accelerator, main)
+[rank1]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/distributed/run/managed.py", line 78, in _run_managed_multiprocess
+[rank1]:     main(device=device)
+[rank1]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/runners/runner.py", line 366, in main
+[rank1]:     trainer.train(model)
+[rank1]:   File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/kappaprofiler/__init__.py", line 20, in _profile
+[rank1]:     return func(*args, **kwargs)
+[rank1]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/trainers/base/sgd_trainer.py", line 625, in train
+[rank1]:     self._train(
+[rank1]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/trainers/base/sgd_trainer.py", line 762, in _train
+[rank1]:     callback.after_update(
+[rank1]:   File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank1]:     return func(*args, **kwargs)
+[rank1]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/callbacks/base/periodic_callback.py", line 164, in after_update
+[rank1]:     self._periodic_callback(interval_type="update", **kwargs)
+[rank1]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/callbacks/default_callbacks/online_loss_callback.py", line 27, in _periodic_callback
+[rank1]:     raise RuntimeError(msg)
+[rank1]: RuntimeError: encountered nan loss (104 nans): tensor([6.9036, 6.8867, 6.8944, 6.9014, 6.9123, 6.8897, 6.9014, 6.8999, 6.8969,
+[rank1]:         6.9070, 6.8855, 6.9266, 6.8959, 6.8977, 6.9023, 6.8975, 6.9016, 6.9001,
+[rank1]:         6.8897, 6.8943, 6.9089, 6.9109, 6.8841, 6.9047,    nan,    nan,    nan,
+[rank1]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank1]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank1]:            nan,    nan,    nan,    nan,    nan, 6.8933, 6.8789, 6.9050, 6.9054,
+[rank1]:         6.9104, 6.9055, 6.8978, 6.8936, 6.8901, 6.8939, 6.9094, 6.8986, 6.9007,
+[rank1]:         6.8927, 6.8964, 6.8892, 6.9085, 6.8985, 6.8951, 6.8908, 6.9003, 6.8937,
+[rank1]:         6.9025, 6.8861,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank1]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank1]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank1]:            nan, 6.8942, 6.9012, 6.9021, 6.9015, 6.9042, 6.8970, 6.9040, 6.8989,
+[rank1]:         6.9000, 6.9153, 6.8828, 6.8973, 6.8828, 6.9026, 6.8939, 6.9057, 6.8921,
+[rank1]:         6.9107, 6.9061, 6.9033, 6.8885, 6.8879, 6.9002, 6.8889,    nan,    nan,
+[rank1]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank1]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank1]:            nan,    nan,    nan,    nan,    nan,    nan, 6.9055, 6.9041, 6.8818,
+[rank1]:         6.9017, 6.8955, 6.9064, 6.8836, 6.8982, 6.8954, 6.9066, 6.9018, 6.9158,
+[rank1]:         6.9032, 6.9072, 6.8936, 6.8931, 6.9172, 6.8887, 6.9089, 6.8982, 6.9118,
+[rank1]:         6.8890, 6.8960, 6.9091,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank1]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank1]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank1]:            nan,    nan], device='cuda:0')
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/main_train.py", line 9, in <module>
+[rank2]:     main()
+[rank2]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/main_train.py", line 5, in main
+[rank2]:     Runner().run()
+[rank2]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/runners/runner.py", line 86, in run
+[rank2]:     run_managed(
+[rank2]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/distributed/run/managed.py", line 47, in run_managed
+[rank2]:     _run_managed_multiprocess(accelerator, main)
+[rank2]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/distributed/run/managed.py", line 78, in _run_managed_multiprocess
+[rank2]:     main(device=device)
+[rank2]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/runners/runner.py", line 366, in main
+[rank2]:     trainer.train(model)
+[rank2]:   File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/kappaprofiler/__init__.py", line 20, in _profile
+[rank2]:     return func(*args, **kwargs)
+[rank2]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/trainers/base/sgd_trainer.py", line 625, in train
+[rank2]:     self._train(
+[rank2]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/trainers/base/sgd_trainer.py", line 762, in _train
+[rank2]:     callback.after_update(
+[rank2]:   File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank2]:     return func(*args, **kwargs)
+[rank2]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/callbacks/base/periodic_callback.py", line 164, in after_update
+[rank2]:     self._periodic_callback(interval_type="update", **kwargs)
+[rank2]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/callbacks/default_callbacks/online_loss_callback.py", line 27, in _periodic_callback
+[rank2]:     raise RuntimeError(msg)
+[rank2]: RuntimeError: encountered nan loss (104 nans): tensor([6.9036, 6.8867, 6.8944, 6.9014, 6.9123, 6.8897, 6.9014, 6.8999, 6.8969,
+[rank2]:         6.9070, 6.8855, 6.9266, 6.8959, 6.8977, 6.9023, 6.8975, 6.9016, 6.9001,
+[rank2]:         6.8897, 6.8943, 6.9089, 6.9109, 6.8841, 6.9047,    nan,    nan,    nan,
+[rank2]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank2]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank2]:            nan,    nan,    nan,    nan,    nan, 6.8933, 6.8789, 6.9050, 6.9054,
+[rank2]:         6.9104, 6.9055, 6.8978, 6.8936, 6.8901, 6.8939, 6.9094, 6.8986, 6.9007,
+[rank2]:         6.8927, 6.8964, 6.8892, 6.9085, 6.8985, 6.8951, 6.8908, 6.9003, 6.8937,
+[rank2]:         6.9025, 6.8861,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank2]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank2]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank2]:            nan, 6.8942, 6.9012, 6.9021, 6.9015, 6.9042, 6.8970, 6.9040, 6.8989,
+[rank2]:         6.9000, 6.9153, 6.8828, 6.8973, 6.8828, 6.9026, 6.8939, 6.9057, 6.8921,
+[rank2]:         6.9107, 6.9061, 6.9033, 6.8885, 6.8879, 6.9002, 6.8889,    nan,    nan,
+[rank2]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank2]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank2]:            nan,    nan,    nan,    nan,    nan,    nan, 6.9055, 6.9041, 6.8818,
+[rank2]:         6.9017, 6.8955, 6.9064, 6.8836, 6.8982, 6.8954, 6.9066, 6.9018, 6.9158,
+[rank2]:         6.9032, 6.9072, 6.8936, 6.8931, 6.9172, 6.8887, 6.9089, 6.8982, 6.9118,
+[rank2]:         6.8890, 6.8960, 6.9091,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank2]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank2]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank2]:            nan,    nan], device='cuda:0')
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/main_train.py", line 9, in <module>
+[rank3]:     main()
+[rank3]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/main_train.py", line 5, in main
+[rank3]:     Runner().run()
+[rank3]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/runners/runner.py", line 86, in run
+[rank3]:     run_managed(
+[rank3]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/distributed/run/managed.py", line 47, in run_managed
+[rank3]:     _run_managed_multiprocess(accelerator, main)
+[rank3]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/distributed/run/managed.py", line 78, in _run_managed_multiprocess
+[rank3]:     main(device=device)
+[rank3]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/runners/runner.py", line 366, in main
+[rank3]:     trainer.train(model)
+[rank3]:   File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/kappaprofiler/__init__.py", line 20, in _profile
+[rank3]:     return func(*args, **kwargs)
+[rank3]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/trainers/base/sgd_trainer.py", line 625, in train
+[rank3]:     self._train(
+[rank3]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/trainers/base/sgd_trainer.py", line 762, in _train
+[rank3]:     callback.after_update(
+[rank3]:   File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank3]:     return func(*args, **kwargs)
+[rank3]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/callbacks/base/periodic_callback.py", line 164, in after_update
+[rank3]:     self._periodic_callback(interval_type="update", **kwargs)
+[rank3]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/callbacks/default_callbacks/online_loss_callback.py", line 27, in _periodic_callback
+[rank3]:     raise RuntimeError(msg)
+[rank3]: RuntimeError: encountered nan loss (104 nans): tensor([6.9036, 6.8867, 6.8944, 6.9014, 6.9123, 6.8897, 6.9014, 6.8999, 6.8969,
+[rank3]:         6.9070, 6.8855, 6.9266, 6.8959, 6.8977, 6.9023, 6.8975, 6.9016, 6.9001,
+[rank3]:         6.8897, 6.8943, 6.9089, 6.9109, 6.8841, 6.9047,    nan,    nan,    nan,
+[rank3]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank3]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank3]:            nan,    nan,    nan,    nan,    nan, 6.8933, 6.8789, 6.9050, 6.9054,
+[rank3]:         6.9104, 6.9055, 6.8978, 6.8936, 6.8901, 6.8939, 6.9094, 6.8986, 6.9007,
+[rank3]:         6.8927, 6.8964, 6.8892, 6.9085, 6.8985, 6.8951, 6.8908, 6.9003, 6.8937,
+[rank3]:         6.9025, 6.8861,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank3]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank3]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank3]:            nan, 6.8942, 6.9012, 6.9021, 6.9015, 6.9042, 6.8970, 6.9040, 6.8989,
+[rank3]:         6.9000, 6.9153, 6.8828, 6.8973, 6.8828, 6.9026, 6.8939, 6.9057, 6.8921,
+[rank3]:         6.9107, 6.9061, 6.9033, 6.8885, 6.8879, 6.9002, 6.8889,    nan,    nan,
+[rank3]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank3]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank3]:            nan,    nan,    nan,    nan,    nan,    nan, 6.9055, 6.9041, 6.8818,
+[rank3]:         6.9017, 6.8955, 6.9064, 6.8836, 6.8982, 6.8954, 6.9066, 6.9018, 6.9158,
+[rank3]:         6.9032, 6.9072, 6.8936, 6.8931, 6.9172, 6.8887, 6.9089, 6.8982, 6.9118,
+[rank3]:         6.8890, 6.8960, 6.9091,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank3]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank3]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank3]:            nan,    nan], device='cuda:0')
+Traceback (most recent call last):
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/main_train.py", line 9, in <module>
+    main()
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/main_train.py", line 5, in main
+    Runner().run()
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/runners/runner.py", line 86, in run
+    run_managed(
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/distributed/run/managed.py", line 47, in run_managed
+    _run_managed_multiprocess(accelerator, main)
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/distributed/run/managed.py", line 78, in _run_managed_multiprocess
+    main(device=device)
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/runners/runner.py", line 366, in main
+    trainer.train(model)
+  File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/kappaprofiler/__init__.py", line 20, in _profile
+    return func(*args, **kwargs)
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/trainers/base/sgd_trainer.py", line 625, in train
+    self._train(
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/trainers/base/sgd_trainer.py", line 762, in _train
+    callback.after_update(
+  File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/callbacks/base/periodic_callback.py", line 164, in after_update
+    self._periodic_callback(interval_type="update", **kwargs)
+  File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/callbacks/default_callbacks/online_loss_callback.py", line 27, in _periodic_callback
+    raise RuntimeError(msg)
+RuntimeError: encountered nan loss (104 nans): tensor([6.9036, 6.8867, 6.8944, 6.9014, 6.9123, 6.8897, 6.9014, 6.8999, 6.8969,
+        6.9070, 6.8855, 6.9266, 6.8959, 6.8977, 6.9023, 6.8975, 6.9016, 6.9001,
+        6.8897, 6.8943, 6.9089, 6.9109, 6.8841, 6.9047,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan, 6.8933, 6.8789, 6.9050, 6.9054,
+        6.9104, 6.9055, 6.8978, 6.8936, 6.8901, 6.8939, 6.9094, 6.8986, 6.9007,
+        6.8927, 6.8964, 6.8892, 6.9085, 6.8985, 6.8951, 6.8908, 6.9003, 6.8937,
+        6.9025, 6.8861,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan, 6.8942, 6.9012, 6.9021, 6.9015, 6.9042, 6.8970, 6.9040, 6.8989,
+        6.9000, 6.9153, 6.8828, 6.8973, 6.8828, 6.9026, 6.8939, 6.9057, 6.8921,
+        6.9107, 6.9061, 6.9033, 6.8885, 6.8879, 6.9002, 6.8889,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan, 6.9055, 6.9041, 6.8818,
+        6.9017, 6.8955, 6.9064, 6.8836, 6.8982, 6.8954, 6.9066, 6.9018, 6.9158,
+        6.9032, 6.9072, 6.8936, 6.8931, 6.9172, 6.8887, 6.9089, 6.8982, 6.9118,
+        6.8890, 6.8960, 6.9091,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+           nan,    nan], device='cuda:0')
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/main_train.py", line 9, in <module>
+[rank0]:     main()
+[rank0]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/main_train.py", line 5, in main
+[rank0]:     Runner().run()
+[rank0]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/runners/runner.py", line 86, in run
+[rank0]:     run_managed(
+[rank0]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/distributed/run/managed.py", line 47, in run_managed
+[rank0]:     _run_managed_multiprocess(accelerator, main)
+[rank0]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/distributed/run/managed.py", line 78, in _run_managed_multiprocess
+[rank0]:     main(device=device)
+[rank0]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/runners/runner.py", line 366, in main
+[rank0]:     trainer.train(model)
+[rank0]:   File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/kappaprofiler/__init__.py", line 20, in _profile
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/trainers/base/sgd_trainer.py", line 625, in train
+[rank0]:     self._train(
+[rank0]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/trainers/base/sgd_trainer.py", line 762, in _train
+[rank0]:     callback.after_update(
+[rank0]:   File "/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/callbacks/base/periodic_callback.py", line 164, in after_update
+[rank0]:     self._periodic_callback(interval_type="update", **kwargs)
+[rank0]:   File "/home/beknur.kalmakhanbet/vision-lstm/src/ksuit/callbacks/default_callbacks/online_loss_callback.py", line 27, in _periodic_callback
+[rank0]:     raise RuntimeError(msg)
+[rank0]: RuntimeError: encountered nan loss (104 nans): tensor([6.9036, 6.8867, 6.8944, 6.9014, 6.9123, 6.8897, 6.9014, 6.8999, 6.8969,
+[rank0]:         6.9070, 6.8855, 6.9266, 6.8959, 6.8977, 6.9023, 6.8975, 6.9016, 6.9001,
+[rank0]:         6.8897, 6.8943, 6.9089, 6.9109, 6.8841, 6.9047,    nan,    nan,    nan,
+[rank0]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank0]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank0]:            nan,    nan,    nan,    nan,    nan, 6.8933, 6.8789, 6.9050, 6.9054,
+[rank0]:         6.9104, 6.9055, 6.8978, 6.8936, 6.8901, 6.8939, 6.9094, 6.8986, 6.9007,
+[rank0]:         6.8927, 6.8964, 6.8892, 6.9085, 6.8985, 6.8951, 6.8908, 6.9003, 6.8937,
+[rank0]:         6.9025, 6.8861,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank0]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank0]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank0]:            nan, 6.8942, 6.9012, 6.9021, 6.9015, 6.9042, 6.8970, 6.9040, 6.8989,
+[rank0]:         6.9000, 6.9153, 6.8828, 6.8973, 6.8828, 6.9026, 6.8939, 6.9057, 6.8921,
+[rank0]:         6.9107, 6.9061, 6.9033, 6.8885, 6.8879, 6.9002, 6.8889,    nan,    nan,
+[rank0]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank0]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank0]:            nan,    nan,    nan,    nan,    nan,    nan, 6.9055, 6.9041, 6.8818,
+[rank0]:         6.9017, 6.8955, 6.9064, 6.8836, 6.8982, 6.8954, 6.9066, 6.9018, 6.9158,
+[rank0]:         6.9032, 6.9072, 6.8936, 6.8931, 6.9172, 6.8887, 6.9089, 6.8982, 6.9118,
+[rank0]:         6.8890, 6.8960, 6.9091,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank0]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank0]:            nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,
+[rank0]:            nan,    nan], device='cuda:0')
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33min1k-lstm-80m16-e400res192-bialter-bilatflat-lr1e3-conv2d3-bias/in1k[0m at: [34mhttps://wandb.ai/beka-kalmahanbet-mbzuai/minLSTM/runs/y7yvymle[0m
+[1;34mwandb[0m: Find logs at: [1;35m../save/in1k/y7yvymle/wandb/run-20251027_140340-y7yvymle/logs[0m
+[rank2]:[W1027 17:38:06.933149598 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+[rank1]:[W1027 17:38:06.991088646 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+[rank3]:[W1027 17:38:06.008616085 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+srun: error: gpu-02: task 3: Exited with exit code 1
+srun: error: gpu-02: task 2: Exited with exit code 1
+srun: error: gpu-02: task 0: Exited with exit code 1
+srun: error: gpu-02: task 1: Exited with exit code 1
+slurmstepd-gpu-02: error: *** JOB 148846 ON gpu-02 CANCELLED AT 2025-10-28T02:03:32 DUE TO TIME LIMIT ***

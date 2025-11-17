@@ -33,7 +33,7 @@ env:
 #   disabled (default) -> don't use wandb
 #   offline -> use wandb in offline mode
 #   online -> use wandb in online mode
-#default_wandb_mode: disabled
+default_wandb_mode: online
 
 
 # [OPTIONAL] master port for multi-GPU setting

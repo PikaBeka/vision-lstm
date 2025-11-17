@@ -1,0 +1,1185 @@
+MASTER_ADDR: gpu-01
+CUDA_VISIBLE_DEVICES=0,1,2,3
+Wed Oct 29 17:38:29 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 550.54.14              Driver Version: 550.54.14      CUDA Version: 12.4     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:01:00.0 Off |                    0 |
+| N/A   28C    P0             54W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-40GB          On  |   00000000:41:00.0 Off |                    0 |
+| N/A   27C    P0             54W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-40GB          On  |   00000000:81:00.0 Off |                    0 |
+| N/A   26C    P0             51W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-40GB          On  |   00000000:C1:00.0 Off |                    0 |
+| N/A   25C    P0             53W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+torch: 2.5.1+cu121 cuda: 12.1 cuda available: True
+10-29 17:38:44 I initializing rank=2 local_rank=2 nodes=1 hostname=gpu-01 master_addr=gpu-01 master_port=55555 (waiting for all 4 processes to connect)
+10-29 17:38:44 I initializing rank=3 local_rank=3 nodes=1 hostname=gpu-01 master_addr=gpu-01 master_port=55555 (waiting for all 4 processes to connect)
+10-29 17:38:44 I initializing rank=1 local_rank=1 nodes=1 hostname=gpu-01 master_addr=gpu-01 master_port=55555 (waiting for all 4 processes to connect)
+10-29 17:38:44 I initializing rank=0 local_rank=0 nodes=1 hostname=gpu-01 master_addr=gpu-01 master_port=55555 (waiting for all 4 processes to connect)
+[rank1]:[W1029 17:38:45.061217482 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 1]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank3]:[W1029 17:38:45.083187891 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 3]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank2]:[W1029 17:38:45.316151649 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 2]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank0]:[W1029 17:38:45.316360898 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+10-29 17:38:46 I initialized process rank=0 local_rank=0 pid=2102619
+10-29 17:38:46 I initialized process rank=2 local_rank=2 pid=2102621
+10-29 17:38:46 I initialized process rank=1 local_rank=1 pid=2102620
+10-29 17:38:46 I initialized process rank=3 local_rank=3 pid=2102622
+10-29 17:38:46 I initialized 4 processes
+10-29 17:38:46 W disabled cudnn benchmark
+10-29 17:38:46 W enabled cudnn deterministic
+10-29 17:38:46 I log file: /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/log.txt
+10-29 17:38:46 I no seed specified -> using seed=0
+10-29 17:38:46 I ------------------
+10-29 17:38:46 I initializing wandb (mode=online)
+10-29 17:38:46 I logging into wandb (host=https://api.wandb.ai/ rank=0)
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+fatal: No annotated tags can describe '879894a2c4205819466aaff45b583fe3b517c036'.
+However, there were unannotated tags: try --tags.
+fatal: No annotated tags can describe '879894a2c4205819466aaff45b583fe3b517c036'.
+However, there were unannotated tags: try --tags.
+fatal: No annotated tags can describe '879894a2c4205819466aaff45b583fe3b517c036'.
+However, there were unannotated tags: try --tags.
+wandb: Currently logged in as: beka-kalmahanbet (ml710_project) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+10-29 17:38:47 I logged into wandb (host=https://api.wandb.ai/)
+wandb: Tracking run with wandb version 0.19.8
+wandb: Run data is saved locally in /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/wandb/run-20251029_173847-fkiz3se6
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run in1k-lstm-80m16-e400res192-bialter-bilatflat-lr1e3-conv2d3-bias/in1k
+wandb: ⭐️ View project at https://wandb.ai/beka-kalmahanbet-mbzuai/minLSTM
+wandb: 🚀 View run at https://wandb.ai/beka-kalmahanbet-mbzuai/minLSTM/runs/fkiz3se6
+fatal: No annotated tags can describe '879894a2c4205819466aaff45b583fe3b517c036'.
+However, there were unannotated tags: try --tags.
+10-29 17:38:48 I ------------------
+10-29 17:38:48 I stage_id: fkiz3se6
+10-29 17:38:48 I python main_train.py --hp src/vislstm/yamls/pretrain/vil/lstm_80M16_e400_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml --num_workers 5
+10-29 17:38:48 I ------------------
+10-29 17:38:48 I VERSION CHECK
+10-29 17:38:48 I executable: /home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/bin/python
+10-29 17:38:48 I python version: 3.9.21
+10-29 17:38:48 I torch version: 2.5.1+cu121
+10-29 17:38:48 I torch.cuda version: 12.1
+10-29 17:38:48 I torchvision.version: 0.20.1+cu121
+10-29 17:38:49 I torchmetrics version: 1.6.2
+10-29 17:38:49 I kappaschedules version: 0.0.31
+10-29 17:38:49 I kappamodules version: 0.1.76
+10-29 17:38:49 I ------------------
+10-29 17:38:49 I SYSTEM INFO
+10-29 17:38:49 I host name: gpu-01
+10-29 17:38:49 I OS: Linux-5.15.161-ql-generic-13.0-14-x86_64-with-glibc2.35
+10-29 17:38:49 I OS version: #1 SMP Wed Jun 26 16:19:39 UTC 2024
+fatal: No annotated tags can describe '879894a2c4205819466aaff45b583fe3b517c036'.
+However, there were unannotated tags: try --tags.
+10-29 17:38:49 I initialized process rank=3 local_rank=3 pid=2102622 hostname=gpu-01
+fatal: No annotated tags can describe '879894a2c4205819466aaff45b583fe3b517c036'.
+However, there were unannotated tags: try --tags.
+10-29 17:38:50 I initialized process rank=2 local_rank=2 pid=2102621 hostname=gpu-01
+fatal: No annotated tags can describe '879894a2c4205819466aaff45b583fe3b517c036'.
+However, there were unannotated tags: try --tags.
+10-29 17:38:50 I initialized process rank=1 local_rank=1 pid=2102620 hostname=gpu-01
+10-29 17:38:50 I CUDA version: 12.4
+10-29 17:38:50 I current commit hash: 879894a2c4205819466aaff45b583fe3b517c036
+fatal: No annotated tags can describe '879894a2c4205819466aaff45b583fe3b517c036'.
+However, there were unannotated tags: try --tags.
+10-29 17:38:50 I latest git tag: 
+10-29 17:38:50 I initialized process rank=0 local_rank=0 pid=2102619 hostname=gpu-01
+10-29 17:38:50 I total_cpu_count: 64
+10-29 17:38:50 I ------------------
+10-29 17:38:50 I STATIC CONFIG
+10-29 17:38:50 I account_name: beknur.kalmakhanbet
+10-29 17:38:50 I output_path: /home/beknur.kalmakhanbet/save
+10-29 17:38:50 I ------------------
+10-29 17:38:50 I CLI ARGS
+10-29 17:38:50 I hp: src/vislstm/yamls/pretrain/vil/lstm_80M16_e400_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml
+10-29 17:38:50 I accelerator: gpu
+10-29 17:38:50 I num_workers: 5
+10-29 17:38:50 I testrun: False
+10-29 17:38:50 I minmodelrun: False
+10-29 17:38:50 I mindatarun: False
+10-29 17:38:50 I mindurationrun: False
+10-29 17:38:50 I static_config_uri: static_config.yaml
+10-29 17:38:50 I ------------------
+10-29 17:38:50 I DIST CONFIG
+10-29 17:38:50 I rank: 0
+10-29 17:38:50 I local_rank: 0
+10-29 17:38:50 I world_size: 4
+10-29 17:38:50 I nodes: 1
+10-29 17:38:50 I backend: nccl
+10-29 17:38:50 I slurm job id: 149752
+10-29 17:38:50 I hostnames: gpu-01
+10-29 17:38:50 I ------------------
+master_factory_base_path: vislstm
+stage_name: in1k
+datasets:
+  train:
+    kind: imagenet1k
+    split: train
+    sample_wrappers:
+    - kind: x_transform_wrapper
+      transform:
+      - kind: random_resized_crop
+        size: 192
+        scale:
+        - 0.08
+        - 1.0
+        interpolation: bicubic
+      - kind: random_horizontal_flip
+      - kind: transforms.three_augment
+        blur_sigma:
+        - 0.1
+        - 2.0
+      - kind: color_jitter
+        brightness: 0.3
+        contrast: 0.3
+        saturation: 0.3
+        hue: 0.0
+      - kind: imagenet1k_norm
+    - kind: one_hot_wrapper
+    collators:
+    - kind: mix_collator
+      mixup_alpha: 0.8
+      cutmix_alpha: 1.0
+      mixup_p: 0.5
+      cutmix_p: 0.5
+      apply_mode: batch
+      lamb_mode: batch
+      shuffle_mode: flip
+  val:
+    kind: imagenet1k
+    split: val
+    sample_wrappers:
+    - kind: x_transform_wrapper
+      transform:
+      - kind: resize
+        size: 192
+        interpolation: bicubic
+      - kind: center_crop
+        size: 192
+      - kind: imagenet1k_norm
+model:
+  kind: models.single.vislstm
+  patch_size: 16
+  dim: 768
+  depth: 24
+  bidirectional: false
+  alternation: bidirectional
+  conv1d_kernel_size: 3
+  use_conv2d: true
+  bias: true
+  pos_embed_mode: learnable
+  drop_path_rate: 0.2
+  drop_path_decay: false
+  mode: classifier
+  pooling:
+    kind: bilateral
+    aggregate: flatten
+  optim:
+    kind: adamw
+    lr: 0.001
+    betas:
+    - 0.9
+    - 0.999
+    weight_decay: 0.05
+    clip_grad_norm: 1.0
+    schedule:
+      kind: linear_warmup_cosine_decay_schedule
+      warmup_epochs: 5
+      end_value: 1.0e-06
+    lr_scaler:
+      kind: linear_lr_scaler
+      divisor: 1024
+trainer:
+  kind: classification_trainer
+  precision: bfloat16
+  backup_precision: float16
+  max_epochs: 400
+  effective_batch_size: 512
+  log_every_n_epochs: 1
+  use_torch_compile: true
+  callbacks:
+  - kind: checkpoint_callback
+  - kind: checkpoint_callback
+    every_n_epochs: 10
+    save_weights: false
+    save_latest_weights: true
+    save_latest_optim: true
+  - kind: offline_accuracy_callback
+    every_n_epochs: 5
+    dataset_key: val
+10-29 17:38:50 I copied unresolved hp to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/hp_unresolved.yaml
+10-29 17:38:50 I dumped resolved hp to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/hp_resolved.yaml
+10-29 17:38:50 I ------------------
+10-29 17:38:50 I training stage 'in1k'
+10-29 17:38:50 I using different seeds per process (seed+rank)
+10-29 17:38:50 I set seed to 0
+10-29 17:38:50 I ------------------
+10-29 17:38:50 I initializing datasets
+10-29 17:38:50 I initializing train
+10-29 17:38:56 I instantiating sample_wrapper x_transform_wrapper
+10-29 17:38:56 I instantiating sample_wrapper one_hot_wrapper
+10-29 17:38:56 I initializing val
+10-29 17:38:57 I instantiating sample_wrapper x_transform_wrapper
+10-29 17:38:57 I ------------------
+10-29 17:38:57 I initializing trainer
+10-29 17:38:57 I using precision: torch.bfloat16 (desired=bfloat16 backup=float16)
+10-29 17:38:57 I main_sampler: DistributedSampler(num_repeats=1, shuffle=True)
+10-29 17:38:57 I ------------------
+10-29 17:38:57 I creating model
+10-29 17:38:57 I input_shape: (3, 192, 192)
+10-29 17:38:57 I pos_embed.is_learnable=True
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+10-29 17:38:59 I drop_path_rate: 0.2
+10-29 17:38:59 I model:
+VisLSTM(
+  (pooling): Bilateral(aggregate=flatten)
+  (patch_embed): VitPatchEmbed(
+    (proj): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+    (norm): Identity()
+  )
+  (pos_embed): VitPosEmbed2d()
+  (xlstm): xLSTMBlockStack(
+    (blocks): ModuleList(
+      (0-23): 24 x mLSTMBlock(
+        (drop_path1): DropPath(drop_prob=0.200)
+        (xlstm_norm): LayerNorm()
+        (xlstm): mLSTMLayer(
+          (proj_up): Linear(in_features=768, out_features=3072, bias=True)
+          (conv1d): SequenceConv2d(1536, 1536, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=1536)
+          (conv_act_fn): SiLU()
+          (mlstm_cell): mLSTMCell(
+            (linear_h): FeedForward(
+              (linear1): Linear(in_features=1536, out_features=8, bias=True)
+              (activation): ReLU()
+              (dropout): Dropout(p=0.1, inplace=False)
+              (linear2): Linear(in_features=8, out_features=1536, bias=True)
+            )
+            (linear_i): FeedForward(
+              (linear1): Linear(in_features=1536, out_features=8, bias=True)
+              (activation): ReLU()
+              (dropout): Dropout(p=0.1, inplace=False)
+              (linear2): Linear(in_features=8, out_features=1536, bias=True)
+            )
+            (linear_f): FeedForward(
+              (linear1): Linear(in_features=1536, out_features=8, bias=True)
+              (activation): ReLU()
+              (dropout): Dropout(p=0.1, inplace=False)
+              (linear2): Linear(in_features=8, out_features=1536, bias=True)
+            )
+          )
+          (ogate_act_fn): SiLU()
+          (proj_down): Linear(in_features=1536, out_features=768, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (layerscale): Identity()
+        )
+      )
+    )
+    (post_blocks_norm): LayerNorm()
+  )
+  (head): Sequential(
+    (0): LayerNorm((1536,), eps=1e-06, elementwise_affine=True)
+    (1): Linear(in_features=1536, out_features=1000, bias=True)
+  )
+)
+10-29 17:38:59 I vislstm initialize optimizer
+10-29 17:38:59 I base lr: 1e-3
+10-29 17:38:59 I scaled lr: 5e-4
+10-29 17:38:59 I lr_scaler=LinearLrScaler(divisor=1024)
+10-29 17:38:59 I lr_scale_factor=512
+10-29 17:38:59 I exclude_bias_from_wd=True exclude_norm_from_wd=True param_group_modifiers=[WeightDecayByNameModifier(name=pos_embed.embed)]
+10-29 17:38:59 I using 2 param groups:
+10-29 17:38:59 I len(params)=218
+10-29 17:38:59 I weight_decay=0.0 len(params)=295
+10-29 17:38:59 I added default DatasetStatsCallback
+10-29 17:38:59 I added default ParamCountCallback
+10-29 17:38:59 I added default CopyPreviousConfigCallback
+10-29 17:38:59 I added default CopyPreviousSummaryCallback
+10-29 17:38:59 I added default ProgressCallback(every_n_epochs=1)
+10-29 17:38:59 I added default TrainTimeCallback(every_n_epochs=1)
+10-29 17:38:59 I added default OnlineLossCallback(every_n_epochs=1)
+10-29 17:38:59 I added default LrCallback(every_n_updates=50)
+10-29 17:38:59 I added default FreezerCallback(every_n_updates=50)
+10-29 17:38:59 I added default OnlineLossCallback(every_n_updates=50)
+10-29 17:38:59 I replacing BatchNorm layers with SyncBatchNorm
+10-29 17:38:59 I wrapping model with torch.compile
+10-29 17:39:00 I ------------------
+10-29 17:39:00 I PREPARE TRAINER
+10-29 17:39:00 I calculating batch_size and accumulation_steps (effective_batch_size=512)
+10-29 17:39:00 I torch.compile is used -> automatic batchsize not supported
+10-29 17:39:00 I train_batches per epoch: 2502 (world_size=4 batch_size=128)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+10-29 17:39:00 I initializing dataloader
+10-29 17:39:00 I OfflineAccuracyCallback(every_n_epochs=5) registered InterleavedSamplerConfig(every_n_epochs=5) dataset_mode='x class'
+10-29 17:39:00 I created dataloader (batch_size=128 num_workers=5 pin_memory=True total_cpu_count=64 prefetch_factor=2)
+10-29 17:39:00 I concatenated dataset properties:
+10-29 17:39:00 I - mode='index x class' len=1281167 root_dataset=<vislstm.datasets.imagenet1k.Imagenet1k object at 0x1508dd26fe80>
+10-29 17:39:00 I - mode='x class' len=50000 root_dataset=<vislstm.datasets.imagenet1k.Imagenet1k object at 0x1508dd26ffa0>
+10-29 17:39:00 I ------------------
+10-29 17:39:00 I BEFORE TRAINING
+10-29 17:39:00 I train: 1281167 samples
+10-29 17:39:00 I val: 50000 samples
+10-29 17:39:00 I parameter counts (trainable | frozen)
+10-29 17:39:00 I 89,592,616 | 0 | vislstm
+10-29 17:39:00 I estimated checkpoint size: 1.0GB
+10-29 17:39:00 I estimated weight checkpoint size: 358.3MB
+10-29 17:39:00 I estimated optim checkpoint size: 716.7MB
+10-29 17:39:00 I estimated size for 1 checkpoints: 358.3MB
+10-29 17:39:00 I estimated checkpoint size: 1.0GB
+10-29 17:39:00 I estimated weight checkpoint size: 358.3MB
+10-29 17:39:00 I estimated optim checkpoint size: 716.7MB
+10-29 17:39:00 I estimated size for 41 checkpoints: 0.0B
+10-29 17:39:00 I ------------------
+10-29 17:39:00 I DatasetStatsCallback
+10-29 17:39:00 I ParamCountCallback
+10-29 17:39:00 I CopyPreviousConfigCallback
+10-29 17:39:00 I CopyPreviousSummaryCallback
+10-29 17:39:00 I ProgressCallback(every_n_epochs=1)
+10-29 17:39:00 I TrainTimeCallback(every_n_epochs=1)
+10-29 17:39:00 I OnlineLossCallback(every_n_epochs=1)
+10-29 17:39:00 I LrCallback(every_n_updates=50)
+10-29 17:39:00 I FreezerCallback(every_n_updates=50)
+10-29 17:39:00 I OnlineLossCallback(every_n_updates=50)
+10-29 17:39:00 I OnlineAccuracyCallback(every_n_updates=50)
+10-29 17:39:00 I OnlineAccuracyCallback(every_n_epochs=1)
+10-29 17:39:00 I CheckpointCallback()
+10-29 17:39:00 I CheckpointCallback(every_n_epochs=10)
+10-29 17:39:00 I OfflineAccuracyCallback(every_n_epochs=5)
+10-29 17:39:00 I ------------------
+10-29 17:39:00 I START TRAINING
+10-29 17:39:00 I initializing dataloader workers
+10-29 17:39:00 I initialized dataloader workers
+[rank1]:W1029 17:39:01.751385 2102620 site-packages/torch/_logging/_internal.py:1081] [0/0] Profiler function <class 'torch.autograd.profiler.record_function'> will be ignored
+[rank2]:W1029 17:39:01.754104 2102621 site-packages/torch/_logging/_internal.py:1081] [0/0] Profiler function <class 'torch.autograd.profiler.record_function'> will be ignored
+[rank0]:W1029 17:39:01.758082 2102619 site-packages/torch/_logging/_internal.py:1081] [0/0] Profiler function <class 'torch.autograd.profiler.record_function'> will be ignored
+[rank3]:W1029 17:39:01.882580 2102622 site-packages/torch/_logging/_internal.py:1081] [0/0] Profiler function <class 'torch.autograd.profiler.record_function'> will be ignored
+/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/autograd/graph.py:825: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
+grad.sizes() = [1536, 1, 3, 3], strides() = [9, 1, 3, 1]
+bucket_view.sizes() = [1536, 1, 3, 3], strides() = [9, 9, 3, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:327.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+10-29 17:40:24 I 0 unused parameters
+/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/autograd/graph.py:825: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
+grad.sizes() = [1536, 1, 3, 3], strides() = [9, 1, 3, 1]
+bucket_view.sizes() = [1536, 1, 3, 3], strides() = [9, 9, 3, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:327.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/autograd/graph.py:825: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
+grad.sizes() = [1536, 1, 3, 3], strides() = [9, 1, 3, 1]
+bucket_view.sizes() = [1536, 1, 3, 3], strides() = [9, 9, 3, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:327.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/autograd/graph.py:825: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
+grad.sizes() = [1536, 1, 3, 3], strides() = [9, 1, 3, 1]
+bucket_view.sizes() = [1536, 1, 3, 3], strides() = [9, 9, 3, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:327.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+10-29 17:48:22 I ------------------
+10-29 17:48:22 I Epoch 1/400 (E1_U2502_S1281024)
+10-29 17:48:22 I ETA: 11.01 08.05.27 estimated_duration: 2-14:26:27.18 time_since_last_log: 00:09:21.96 time_per_update: 00:00:00.22 
+10-29 17:48:22 I data=[0.00, 0.00, 0.00, 0.00] update=[0.22, 0.22, 0.22, 0.22]
+10-29 17:48:22 I loss/online/main/E1: 6.788773536682129
+10-29 17:48:22 I loss/online/total/E1: 6.788773536682129
+10-29 17:48:22 I accuracy1/online/main/E1: 0.004849
+10-29 17:56:21 I ------------------
+10-29 17:56:21 I Epoch 2/400 (E2_U5004_S2562048)
+10-29 17:56:21 I ETA: 10.31 22.53.52 estimated_duration: 2-05:05:30.15 time_since_last_log: 00:07:59.02 time_per_update: 00:00:00.19 
+10-29 17:56:21 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 17:56:21 I loss/online/main/E1: 6.387328624725342
+10-29 17:56:21 I loss/online/total/E1: 6.387328624725342
+10-29 17:56:21 I accuracy1/online/main/E1: 0.020544
+10-29 18:04:20 I ------------------
+10-29 18:04:20 I Epoch 3/400 (E3_U7506_S3843072)
+10-29 18:04:20 I ETA: 10.31 22.53.41 estimated_duration: 2-05:05:18.99 time_since_last_log: 00:07:58.96 time_per_update: 00:00:00.19 
+10-29 18:04:20 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 18:04:20 I loss/online/main/E1: 6.147327423095703
+10-29 18:04:20 I loss/online/total/E1: 6.147327423095703
+10-29 18:04:20 I accuracy1/online/main/E1: 0.038030
+10-29 18:12:20 I ------------------
+10-29 18:12:20 I Epoch 4/400 (E4_U10008_S5124096)
+10-29 18:12:20 I ETA: 10.31 22.56.42 estimated_duration: 2-05:08:19.66 time_since_last_log: 00:08:00.35 time_per_update: 00:00:00.19 
+10-29 18:12:20 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 18:12:20 I loss/online/main/E1: 5.9394426345825195
+10-29 18:12:20 I loss/online/total/E1: 5.9394426345825195
+10-29 18:12:20 I accuracy1/online/main/E1: 0.057652
+10-29 18:20:19 I ------------------
+10-29 18:20:19 I Epoch 5/400 (E5_U12510_S6405120)
+10-29 18:20:19 I ETA: 10.31 22.55.27 estimated_duration: 2-05:07:05.06 time_since_last_log: 00:07:58.69 time_per_update: 00:00:00.19 
+10-29 18:20:19 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 18:20:19 I loss/online/main/E1: 5.771378040313721
+10-29 18:20:19 I loss/online/total/E1: 5.771378040313721
+10-29 18:20:19 I accuracy1/online/main/E1: 0.077107
+10-29 18:20:36 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.18
+10-29 18:20:36 I accuracy1/val/main: 0.204360
+10-29 18:20:36 I loss/val/main: 4.125
+10-29 18:28:37 I ------------------
+10-29 18:28:37 I Epoch 6/400 (E6_U15012_S7686144)
+10-29 18:28:37 I ETA: 10.31 23.19.52 estimated_duration: 2-05:31:30.33 time_since_last_log: 00:08:17.62 time_per_update: 00:00:00.19 
+10-29 18:28:37 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 18:28:37 I loss/online/main/E1: 5.591999053955078
+10-29 18:28:37 I loss/online/total/E1: 5.591999053955078
+10-29 18:28:37 I accuracy1/online/main/E1: 0.098595
+10-29 18:36:35 I ------------------
+10-29 18:36:35 I Epoch 7/400 (E7_U17514_S8967168)
+10-29 18:36:35 I ETA: 10.31 23.15.14 estimated_duration: 2-05:26:52.33 time_since_last_log: 00:07:58.75 time_per_update: 00:00:00.19 
+10-29 18:36:35 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 18:36:35 I loss/online/main/E1: 5.430292129516602
+10-29 18:36:35 I loss/online/total/E1: 5.430292129516602
+10-29 18:36:35 I accuracy1/online/main/E1: 0.119964
+10-29 18:44:36 I ------------------
+10-29 18:44:36 I Epoch 8/400 (E8_U20016_S10248192)
+10-29 18:44:36 I ETA: 10.31 23.13.30 estimated_duration: 2-05:25:07.67 time_since_last_log: 00:08:00.40 time_per_update: 00:00:00.19 
+10-29 18:44:36 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 18:44:36 I loss/online/main/E1: 5.283566951751709
+10-29 18:44:36 I loss/online/total/E1: 5.283566951751709
+10-29 18:44:36 I accuracy1/online/main/E1: 0.141050
+10-29 18:52:35 I ------------------
+10-29 18:52:35 I Epoch 9/400 (E9_U22518_S11529216)
+10-29 18:52:35 I ETA: 10.31 23.10.52 estimated_duration: 2-05:22:30.56 time_since_last_log: 00:07:58.82 time_per_update: 00:00:00.19 
+10-29 18:52:35 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 18:52:35 I loss/online/main/E1: 5.163034439086914
+10-29 18:52:35 I loss/online/total/E1: 5.163034439086914
+10-29 18:52:35 I accuracy1/online/main/E1: 0.158970
+10-29 19:00:33 I ------------------
+10-29 19:00:33 I Epoch 10/400 (E10_U25020_S12810240)
+10-29 19:00:33 I ETA: 10.31 23.08.55 estimated_duration: 2-05:20:32.57 time_since_last_log: 00:07:58.91 time_per_update: 00:00:00.19 
+10-29 19:00:34 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 19:00:34 I loss/online/main/E1: 5.0571465492248535
+10-29 19:00:34 I loss/online/total/E1: 5.0571465492248535
+10-29 19:00:34 I accuracy1/online/main/E1: 0.175363
+10-29 19:00:34 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest model.th
+10-29 19:00:36 I saved vislstm optim to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest optim.th
+10-29 19:00:36 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/trainer cp=latest.th
+10-29 19:00:53 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-29 19:00:53 I accuracy1/val/main: 0.379220
+10-29 19:00:53 I loss/val/main: 2.9375
+10-29 19:08:53 I ------------------
+10-29 19:08:53 I Epoch 11/400 (E11_U27522_S14091264)
+10-29 19:08:53 I ETA: 10.31 23.20.45 estimated_duration: 2-05:32:23.38 time_since_last_log: 00:08:19.09 time_per_update: 00:00:00.19 
+10-29 19:08:53 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 19:08:53 I loss/online/main/E1: 4.973387241363525
+10-29 19:08:53 I loss/online/total/E1: 4.973387241363525
+10-29 19:08:53 I accuracy1/online/main/E1: 0.189046
+10-29 19:16:53 I ------------------
+10-29 19:16:53 I Epoch 12/400 (E12_U30024_S15372288)
+10-29 19:16:53 I ETA: 10.31 23.19.21 estimated_duration: 2-05:30:59.20 time_since_last_log: 00:08:00.74 time_per_update: 00:00:00.19 
+10-29 19:16:53 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 19:16:53 I loss/online/main/E1: 4.894498825073242
+10-29 19:16:53 I loss/online/total/E1: 4.894498825073242
+10-29 19:16:53 I accuracy1/online/main/E1: 0.202299
+10-29 19:24:53 I ------------------
+10-29 19:24:53 I Epoch 13/400 (E13_U32526_S16653312)
+10-29 19:24:53 I ETA: 10.31 23.17.27 estimated_duration: 2-05:29:05.07 time_since_last_log: 00:07:59.42 time_per_update: 00:00:00.19 
+10-29 19:24:53 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 19:24:53 I loss/online/main/E1: 4.81035041809082
+10-29 19:24:53 I loss/online/total/E1: 4.81035041809082
+10-29 19:24:53 I accuracy1/online/main/E1: 0.216136
+10-29 19:32:52 I ------------------
+10-29 19:32:52 I Epoch 14/400 (E14_U35028_S17934336)
+10-29 19:32:52 I ETA: 10.31 23.15.44 estimated_duration: 2-05:27:21.89 time_since_last_log: 00:07:59.20 time_per_update: 00:00:00.19 
+10-29 19:32:52 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 19:32:52 I loss/online/main/E1: 4.741562843322754
+10-29 19:32:52 I loss/online/total/E1: 4.741562843322754
+10-29 19:32:52 I accuracy1/online/main/E1: 0.226609
+10-29 19:40:52 I ------------------
+10-29 19:40:52 I Epoch 15/400 (E15_U37530_S19215360)
+10-29 19:40:52 I ETA: 10.31 23.14.29 estimated_duration: 2-05:26:06.80 time_since_last_log: 00:07:59.67 time_per_update: 00:00:00.19 
+10-29 19:40:52 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 19:40:52 I loss/online/main/E1: 4.686514854431152
+10-29 19:40:52 I loss/online/total/E1: 4.686514854431152
+10-29 19:40:52 I accuracy1/online/main/E1: 0.236802
+10-29 19:41:09 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-29 19:41:09 I accuracy1/val/main: 0.468020
+10-29 19:41:09 I loss/val/main: 2.375
+10-29 19:49:10 I ------------------
+10-29 19:49:10 I Epoch 16/400 (E16_U40032_S20496384)
+10-29 19:49:10 I ETA: 10.31 23.21.33 estimated_duration: 2-05:33:11.52 time_since_last_log: 00:08:18.08 time_per_update: 00:00:00.19 
+10-29 19:49:10 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 19:49:10 I loss/online/main/E1: 4.6238908767700195
+10-29 19:49:10 I loss/online/total/E1: 4.6238908767700195
+10-29 19:49:10 I accuracy1/online/main/E1: 0.246980
+10-29 19:57:08 I ------------------
+10-29 19:57:08 I Epoch 17/400 (E17_U42534_S21777408)
+10-29 19:57:08 I ETA: 10.31 23.19.43 estimated_duration: 2-05:31:21.09 time_since_last_log: 00:07:58.75 time_per_update: 00:00:00.19 
+10-29 19:57:08 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 19:57:08 I loss/online/main/E1: 4.563137054443359
+10-29 19:57:09 I loss/online/total/E1: 4.563137054443359
+10-29 19:57:09 I accuracy1/online/main/E1: 0.257359
+10-29 20:05:07 I ------------------
+10-29 20:05:07 I Epoch 18/400 (E18_U45036_S23058432)
+10-29 20:05:07 I ETA: 10.31 23.18.07 estimated_duration: 2-05:29:45.13 time_since_last_log: 00:07:58.82 time_per_update: 00:00:00.19 
+10-29 20:05:07 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 20:05:07 I loss/online/main/E1: 4.513197422027588
+10-29 20:05:07 I loss/online/total/E1: 4.513197422027588
+10-29 20:05:07 I accuracy1/online/main/E1: 0.264944
+10-29 20:13:08 I ------------------
+10-29 20:13:08 I Epoch 19/400 (E19_U47538_S24339456)
+10-29 20:13:08 I ETA: 10.31 23.17.23 estimated_duration: 2-05:29:00.95 time_since_last_log: 00:08:00.67 time_per_update: 00:00:00.19 
+10-29 20:13:08 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 20:13:08 I loss/online/main/E1: 4.466455459594727
+10-29 20:13:08 I loss/online/total/E1: 4.466455459594727
+10-29 20:13:08 I accuracy1/online/main/E1: 0.272808
+10-29 20:21:07 I ------------------
+10-29 20:21:07 I Epoch 20/400 (E20_U50040_S25620480)
+10-29 20:21:07 I ETA: 10.31 23.16.12 estimated_duration: 2-05:27:50.01 time_since_last_log: 00:07:59.18 time_per_update: 00:00:00.19 
+10-29 20:21:07 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 20:21:07 I loss/online/main/E1: 4.434629440307617
+10-29 20:21:07 I loss/online/total/E1: 4.434629440307617
+10-29 20:21:07 I accuracy1/online/main/E1: 0.279133
+10-29 20:21:08 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest model.th
+10-29 20:21:10 I saved vislstm optim to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest optim.th
+10-29 20:21:10 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/trainer cp=latest.th
+10-29 20:21:26 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-29 20:21:27 I accuracy1/val/main: 0.518560
+10-29 20:21:27 I loss/val/main: 2.109375
+10-29 20:29:25 I ------------------
+10-29 20:29:25 I Epoch 21/400 (E21_U52542_S26901504)
+10-29 20:29:25 I ETA: 10.31 23.21.25 estimated_duration: 2-05:33:03.23 time_since_last_log: 00:08:18.08 time_per_update: 00:00:00.19 
+10-29 20:29:25 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 20:29:25 I loss/online/main/E1: 4.397795677185059
+10-29 20:29:25 I loss/online/total/E1: 4.397795677185059
+10-29 20:29:25 I accuracy1/online/main/E1: 0.285979
+10-29 20:37:24 I ------------------
+10-29 20:37:24 I Epoch 22/400 (E22_U55044_S28182528)
+10-29 20:37:24 I ETA: 10.31 23.20.02 estimated_duration: 2-05:31:39.88 time_since_last_log: 00:07:58.77 time_per_update: 00:00:00.19 
+10-29 20:37:24 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 20:37:24 I loss/online/main/E1: 4.354067325592041
+10-29 20:37:24 I loss/online/total/E1: 4.354067325592041
+10-29 20:37:24 I accuracy1/online/main/E1: 0.292763
+10-29 20:45:24 I ------------------
+10-29 20:45:24 I Epoch 23/400 (E23_U57546_S29463552)
+10-29 20:45:24 I ETA: 10.31 23.19.12 estimated_duration: 2-05:30:50.28 time_since_last_log: 00:08:00.22 time_per_update: 00:00:00.19 
+10-29 20:45:24 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 20:45:24 I loss/online/main/E1: 4.339172840118408
+10-29 20:45:24 I loss/online/total/E1: 4.339172840118408
+10-29 20:45:24 I accuracy1/online/main/E1: 0.296329
+10-29 20:53:23 I ------------------
+10-29 20:53:23 I Epoch 24/400 (E24_U60048_S30744576)
+10-29 20:53:23 I ETA: 10.31 23.18.00 estimated_duration: 2-05:29:38.29 time_since_last_log: 00:07:58.68 time_per_update: 00:00:00.19 
+10-29 20:53:23 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 20:53:23 I loss/online/main/E1: 4.294239521026611
+10-29 20:53:23 I loss/online/total/E1: 4.294239521026611
+10-29 20:53:23 I accuracy1/online/main/E1: 0.303268
+10-29 21:01:21 I ------------------
+10-29 21:01:21 I Epoch 25/400 (E25_U62550_S32025600)
+10-29 21:01:21 I ETA: 10.31 23.16.44 estimated_duration: 2-05:28:21.62 time_since_last_log: 00:07:58.04 time_per_update: 00:00:00.19 
+10-29 21:01:21 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 21:01:21 I loss/online/main/E1: 4.276851177215576
+10-29 21:01:21 I loss/online/total/E1: 4.276851177215576
+10-29 21:01:21 I accuracy1/online/main/E1: 0.307125
+10-29 21:01:38 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-29 21:01:38 I accuracy1/val/main: 0.549880
+10-29 21:01:38 I loss/val/main: 1.953125
+10-29 21:09:37 I ------------------
+10-29 21:09:37 I Epoch 26/400 (E26_U65052_S33306624)
+10-29 21:09:37 I ETA: 10.31 23.20.26 estimated_duration: 2-05:32:04.57 time_since_last_log: 00:08:16.42 time_per_update: 00:00:00.19 
+10-29 21:09:37 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 21:09:37 I loss/online/main/E1: 4.24005126953125
+10-29 21:09:37 I loss/online/total/E1: 4.24005126953125
+10-29 21:09:37 I accuracy1/online/main/E1: 0.312832
+10-29 21:17:38 I ------------------
+10-29 21:17:38 I Epoch 27/400 (E27_U67554_S34587648)
+10-29 21:17:38 I ETA: 10.31 23.19.43 estimated_duration: 2-05:31:21.19 time_since_last_log: 00:08:00.19 time_per_update: 00:00:00.19 
+10-29 21:17:38 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 21:17:38 I loss/online/main/E1: 4.212066173553467
+10-29 21:17:38 I loss/online/total/E1: 4.212066173553467
+10-29 21:17:38 I accuracy1/online/main/E1: 0.317485
+10-29 21:25:37 I ------------------
+10-29 21:25:37 I Epoch 28/400 (E28_U70056_S35868672)
+10-29 21:25:37 I ETA: 10.31 23.18.49 estimated_duration: 2-05:30:27.30 time_since_last_log: 00:07:59.26 time_per_update: 00:00:00.19 
+10-29 21:25:37 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 21:25:37 I loss/online/main/E1: 4.192598342895508
+10-29 21:25:37 I loss/online/total/E1: 4.192598342895508
+10-29 21:25:37 I accuracy1/online/main/E1: 0.321933
+10-29 21:33:36 I ------------------
+10-29 21:33:36 I Epoch 29/400 (E29_U72558_S37149696)
+10-29 21:33:36 I ETA: 10.31 23.17.57 estimated_duration: 2-05:29:35.07 time_since_last_log: 00:07:59.10 time_per_update: 00:00:00.19 
+10-29 21:33:36 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 21:33:36 I loss/online/main/E1: 4.152385711669922
+10-29 21:33:36 I loss/online/total/E1: 4.152385711669922
+10-29 21:33:36 I accuracy1/online/main/E1: 0.327491
+10-29 21:41:35 I ------------------
+10-29 21:41:35 I Epoch 30/400 (E30_U75060_S38430720)
+10-29 21:41:35 I ETA: 10.31 23.17.09 estimated_duration: 2-05:28:47.02 time_since_last_log: 00:07:59.15 time_per_update: 00:00:00.19 
+10-29 21:41:35 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 21:41:35 I loss/online/main/E1: 4.148656368255615
+10-29 21:41:35 I loss/online/total/E1: 4.148656368255615
+10-29 21:41:35 I accuracy1/online/main/E1: 0.328088
+10-29 21:41:36 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest model.th
+10-29 21:41:37 I saved vislstm optim to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest optim.th
+10-29 21:41:37 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/trainer cp=latest.th
+10-29 21:41:54 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-29 21:41:54 I accuracy1/val/main: 0.585420
+10-29 21:41:54 I loss/val/main: 1.78125
+10-29 21:49:54 I ------------------
+10-29 21:49:54 I Epoch 31/400 (E31_U77562_S39711744)
+10-29 21:49:54 I ETA: 10.31 23.20.47 estimated_duration: 2-05:32:25.50 time_since_last_log: 00:08:18.95 time_per_update: 00:00:00.19 
+10-29 21:49:54 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 21:49:54 I loss/online/main/E1: 4.105371952056885
+10-29 21:49:54 I loss/online/total/E1: 4.105371952056885
+10-29 21:49:54 I accuracy1/online/main/E1: 0.336012
+10-29 21:57:53 I ------------------
+10-29 21:57:53 I Epoch 32/400 (E32_U80064_S40992768)
+10-29 21:57:53 I ETA: 10.31 23.20.00 estimated_duration: 2-05:31:37.94 time_since_last_log: 00:07:59.37 time_per_update: 00:00:00.19 
+10-29 21:57:53 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 21:57:53 I loss/online/main/E1: 4.096896171569824
+10-29 21:57:53 I loss/online/total/E1: 4.096896171569824
+10-29 21:57:53 I accuracy1/online/main/E1: 0.337354
+10-29 22:05:52 I ------------------
+10-29 22:05:52 I Epoch 33/400 (E33_U82566_S42273792)
+10-29 22:05:52 I ETA: 10.31 23.19.09 estimated_duration: 2-05:30:46.62 time_since_last_log: 00:07:58.83 time_per_update: 00:00:00.19 
+10-29 22:05:52 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 22:05:52 I loss/online/main/E1: 4.065945148468018
+10-29 22:05:52 I loss/online/total/E1: 4.065945148468018
+10-29 22:05:52 I accuracy1/online/main/E1: 0.342680
+10-29 22:13:52 I ------------------
+10-29 22:13:52 I Epoch 34/400 (E34_U85068_S43554816)
+10-29 22:13:52 I ETA: 10.31 23.18.31 estimated_duration: 2-05:30:09.04 time_since_last_log: 00:07:59.71 time_per_update: 00:00:00.19 
+10-29 22:13:52 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 22:13:52 I loss/online/main/E1: 4.041982173919678
+10-29 22:13:52 I loss/online/total/E1: 4.041982173919678
+10-29 22:13:52 I accuracy1/online/main/E1: 0.346443
+10-29 22:21:53 I ------------------
+10-29 22:21:53 I Epoch 35/400 (E35_U87570_S44835840)
+10-29 22:21:53 I ETA: 10.31 23.18.08 estimated_duration: 2-05:29:45.86 time_since_last_log: 00:08:00.75 time_per_update: 00:00:00.19 
+10-29 22:21:53 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 22:21:53 I loss/online/main/E1: 4.024975776672363
+10-29 22:21:53 I loss/online/total/E1: 4.024975776672363
+10-29 22:21:53 I accuracy1/online/main/E1: 0.349358
+10-29 22:22:10 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-29 22:22:10 I accuracy1/val/main: 0.595280
+10-29 22:22:10 I loss/val/main: 1.7265625
+10-29 22:30:09 I ------------------
+10-29 22:30:09 I Epoch 36/400 (E36_U90072_S46116864)
+10-29 22:30:09 I ETA: 10.31 23.20.44 estimated_duration: 2-05:32:22.41 time_since_last_log: 00:08:16.40 time_per_update: 00:00:00.19 
+10-29 22:30:09 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 22:30:09 I loss/online/main/E1: 4.015881538391113
+10-29 22:30:09 I loss/online/total/E1: 4.015881538391113
+10-29 22:30:09 I accuracy1/online/main/E1: 0.350307
+10-29 22:38:08 I ------------------
+10-29 22:38:08 I Epoch 37/400 (E37_U92574_S47397888)
+10-29 22:38:08 I ETA: 10.31 23.19.58 estimated_duration: 2-05:31:35.82 time_since_last_log: 00:07:58.86 time_per_update: 00:00:00.19 
+10-29 22:38:08 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 22:38:08 I loss/online/main/E1: 3.992576837539673
+10-29 22:38:08 I loss/online/total/E1: 3.992576837539673
+10-29 22:38:08 I accuracy1/online/main/E1: 0.353696
+10-29 22:46:07 I ------------------
+10-29 22:46:07 I Epoch 38/400 (E38_U95076_S48678912)
+10-29 22:46:07 I ETA: 10.31 23.19.19 estimated_duration: 2-05:30:57.52 time_since_last_log: 00:07:59.39 time_per_update: 00:00:00.19 
+10-29 22:46:07 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 22:46:07 I loss/online/main/E1: 3.9799153804779053
+10-29 22:46:07 I loss/online/total/E1: 3.9799153804779053
+10-29 22:46:07 I accuracy1/online/main/E1: 0.357633
+10-29 22:54:09 I ------------------
+10-29 22:54:09 I Epoch 39/400 (E39_U97578_S49959936)
+10-29 22:54:09 I ETA: 10.31 23.19.03 estimated_duration: 2-05:30:40.69 time_since_last_log: 00:08:01.24 time_per_update: 00:00:00.19 
+10-29 22:54:09 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 22:54:09 I loss/online/main/E1: 3.966473340988159
+10-29 22:54:09 I loss/online/total/E1: 3.966473340988159
+10-29 22:54:09 I accuracy1/online/main/E1: 0.359545
+10-29 23:02:08 I ------------------
+10-29 23:02:08 I Epoch 40/400 (E40_U100080_S51240960)
+10-29 23:02:08 I ETA: 10.31 23.18.31 estimated_duration: 2-05:30:08.60 time_since_last_log: 00:07:59.67 time_per_update: 00:00:00.19 
+10-29 23:02:08 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 23:02:08 I loss/online/main/E1: 3.9373860359191895
+10-29 23:02:08 I loss/online/total/E1: 3.9373860359191895
+10-29 23:02:08 I accuracy1/online/main/E1: 0.364226
+10-29 23:02:09 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest model.th
+10-29 23:02:11 I saved vislstm optim to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest optim.th
+10-29 23:02:11 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/trainer cp=latest.th
+10-29 23:02:28 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-29 23:02:28 I accuracy1/val/main: 0.608560
+10-29 23:02:28 I loss/val/main: 1.671875
+10-29 23:10:27 I ------------------
+10-29 23:10:27 I Epoch 41/400 (E41_U102582_S52521984)
+10-29 23:10:27 I ETA: 10.31 23.21.15 estimated_duration: 2-05:32:52.58 time_since_last_log: 00:08:19.16 time_per_update: 00:00:00.19 
+10-29 23:10:28 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 23:10:28 I loss/online/main/E1: 3.9257843494415283
+10-29 23:10:28 I loss/online/total/E1: 3.9257843494415283
+10-29 23:10:28 I accuracy1/online/main/E1: 0.365530
+10-29 23:18:28 I ------------------
+10-29 23:18:28 I Epoch 42/400 (E42_U105084_S53803008)
+10-29 23:18:28 I ETA: 10.31 23.20.51 estimated_duration: 2-05:32:29.16 time_since_last_log: 00:08:00.73 time_per_update: 00:00:00.19 
+10-29 23:18:28 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 23:18:28 I loss/online/main/E1: 3.9047048091888428
+10-29 23:18:28 I loss/online/total/E1: 3.9047048091888428
+10-29 23:18:28 I accuracy1/online/main/E1: 0.369534
+10-29 23:26:30 I ------------------
+10-29 23:26:30 I Epoch 43/400 (E43_U107586_S55084032)
+10-29 23:26:30 I ETA: 10.31 23.20.36 estimated_duration: 2-05:32:14.41 time_since_last_log: 00:08:01.52 time_per_update: 00:00:00.19 
+10-29 23:26:30 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 23:26:30 I loss/online/main/E1: 3.9135758876800537
+10-29 23:26:30 I loss/online/total/E1: 3.9135758876800537
+10-29 23:26:30 I accuracy1/online/main/E1: 0.369225
+10-29 23:34:31 I ------------------
+10-29 23:34:31 I Epoch 44/400 (E44_U110088_S56365056)
+10-29 23:34:31 I ETA: 10.31 23.20.16 estimated_duration: 2-05:31:53.65 time_since_last_log: 00:08:00.80 time_per_update: 00:00:00.19 
+10-29 23:34:31 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 23:34:31 I loss/online/main/E1: 3.8778574466705322
+10-29 23:34:31 I loss/online/total/E1: 3.8778574466705322
+10-29 23:34:31 I accuracy1/online/main/E1: 0.374365
+10-29 23:42:31 I ------------------
+10-29 23:42:31 I Epoch 45/400 (E45_U112590_S57646080)
+10-29 23:42:31 I ETA: 10.31 23.19.56 estimated_duration: 2-05:31:33.85 time_since_last_log: 00:08:00.80 time_per_update: 00:00:00.19 
+10-29 23:42:31 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 23:42:31 I loss/online/main/E1: 3.8667821884155273
+10-29 23:42:31 I loss/online/total/E1: 3.8667821884155273
+10-29 23:42:31 I accuracy1/online/main/E1: 0.376104
+10-29 23:42:48 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-29 23:42:49 I accuracy1/val/main: 0.618940
+10-29 23:42:49 I loss/val/main: 1.609375
+10-29 23:50:50 I ------------------
+10-29 23:50:50 I Epoch 46/400 (E46_U115092_S58927104)
+10-29 23:50:50 I ETA: 10.31 23.22.11 estimated_duration: 2-05:33:48.93 time_since_last_log: 00:08:18.17 time_per_update: 00:00:00.19 
+10-29 23:50:50 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 23:50:50 I loss/online/main/E1: 3.860443115234375
+10-29 23:50:50 I loss/online/total/E1: 3.860443115234375
+10-29 23:50:50 I accuracy1/online/main/E1: 0.377026
+10-29 23:58:49 I ------------------
+10-29 23:58:49 I Epoch 47/400 (E47_U117594_S60208128)
+10-29 23:58:49 I ETA: 10.31 23.21.35 estimated_duration: 2-05:33:13.11 time_since_last_log: 00:07:59.15 time_per_update: 00:00:00.19 
+10-29 23:58:49 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-29 23:58:49 I loss/online/main/E1: 3.8510756492614746
+10-29 23:58:49 I loss/online/total/E1: 3.8510756492614746
+10-29 23:58:49 I accuracy1/online/main/E1: 0.379393
+10-30 00:06:48 I ------------------
+10-30 00:06:48 I Epoch 48/400 (E48_U120096_S61489152)
+10-30 00:06:48 I ETA: 10.31 23.21.02 estimated_duration: 2-05:32:39.65 time_since_last_log: 00:07:59.24 time_per_update: 00:00:00.19 
+10-30 00:06:48 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 00:06:48 I loss/online/main/E1: 3.8392186164855957
+10-30 00:06:48 I loss/online/total/E1: 3.8392186164855957
+10-30 00:06:48 I accuracy1/online/main/E1: 0.380045
+10-30 00:14:48 I ------------------
+10-30 00:14:48 I Epoch 49/400 (E49_U122598_S62770176)
+10-30 00:14:48 I ETA: 10.31 23.20.34 estimated_duration: 2-05:32:12.25 time_since_last_log: 00:07:59.81 time_per_update: 00:00:00.19 
+10-30 00:14:48 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 00:14:48 I loss/online/main/E1: 3.819258213043213
+10-30 00:14:48 I loss/online/total/E1: 3.819258213043213
+10-30 00:14:48 I accuracy1/online/main/E1: 0.383780
+10-30 00:22:48 I ------------------
+10-30 00:22:48 I Epoch 50/400 (E50_U125100_S64051200)
+10-30 00:22:48 I ETA: 10.31 23.20.14 estimated_duration: 2-05:31:52.31 time_since_last_log: 00:08:00.59 time_per_update: 00:00:00.19 
+10-30 00:22:48 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 00:22:48 I loss/online/main/E1: 3.8008503913879395
+10-30 00:22:48 I loss/online/total/E1: 3.8008503913879395
+10-30 00:22:48 I accuracy1/online/main/E1: 0.386856
+10-30 00:22:49 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest model.th
+10-30 00:22:51 I saved vislstm optim to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest optim.th
+10-30 00:22:51 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/trainer cp=latest.th
+10-30 00:23:08 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-30 00:23:08 I accuracy1/val/main: 0.629440
+10-30 00:23:08 I loss/val/main: 1.546875
+10-30 00:31:07 I ------------------
+10-30 00:31:07 I Epoch 51/400 (E51_U127602_S65332224)
+10-30 00:31:07 I ETA: 10.31 23.22.19 estimated_duration: 2-05:33:56.80 time_since_last_log: 00:08:18.58 time_per_update: 00:00:00.19 
+10-30 00:31:07 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 00:31:07 I loss/online/main/E1: 3.800875425338745
+10-30 00:31:07 I loss/online/total/E1: 3.800875425338745
+10-30 00:31:07 I accuracy1/online/main/E1: 0.387266
+10-30 00:39:07 I ------------------
+10-30 00:39:07 I Epoch 52/400 (E52_U130104_S66613248)
+10-30 00:39:07 I ETA: 10.31 23.21.51 estimated_duration: 2-05:33:29.52 time_since_last_log: 00:07:59.81 time_per_update: 00:00:00.19 
+10-30 00:39:07 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 00:39:07 I loss/online/main/E1: 3.80307936668396
+10-30 00:39:07 I loss/online/total/E1: 3.80307936668396
+10-30 00:39:07 I accuracy1/online/main/E1: 0.386251
+10-30 00:47:06 I ------------------
+10-30 00:47:06 I Epoch 53/400 (E53_U132606_S67894272)
+10-30 00:47:06 I ETA: 10.31 23.21.23 estimated_duration: 2-05:33:01.21 time_since_last_log: 00:07:59.54 time_per_update: 00:00:00.19 
+10-30 00:47:06 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 00:47:06 I loss/online/main/E1: 3.77945876121521
+10-30 00:47:06 I loss/online/total/E1: 3.77945876121521
+10-30 00:47:06 I accuracy1/online/main/E1: 0.390385
+10-30 00:55:07 I ------------------
+10-30 00:55:07 I Epoch 54/400 (E54_U135108_S69175296)
+10-30 00:55:07 I ETA: 10.31 23.21.06 estimated_duration: 2-05:32:43.57 time_since_last_log: 00:08:00.81 time_per_update: 00:00:00.19 
+10-30 00:55:07 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 00:55:07 I loss/online/main/E1: 3.771360397338867
+10-30 00:55:07 I loss/online/total/E1: 3.771360397338867
+10-30 00:55:07 I accuracy1/online/main/E1: 0.391755
+10-30 01:03:06 I ------------------
+10-30 01:03:06 I Epoch 55/400 (E55_U137610_S70456320)
+10-30 01:03:06 I ETA: 10.31 23.20.36 estimated_duration: 2-05:32:14.08 time_since_last_log: 00:07:59.12 time_per_update: 00:00:00.19 
+10-30 01:03:06 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 01:03:06 I loss/online/main/E1: 3.7612695693969727
+10-30 01:03:06 I loss/online/total/E1: 3.7612695693969727
+10-30 01:03:06 I accuracy1/online/main/E1: 0.392932
+10-30 01:03:23 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-30 01:03:24 I accuracy1/val/main: 0.638860
+10-30 01:03:24 I loss/val/main: 1.546875
+10-30 01:11:24 I ------------------
+10-30 01:11:24 I Epoch 56/400 (E56_U140112_S71737344)
+10-30 01:11:24 I ETA: 10.31 23.22.20 estimated_duration: 2-05:33:58.43 time_since_last_log: 00:08:17.42 time_per_update: 00:00:00.19 
+10-30 01:11:24 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 01:11:24 I loss/online/main/E1: 3.752696990966797
+10-30 01:11:24 I loss/online/total/E1: 3.752696990966797
+10-30 01:11:24 I accuracy1/online/main/E1: 0.395429
+10-30 01:19:23 I ------------------
+10-30 01:19:23 I Epoch 57/400 (E57_U142614_S73018368)
+10-30 01:19:23 I ETA: 10.31 23.21.52 estimated_duration: 2-05:33:30.43 time_since_last_log: 00:07:59.37 time_per_update: 00:00:00.19 
+10-30 01:19:23 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 01:19:23 I loss/online/main/E1: 3.740182399749756
+10-30 01:19:23 I loss/online/total/E1: 3.740182399749756
+10-30 01:19:23 I accuracy1/online/main/E1: 0.397411
+10-30 01:27:24 I ------------------
+10-30 01:27:24 I Epoch 58/400 (E58_U145116_S74299392)
+10-30 01:27:24 I ETA: 10.31 23.21.37 estimated_duration: 2-05:33:15.44 time_since_last_log: 00:08:01.09 time_per_update: 00:00:00.19 
+10-30 01:27:24 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 01:27:24 I loss/online/main/E1: 3.7390708923339844
+10-30 01:27:24 I loss/online/total/E1: 3.7390708923339844
+10-30 01:27:24 I accuracy1/online/main/E1: 0.397762
+10-30 01:35:23 I ------------------
+10-30 01:35:23 I Epoch 59/400 (E59_U147618_S75580416)
+10-30 01:35:23 I ETA: 10.31 23.21.10 estimated_duration: 2-05:32:48.22 time_since_last_log: 00:07:59.23 time_per_update: 00:00:00.19 
+10-30 01:35:23 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 01:35:23 I loss/online/main/E1: 3.7243239879608154
+10-30 01:35:23 I loss/online/total/E1: 3.7243239879608154
+10-30 01:35:23 I accuracy1/online/main/E1: 0.399555
+10-30 01:43:23 I ------------------
+10-30 01:43:23 I Epoch 60/400 (E60_U150120_S76861440)
+10-30 01:43:23 I ETA: 10.31 23.20.47 estimated_duration: 2-05:32:25.11 time_since_last_log: 00:07:59.71 time_per_update: 00:00:00.19 
+10-30 01:43:23 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 01:43:23 I loss/online/main/E1: 3.7142765522003174
+10-30 01:43:23 I loss/online/total/E1: 3.7142765522003174
+10-30 01:43:23 I accuracy1/online/main/E1: 0.401499
+10-30 01:43:24 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest model.th
+10-30 01:43:25 I saved vislstm optim to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest optim.th
+10-30 01:43:25 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/trainer cp=latest.th
+10-30 01:43:42 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-30 01:43:42 I accuracy1/val/main: 0.645020
+10-30 01:43:42 I loss/val/main: 1.484375
+10-30 01:51:43 I ------------------
+10-30 01:51:43 I Epoch 61/400 (E61_U152622_S78142464)
+10-30 01:51:43 I ETA: 10.31 23.22.40 estimated_duration: 2-05:34:18.33 time_since_last_log: 00:08:20.09 time_per_update: 00:00:00.19 
+10-30 01:51:43 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 01:51:43 I loss/online/main/E1: 3.7080368995666504
+10-30 01:51:43 I loss/online/total/E1: 3.7080368995666504
+10-30 01:51:43 I accuracy1/online/main/E1: 0.402022
+10-30 01:59:42 I ------------------
+10-30 01:59:42 I Epoch 62/400 (E62_U155124_S79423488)
+10-30 01:59:42 I ETA: 10.31 23.22.14 estimated_duration: 2-05:33:51.83 time_since_last_log: 00:07:59.30 time_per_update: 00:00:00.19 
+10-30 01:59:42 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 01:59:43 I loss/online/main/E1: 3.705885887145996
+10-30 01:59:43 I loss/online/total/E1: 3.705885887145996
+10-30 01:59:43 I accuracy1/online/main/E1: 0.403587
+10-30 02:07:42 I ------------------
+10-30 02:07:42 I Epoch 63/400 (E63_U157626_S80704512)
+10-30 02:07:42 I ETA: 10.31 23.21.47 estimated_duration: 2-05:33:25.47 time_since_last_log: 00:07:59.19 time_per_update: 00:00:00.19 
+10-30 02:07:42 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 02:07:42 I loss/online/main/E1: 3.6875874996185303
+10-30 02:07:42 I loss/online/total/E1: 3.6875874996185303
+10-30 02:07:42 I accuracy1/online/main/E1: 0.405396
+10-30 02:15:41 I ------------------
+10-30 02:15:41 I Epoch 64/400 (E64_U160128_S81985536)
+10-30 02:15:41 I ETA: 10.31 23.21.26 estimated_duration: 2-05:33:03.74 time_since_last_log: 00:07:59.79 time_per_update: 00:00:00.19 
+10-30 02:15:41 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 02:15:41 I loss/online/main/E1: 3.6815433502197266
+10-30 02:15:41 I loss/online/total/E1: 3.6815433502197266
+10-30 02:15:41 I accuracy1/online/main/E1: 0.407159
+10-30 02:23:42 I ------------------
+10-30 02:23:42 I Epoch 65/400 (E65_U162630_S83266560)
+10-30 02:23:42 I ETA: 10.31 23.21.11 estimated_duration: 2-05:32:48.58 time_since_last_log: 00:08:00.73 time_per_update: 00:00:00.19 
+10-30 02:23:42 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 02:23:42 I loss/online/main/E1: 3.6651201248168945
+10-30 02:23:42 I loss/online/total/E1: 3.6651201248168945
+10-30 02:23:42 I accuracy1/online/main/E1: 0.409890
+10-30 02:23:59 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-30 02:23:59 I accuracy1/val/main: 0.651680
+10-30 02:23:59 I loss/val/main: 1.453125
+10-30 02:31:58 I ------------------
+10-30 02:31:58 I Epoch 66/400 (E66_U165132_S84547584)
+10-30 02:31:58 I ETA: 10.31 23.22.31 estimated_duration: 2-05:34:09.34 time_since_last_log: 00:08:16.28 time_per_update: 00:00:00.19 
+10-30 02:31:59 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 02:31:59 I loss/online/main/E1: 3.6547605991363525
+10-30 02:31:59 I loss/online/total/E1: 3.6547605991363525
+10-30 02:31:59 I accuracy1/online/main/E1: 0.411757
+10-30 02:39:58 I ------------------
+10-30 02:39:58 I Epoch 67/400 (E67_U167634_S85828608)
+10-30 02:39:58 I ETA: 10.31 23.22.07 estimated_duration: 2-05:33:45.06 time_since_last_log: 00:07:59.31 time_per_update: 00:00:00.19 
+10-30 02:39:58 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 02:39:58 I loss/online/main/E1: 3.654982328414917
+10-30 02:39:58 I loss/online/total/E1: 3.654982328414917
+10-30 02:39:58 I accuracy1/online/main/E1: 0.411369
+10-30 02:47:58 I ------------------
+10-30 02:47:58 I Epoch 68/400 (E68_U170136_S87109632)
+10-30 02:47:58 I ETA: 10.31 23.21.48 estimated_duration: 2-05:33:25.71 time_since_last_log: 00:08:00.02 time_per_update: 00:00:00.19 
+10-30 02:47:58 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 02:47:58 I loss/online/main/E1: 3.6377952098846436
+10-30 02:47:58 I loss/online/total/E1: 3.6377952098846436
+10-30 02:47:58 I accuracy1/online/main/E1: 0.413539
+10-30 02:55:59 I ------------------
+10-30 02:55:59 I Epoch 69/400 (E69_U172638_S88390656)
+10-30 02:55:59 I ETA: 10.31 23.21.33 estimated_duration: 2-05:33:11.49 time_since_last_log: 00:08:00.79 time_per_update: 00:00:00.19 
+10-30 02:55:59 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 02:55:59 I loss/online/main/E1: 3.645495891571045
+10-30 02:55:59 I loss/online/total/E1: 3.645495891571045
+10-30 02:55:59 I accuracy1/online/main/E1: 0.412346
+10-30 03:03:58 I ------------------
+10-30 03:03:58 I Epoch 70/400 (E70_U175140_S89671680)
+10-30 03:03:58 I ETA: 10.31 23.21.10 estimated_duration: 2-05:32:48.22 time_since_last_log: 00:07:59.16 time_per_update: 00:00:00.19 
+10-30 03:03:58 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 03:03:58 I loss/online/main/E1: 3.6372439861297607
+10-30 03:03:58 I loss/online/total/E1: 3.6372439861297607
+10-30 03:03:58 I accuracy1/online/main/E1: 0.414269
+10-30 03:03:59 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest model.th
+10-30 03:04:00 I saved vislstm optim to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest optim.th
+10-30 03:04:00 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/trainer cp=latest.th
+10-30 03:04:17 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-30 03:04:17 I accuracy1/val/main: 0.654880
+10-30 03:04:17 I loss/val/main: 1.4296875
+10-30 03:12:17 I ------------------
+10-30 03:12:17 I Epoch 71/400 (E71_U177642_S90952704)
+10-30 03:12:17 I ETA: 10.31 23.22.41 estimated_duration: 2-05:34:18.89 time_since_last_log: 00:08:19.03 time_per_update: 00:00:00.19 
+10-30 03:12:17 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 03:12:17 I loss/online/main/E1: 3.6246752738952637
+10-30 03:12:17 I loss/online/total/E1: 3.6246752738952637
+10-30 03:12:17 I accuracy1/online/main/E1: 0.416065
+10-30 03:20:16 I ------------------
+10-30 03:20:16 I Epoch 72/400 (E72_U180144_S92233728)
+10-30 03:20:16 I ETA: 10.31 23.22.17 estimated_duration: 2-05:33:55.38 time_since_last_log: 00:07:59.17 time_per_update: 00:00:00.19 
+10-30 03:20:16 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 03:20:16 I loss/online/main/E1: 3.6254491806030273
+10-30 03:20:16 I loss/online/total/E1: 3.6254491806030273
+10-30 03:20:16 I accuracy1/online/main/E1: 0.416233
+10-30 03:28:17 I ------------------
+10-30 03:28:17 I Epoch 73/400 (E73_U182646_S93514752)
+10-30 03:28:17 I ETA: 10.31 23.22.03 estimated_duration: 2-05:33:40.73 time_since_last_log: 00:08:00.65 time_per_update: 00:00:00.19 
+10-30 03:28:17 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 03:28:17 I loss/online/main/E1: 3.6184885501861572
+10-30 03:28:17 I loss/online/total/E1: 3.6184885501861572
+10-30 03:28:17 I accuracy1/online/main/E1: 0.416942
+10-30 03:36:16 I ------------------
+10-30 03:36:16 I Epoch 74/400 (E74_U185148_S94795776)
+10-30 03:36:16 I ETA: 10.31 23.21.40 estimated_duration: 2-05:33:18.38 time_since_last_log: 00:07:59.17 time_per_update: 00:00:00.19 
+10-30 03:36:16 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 03:36:16 I loss/online/main/E1: 3.605470895767212
+10-30 03:36:16 I loss/online/total/E1: 3.605470895767212
+10-30 03:36:16 I accuracy1/online/main/E1: 0.420161
+10-30 03:44:15 I ------------------
+10-30 03:44:15 I Epoch 75/400 (E75_U187650_S96076800)
+10-30 03:44:15 I ETA: 10.31 23.21.21 estimated_duration: 2-05:32:58.94 time_since_last_log: 00:07:59.59 time_per_update: 00:00:00.19 
+10-30 03:44:15 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 03:44:15 I loss/online/main/E1: 3.5962722301483154
+10-30 03:44:15 I loss/online/total/E1: 3.5962722301483154
+10-30 03:44:15 I accuracy1/online/main/E1: 0.421355
+10-30 03:44:32 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-30 03:44:32 I accuracy1/val/main: 0.662340
+10-30 03:44:32 I loss/val/main: 1.4140625
+10-30 03:52:32 I ------------------
+10-30 03:52:32 I Epoch 76/400 (E76_U190152_S97357824)
+10-30 03:52:32 I ETA: 10.31 23.22.31 estimated_duration: 2-05:34:09.29 time_since_last_log: 00:08:16.37 time_per_update: 00:00:00.19 
+10-30 03:52:32 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 03:52:32 I loss/online/main/E1: 3.5901548862457275
+10-30 03:52:32 I loss/online/total/E1: 3.5901548862457275
+10-30 03:52:32 I accuracy1/online/main/E1: 0.422462
+10-30 04:00:33 I ------------------
+10-30 04:00:33 I Epoch 77/400 (E77_U192654_S98638848)
+10-30 04:00:33 I ETA: 10.31 23.22.18 estimated_duration: 2-05:33:56.11 time_since_last_log: 00:08:00.82 time_per_update: 00:00:00.19 
+10-30 04:00:33 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 04:00:33 I loss/online/main/E1: 3.5937209129333496
+10-30 04:00:33 I loss/online/total/E1: 3.5937209129333496
+10-30 04:00:33 I accuracy1/online/main/E1: 0.421259
+10-30 04:08:32 I ------------------
+10-30 04:08:32 I Epoch 78/400 (E78_U195156_S99919872)
+10-30 04:08:32 I ETA: 10.31 23.21.57 estimated_duration: 2-05:33:35.33 time_since_last_log: 00:07:59.28 time_per_update: 00:00:00.19 
+10-30 04:08:32 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 04:08:32 I loss/online/main/E1: 3.5819320678710938
+10-30 04:08:32 I loss/online/total/E1: 3.5819320678710938
+10-30 04:08:32 I accuracy1/online/main/E1: 0.423265
+10-30 04:16:32 I ------------------
+10-30 04:16:32 I Epoch 79/400 (E79_U197658_S101200896)
+10-30 04:16:32 I ETA: 10.31 23.21.40 estimated_duration: 2-05:33:18.39 time_since_last_log: 00:07:59.93 time_per_update: 00:00:00.19 
+10-30 04:16:32 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 04:16:32 I loss/online/main/E1: 3.5815229415893555
+10-30 04:16:32 I loss/online/total/E1: 3.5815229415893555
+10-30 04:16:32 I accuracy1/online/main/E1: 0.423055
+10-30 04:24:32 I ------------------
+10-30 04:24:32 I Epoch 80/400 (E80_U200160_S102481920)
+10-30 04:24:32 I ETA: 10.31 23.21.25 estimated_duration: 2-05:33:03.22 time_since_last_log: 00:08:00.19 time_per_update: 00:00:00.19 
+10-30 04:24:32 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 04:24:32 I loss/online/main/E1: 3.569612979888916
+10-30 04:24:32 I loss/online/total/E1: 3.569612979888916
+10-30 04:24:32 I accuracy1/online/main/E1: 0.425463
+10-30 04:24:33 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest model.th
+10-30 04:24:34 I saved vislstm optim to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/vislstm cp=latest optim.th
+10-30 04:24:34 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/fkiz3se6/checkpoints/trainer cp=latest.th
+10-30 04:24:51 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-30 04:24:51 I accuracy1/val/main: 0.669020
+10-30 04:24:51 I loss/val/main: 1.3984375
+10-30 04:32:51 I ------------------
+10-30 04:32:51 I Epoch 81/400 (E81_U202662_S103762944)
+10-30 04:32:51 I ETA: 10.31 23.22.46 estimated_duration: 2-05:34:23.72 time_since_last_log: 00:08:19.30 time_per_update: 00:00:00.19 
+10-30 04:32:51 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 04:32:51 I loss/online/main/E1: 3.562856674194336
+10-30 04:32:51 I loss/online/total/E1: 3.562856674194336
+10-30 04:32:51 I accuracy1/online/main/E1: 0.426322
+10-30 04:40:51 I ------------------
+10-30 04:40:51 I Epoch 82/400 (E82_U205164_S105043968)
+10-30 04:40:51 I ETA: 10.31 23.22.29 estimated_duration: 2-05:34:06.73 time_since_last_log: 00:07:59.91 time_per_update: 00:00:00.19 
+10-30 04:40:51 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 04:40:51 I loss/online/main/E1: 3.547293186187744
+10-30 04:40:51 I loss/online/total/E1: 3.547293186187744
+10-30 04:40:51 I accuracy1/online/main/E1: 0.429246
+10-30 04:48:51 I ------------------
+10-30 04:48:51 I Epoch 83/400 (E83_U207666_S106324992)
+10-30 04:48:51 I ETA: 10.31 23.22.09 estimated_duration: 2-05:33:47.26 time_since_last_log: 00:07:59.32 time_per_update: 00:00:00.19 
+10-30 04:48:51 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 04:48:51 I loss/online/main/E1: 3.5525929927825928
+10-30 04:48:51 I loss/online/total/E1: 3.5525929927825928
+10-30 04:48:51 I accuracy1/online/main/E1: 0.428300
+10-30 04:56:51 I ------------------
+10-30 04:56:51 I Epoch 84/400 (E84_U210168_S107606016)
+10-30 04:56:51 I ETA: 10.31 23.21.57 estimated_duration: 2-05:33:35.01 time_since_last_log: 00:08:00.72 time_per_update: 00:00:00.19 
+10-30 04:56:51 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 04:56:51 I loss/online/main/E1: 3.55378794670105
+10-30 04:56:51 I loss/online/total/E1: 3.55378794670105
+10-30 04:56:51 I accuracy1/online/main/E1: 0.427756
+10-30 05:04:51 I ------------------
+10-30 05:04:51 I Epoch 85/400 (E85_U212670_S108887040)
+10-30 05:04:51 I ETA: 10.31 23.21.38 estimated_duration: 2-05:33:15.99 time_since_last_log: 00:07:59.24 time_per_update: 00:00:00.19 
+10-30 05:04:51 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 05:04:51 I loss/online/main/E1: 3.5315916538238525
+10-30 05:04:51 I loss/online/total/E1: 3.5315916538238525
+10-30 05:04:51 I accuracy1/online/main/E1: 0.430947
+10-30 05:05:07 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.17
+10-30 05:05:08 I accuracy1/val/main: 0.671980
+10-30 05:05:08 I loss/val/main: 1.3515625
+10-30 05:13:07 I ------------------
+10-30 05:13:07 I Epoch 86/400 (E86_U215172_S110168064)
+10-30 05:13:07 I ETA: 10.31 23.22.42 estimated_duration: 2-05:34:20.18 time_since_last_log: 00:08:16.87 time_per_update: 00:00:00.19 
+10-30 05:13:07 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 05:13:07 I loss/online/main/E1: 3.5410468578338623
+10-30 05:13:07 I loss/online/total/E1: 3.5410468578338623
+10-30 05:13:07 I accuracy1/online/main/E1: 0.431097
+10-30 05:21:07 I ------------------
+10-30 05:21:07 I Epoch 87/400 (E87_U217674_S111449088)
+10-30 05:21:07 I ETA: 10.31 23.22.23 estimated_duration: 2-05:34:01.10 time_since_last_log: 00:07:59.24 time_per_update: 00:00:00.19 
+10-30 05:21:07 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 05:21:07 I loss/online/main/E1: 3.5307769775390625
+10-30 05:21:07 I loss/online/total/E1: 3.5307769775390625
+10-30 05:21:07 I accuracy1/online/main/E1: 0.431680
+10-30 05:29:07 I ------------------
+10-30 05:29:07 I Epoch 88/400 (E88_U220176_S112730112)
+10-30 05:29:07 I ETA: 10.31 23.22.11 estimated_duration: 2-05:33:49.47 time_since_last_log: 00:08:00.77 time_per_update: 00:00:00.19 
+10-30 05:29:07 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 05:29:07 I loss/online/main/E1: 3.5166945457458496
+10-30 05:29:07 I loss/online/total/E1: 3.5166945457458496
+10-30 05:29:07 I accuracy1/online/main/E1: 0.434509
+10-30 05:37:07 I ------------------
+10-30 05:37:07 I Epoch 89/400 (E89_U222678_S114011136)
+10-30 05:37:07 I ETA: 10.31 23.21.54 estimated_duration: 2-05:33:31.82 time_since_last_log: 00:07:59.38 time_per_update: 00:00:00.19 
+10-30 05:37:07 I data=[0.00, 0.00, 0.00, 0.00] update=[0.19, 0.19, 0.19, 0.19]
+10-30 05:37:07 I loss/online/main/E1: 3.5142126083374023
+10-30 05:37:07 I loss/online/total/E1: 3.5142126083374023
+10-30 05:37:07 I accuracy1/online/main/E1: 0.432876
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd-gpu-01: error: *** STEP 149752.0 ON gpu-01 CANCELLED AT 2025-10-30T05:38:31 DUE TO TIME LIMIT ***
+slurmstepd-gpu-01: error: *** JOB 149752 ON gpu-01 CANCELLED AT 2025-10-30T05:38:31 DUE TO TIME LIMIT ***

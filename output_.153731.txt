@@ -1,0 +1,1062 @@
+MASTER_ADDR: gpu-49
+CUDA_VISIBLE_DEVICES=0,1,2,3
+Thu Nov  6 20:46:31 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 550.54.14              Driver Version: 550.54.14      CUDA Version: 12.4     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:01:00.0 Off |                    0 |
+| N/A   25C    P0             50W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-40GB          On  |   00000000:41:00.0 Off |                    0 |
+| N/A   26C    P0             52W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-40GB          On  |   00000000:81:00.0 Off |                    0 |
+| N/A   24C    P0             49W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-40GB          On  |   00000000:C1:00.0 Off |                    0 |
+| N/A   24C    P0             50W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+torch: 2.5.1+cu121 cuda: 12.1 cuda available: True
+11-06 20:46:43 I initializing rank=0 local_rank=0 nodes=1 hostname=gpu-49 master_addr=gpu-49 master_port=55555 (waiting for all 4 processes to connect)
+11-06 20:46:43 I initializing rank=1 local_rank=1 nodes=1 hostname=gpu-49 master_addr=gpu-49 master_port=55555 (waiting for all 4 processes to connect)
+11-06 20:46:43 I initializing rank=3 local_rank=3 nodes=1 hostname=gpu-49 master_addr=gpu-49 master_port=55555 (waiting for all 4 processes to connect)
+11-06 20:46:43 I initializing rank=2 local_rank=2 nodes=1 hostname=gpu-49 master_addr=gpu-49 master_port=55555 (waiting for all 4 processes to connect)
+[rank3]:[W1106 20:46:43.132664778 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 3]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank1]:[W1106 20:46:43.132833727 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 1]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank2]:[W1106 20:46:43.164138677 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 2]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank0]:[W1106 20:46:43.164201346 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+11-06 20:46:44 I initialized process rank=1 local_rank=1 pid=2433812
+11-06 20:46:44 I initialized process rank=2 local_rank=2 pid=2433813
+11-06 20:46:44 I initialized process rank=0 local_rank=0 pid=2433811
+11-06 20:46:44 I initialized process rank=3 local_rank=3 pid=2433814
+11-06 20:46:44 I initialized 4 processes
+11-06 20:46:44 W disabled cudnn benchmark
+11-06 20:46:44 W enabled cudnn deterministic
+11-06 20:46:44 I log file: /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/log.txt
+11-06 20:46:44 I no seed specified -> using seed=0
+11-06 20:46:44 I ------------------
+11-06 20:46:44 I initializing wandb (mode=online)
+11-06 20:46:44 I logging into wandb (host=https://api.wandb.ai/ rank=0)
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+fatal: No annotated tags can describe '889dd3990397d457092e6cc7201c0a6cf6992a58'.
+However, there were unannotated tags: try --tags.
+fatal: No annotated tags can describe '889dd3990397d457092e6cc7201c0a6cf6992a58'.
+However, there were unannotated tags: try --tags.
+fatal: No annotated tags can describe '889dd3990397d457092e6cc7201c0a6cf6992a58'.
+However, there were unannotated tags: try --tags.
+wandb: Currently logged in as: beka-kalmahanbet (ml710_project) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+11-06 20:46:45 I logged into wandb (host=https://api.wandb.ai/)
+wandb: Tracking run with wandb version 0.19.8
+wandb: Run data is saved locally in /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/wandb/run-20251106_204645-jhhl87yo
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run in1k-lstm-80m16-e400res192-bialter-bilatflat-lr1e3-conv2d3-bias/in1k
+wandb: ⭐️ View project at https://wandb.ai/beka-kalmahanbet-mbzuai/minLSTM
+wandb: 🚀 View run at https://wandb.ai/beka-kalmahanbet-mbzuai/minLSTM/runs/jhhl87yo
+fatal: No annotated tags can describe '889dd3990397d457092e6cc7201c0a6cf6992a58'.
+However, there were unannotated tags: try --tags.
+11-06 20:46:46 I ------------------
+11-06 20:46:46 I stage_id: jhhl87yo
+11-06 20:46:46 I python main_train.py --hp src/vislstm/yamls/pretrain/vil/lstm_80M16_e400_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml --num_workers 5
+11-06 20:46:46 I ------------------
+11-06 20:46:46 I VERSION CHECK
+11-06 20:46:46 I executable: /home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/bin/python
+11-06 20:46:46 I python version: 3.9.21
+11-06 20:46:46 I torch version: 2.5.1+cu121
+11-06 20:46:46 I torch.cuda version: 12.1
+11-06 20:46:46 I torchvision.version: 0.20.1+cu121
+fatal: No annotated tags can describe '889dd3990397d457092e6cc7201c0a6cf6992a58'.
+However, there were unannotated tags: try --tags.
+11-06 20:46:47 I initialized process rank=1 local_rank=1 pid=2433812 hostname=gpu-49
+11-06 20:46:47 I torchmetrics version: 1.6.2
+11-06 20:46:47 I kappaschedules version: 0.0.31
+11-06 20:46:47 I kappamodules version: 0.1.76
+11-06 20:46:47 I ------------------
+11-06 20:46:47 I SYSTEM INFO
+11-06 20:46:47 I host name: gpu-49
+11-06 20:46:47 I OS: Linux-5.15.161-ql-generic-13.0-14-x86_64-with-glibc2.35
+11-06 20:46:47 I OS version: #1 SMP Wed Jun 26 16:19:39 UTC 2024
+fatal: No annotated tags can describe '889dd3990397d457092e6cc7201c0a6cf6992a58'.
+However, there were unannotated tags: try --tags.
+11-06 20:46:48 I initialized process rank=2 local_rank=2 pid=2433813 hostname=gpu-49
+fatal: No annotated tags can describe '889dd3990397d457092e6cc7201c0a6cf6992a58'.
+However, there were unannotated tags: try --tags.
+11-06 20:46:48 I initialized process rank=3 local_rank=3 pid=2433814 hostname=gpu-49
+11-06 20:46:48 I CUDA version: 12.4
+11-06 20:46:48 I current commit hash: 889dd3990397d457092e6cc7201c0a6cf6992a58
+fatal: No annotated tags can describe '889dd3990397d457092e6cc7201c0a6cf6992a58'.
+However, there were unannotated tags: try --tags.
+11-06 20:46:48 I latest git tag: 
+11-06 20:46:48 I initialized process rank=0 local_rank=0 pid=2433811 hostname=gpu-49
+11-06 20:46:48 I total_cpu_count: 64
+11-06 20:46:48 I ------------------
+11-06 20:46:48 I STATIC CONFIG
+11-06 20:46:48 I account_name: beknur.kalmakhanbet
+11-06 20:46:48 I output_path: /home/beknur.kalmakhanbet/save
+11-06 20:46:48 I ------------------
+11-06 20:46:48 I CLI ARGS
+11-06 20:46:48 I hp: src/vislstm/yamls/pretrain/vil/lstm_80M16_e400_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml
+11-06 20:46:48 I accelerator: gpu
+11-06 20:46:48 I num_workers: 5
+11-06 20:46:48 I testrun: False
+11-06 20:46:48 I minmodelrun: False
+11-06 20:46:48 I mindatarun: False
+11-06 20:46:48 I mindurationrun: False
+11-06 20:46:48 I static_config_uri: static_config.yaml
+11-06 20:46:48 I ------------------
+11-06 20:46:48 I DIST CONFIG
+11-06 20:46:48 I rank: 0
+11-06 20:46:48 I local_rank: 0
+11-06 20:46:48 I world_size: 4
+11-06 20:46:48 I nodes: 1
+11-06 20:46:48 I backend: nccl
+11-06 20:46:48 I slurm job id: 153731
+11-06 20:46:48 I hostnames: gpu-49
+11-06 20:46:48 I ------------------
+master_factory_base_path: vislstm
+stage_name: in1k
+datasets:
+  train:
+    kind: imagenet1k
+    split: train
+    sample_wrappers:
+    - kind: x_transform_wrapper
+      transform:
+      - kind: random_resized_crop
+        size: 192
+        scale:
+        - 0.08
+        - 1.0
+        interpolation: bicubic
+      - kind: random_horizontal_flip
+      - kind: transforms.three_augment
+        blur_sigma:
+        - 0.1
+        - 2.0
+      - kind: color_jitter
+        brightness: 0.3
+        contrast: 0.3
+        saturation: 0.3
+        hue: 0.0
+      - kind: imagenet1k_norm
+    - kind: one_hot_wrapper
+    collators:
+    - kind: mix_collator
+      mixup_alpha: 0.8
+      cutmix_alpha: 1.0
+      mixup_p: 0.5
+      cutmix_p: 0.5
+      apply_mode: batch
+      lamb_mode: batch
+      shuffle_mode: flip
+  val:
+    kind: imagenet1k
+    split: val
+    sample_wrappers:
+    - kind: x_transform_wrapper
+      transform:
+      - kind: resize
+        size: 192
+        interpolation: bicubic
+      - kind: center_crop
+        size: 192
+      - kind: imagenet1k_norm
+model:
+  kind: models.single.vislstm
+  patch_size: 16
+  dim: 768
+  depth: 58
+  bidirectional: false
+  alternation: bidirectional
+  conv1d_kernel_size: 3
+  use_conv2d: true
+  bias: true
+  pos_embed_mode: learnable
+  drop_path_rate: 0.2
+  drop_path_decay: false
+  mode: classifier
+  pooling:
+    kind: bilateral
+    aggregate: flatten
+  optim:
+    kind: adamw
+    lr: 0.001
+    betas:
+    - 0.9
+    - 0.999
+    weight_decay: 0.05
+    clip_grad_norm: 1.0
+    schedule:
+      kind: linear_warmup_cosine_decay_schedule
+      warmup_epochs: 5
+      end_value: 1.0e-06
+    lr_scaler:
+      kind: linear_lr_scaler
+      divisor: 1024
+trainer:
+  kind: classification_trainer
+  precision: bfloat16
+  backup_precision: float16
+  max_epochs: 400
+  effective_batch_size: 512
+  log_every_n_epochs: 1
+  use_torch_compile: true
+  callbacks:
+  - kind: checkpoint_callback
+  - kind: checkpoint_callback
+    every_n_epochs: 10
+    save_weights: false
+    save_latest_weights: true
+    save_latest_optim: true
+  - kind: offline_accuracy_callback
+    every_n_epochs: 5
+    dataset_key: val
+11-06 20:46:48 I copied unresolved hp to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/hp_unresolved.yaml
+11-06 20:46:48 I dumped resolved hp to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/hp_resolved.yaml
+11-06 20:46:48 I ------------------
+11-06 20:46:48 I training stage 'in1k'
+11-06 20:46:48 I using different seeds per process (seed+rank)
+11-06 20:46:48 I set seed to 0
+11-06 20:46:48 I ------------------
+11-06 20:46:48 I initializing datasets
+11-06 20:46:48 I initializing train
+11-06 20:46:53 I instantiating sample_wrapper x_transform_wrapper
+11-06 20:46:53 I instantiating sample_wrapper one_hot_wrapper
+11-06 20:46:53 I initializing val
+11-06 20:46:54 I instantiating sample_wrapper x_transform_wrapper
+11-06 20:46:54 I ------------------
+11-06 20:46:54 I initializing trainer
+11-06 20:46:54 I using precision: torch.bfloat16 (desired=bfloat16 backup=float16)
+11-06 20:46:54 I main_sampler: DistributedSampler(num_repeats=1, shuffle=True)
+11-06 20:46:54 I ------------------
+11-06 20:46:54 I creating model
+11-06 20:46:54 I input_shape: (3, 192, 192)
+11-06 20:46:54 I pos_embed.is_learnable=True
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+11-06 20:46:56 I drop_path_rate: 0.2
+11-06 20:46:56 I model:
+VisLSTM(
+  (pooling): Bilateral(aggregate=flatten)
+  (patch_embed): VitPatchEmbed(
+    (proj): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+    (norm): Identity()
+  )
+  (pos_embed): VitPosEmbed2d()
+  (xlstm): xLSTMBlockStack(
+    (blocks): ModuleList(
+      (0-57): 58 x mLSTMBlock(
+        (drop_path1): DropPath(drop_prob=0.200)
+        (xlstm_norm): LayerNorm()
+        (xlstm): mLSTMLayer(
+          (conv1d): SequenceConv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=384)
+          (conv_act_fn): SiLU()
+          (mlstm_cell): mLSTMCell(
+            (linear_h): Linear(in_features=384, out_features=768, bias=True)
+            (linear_i): Linear(in_features=384, out_features=768, bias=True)
+            (linear_f): Linear(in_features=384, out_features=768, bias=True)
+            (to_out): Linear(in_features=768, out_features=384, bias=True)
+          )
+          (ogate_act_fn): SiLU()
+          (proj_up): Linear(in_features=384, out_features=768, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (layerscale): Identity()
+        )
+      )
+    )
+    (post_blocks_norm): LayerNorm()
+  )
+  (head): Sequential(
+    (0): LayerNorm((1536,), eps=1e-06, elementwise_affine=True)
+    (1): Linear(in_features=1536, out_features=1000, bias=True)
+  )
+)
+11-06 20:46:56 I vislstm initialize optimizer
+11-06 20:46:56 I base lr: 1e-3
+11-06 20:46:56 I scaled lr: 5e-4
+11-06 20:46:56 I lr_scaler=LinearLrScaler(divisor=1024)
+11-06 20:46:56 I lr_scale_factor=512
+11-06 20:46:56 I exclude_bias_from_wd=True exclude_norm_from_wd=True param_group_modifiers=[WeightDecayByNameModifier(name=pos_embed.embed)]
+11-06 20:46:56 I using 2 param groups:
+11-06 20:46:56 I len(params)=350
+11-06 20:46:56 I weight_decay=0.0 len(params)=529
+11-06 20:46:56 I added default DatasetStatsCallback
+11-06 20:46:56 I added default ParamCountCallback
+11-06 20:46:56 I added default CopyPreviousConfigCallback
+11-06 20:46:56 I added default CopyPreviousSummaryCallback
+11-06 20:46:56 I added default ProgressCallback(every_n_epochs=1)
+11-06 20:46:56 I added default TrainTimeCallback(every_n_epochs=1)
+11-06 20:46:56 I added default OnlineLossCallback(every_n_epochs=1)
+11-06 20:46:56 I added default LrCallback(every_n_updates=50)
+11-06 20:46:56 I added default FreezerCallback(every_n_updates=50)
+11-06 20:46:56 I added default OnlineLossCallback(every_n_updates=50)
+11-06 20:46:56 I replacing BatchNorm layers with SyncBatchNorm
+11-06 20:46:56 I wrapping model with torch.compile
+11-06 20:46:58 I ------------------
+11-06 20:46:58 I PREPARE TRAINER
+11-06 20:46:58 I calculating batch_size and accumulation_steps (effective_batch_size=512)
+11-06 20:46:58 I torch.compile is used -> automatic batchsize not supported
+11-06 20:46:58 I train_batches per epoch: 2502 (world_size=4 batch_size=128)
+11-06 20:46:58 I initializing dataloader
+11-06 20:46:58 I OfflineAccuracyCallback(every_n_epochs=5) registered InterleavedSamplerConfig(every_n_epochs=5) dataset_mode='x class'
+11-06 20:46:58 I created dataloader (batch_size=128 num_workers=5 pin_memory=True total_cpu_count=64 prefetch_factor=2)
+11-06 20:46:58 I concatenated dataset properties:
+11-06 20:46:58 I - mode='index x class' len=1281167 root_dataset=<vislstm.datasets.imagenet1k.Imagenet1k object at 0x14cf5a86ee80>
+11-06 20:46:58 I - mode='x class' len=50000 root_dataset=<vislstm.datasets.imagenet1k.Imagenet1k object at 0x14cf5a86efa0>
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+mLSTMLayerConfig(proj_factor=2.0, round_proj_up_dim_up=True, round_proj_up_to_multiple_of=64, _proj_up_dim=1536, conv1d_kernel_size=3, qkv_proj_blocksize=4, num_heads=4, bidirectional=False, quaddirectional=False, sharedirs=False, alternation='bidirectional', layerscale=None, use_conv2d=True, use_v_conv=False, share_conv=True, embedding_dim=768, bias=True, dropout=0.0, context_length=144, _num_blocks=1, _inner_embedding_dim=1536)
+11-06 20:46:58 I ------------------
+11-06 20:46:58 I BEFORE TRAINING
+11-06 20:46:58 I train: 1281167 samples
+11-06 20:46:58 I val: 50000 samples
+11-06 20:46:58 I parameter counts (trainable | frozen)
+11-06 20:46:58 I 88,301,800 | 0 | vislstm
+11-06 20:46:58 I estimated checkpoint size: 1.0GB
+11-06 20:46:58 I estimated weight checkpoint size: 353.2MB
+11-06 20:46:58 I estimated optim checkpoint size: 706.4MB
+11-06 20:46:58 I estimated size for 1 checkpoints: 353.2MB
+11-06 20:46:58 I estimated checkpoint size: 1.0GB
+11-06 20:46:58 I estimated weight checkpoint size: 353.2MB
+11-06 20:46:58 I estimated optim checkpoint size: 706.4MB
+11-06 20:46:58 I estimated size for 41 checkpoints: 0.0B
+11-06 20:46:58 I ------------------
+11-06 20:46:58 I DatasetStatsCallback
+11-06 20:46:58 I ParamCountCallback
+11-06 20:46:58 I CopyPreviousConfigCallback
+11-06 20:46:58 I CopyPreviousSummaryCallback
+11-06 20:46:58 I ProgressCallback(every_n_epochs=1)
+11-06 20:46:58 I TrainTimeCallback(every_n_epochs=1)
+11-06 20:46:58 I OnlineLossCallback(every_n_epochs=1)
+11-06 20:46:58 I LrCallback(every_n_updates=50)
+11-06 20:46:58 I FreezerCallback(every_n_updates=50)
+11-06 20:46:58 I OnlineLossCallback(every_n_updates=50)
+11-06 20:46:58 I OnlineAccuracyCallback(every_n_updates=50)
+11-06 20:46:58 I OnlineAccuracyCallback(every_n_epochs=1)
+11-06 20:46:58 I CheckpointCallback()
+11-06 20:46:58 I CheckpointCallback(every_n_epochs=10)
+11-06 20:46:58 I OfflineAccuracyCallback(every_n_epochs=5)
+11-06 20:46:58 I ------------------
+11-06 20:46:58 I START TRAINING
+11-06 20:46:58 I initializing dataloader workers
+11-06 20:46:58 I initialized dataloader workers
+[rank0]:W1106 20:46:59.355038 2433811 site-packages/torch/_logging/_internal.py:1081] [0/0] Profiler function <class 'torch.autograd.profiler.record_function'> will be ignored
+[rank1]:W1106 20:46:59.384156 2433812 site-packages/torch/_logging/_internal.py:1081] [0/0] Profiler function <class 'torch.autograd.profiler.record_function'> will be ignored
+[rank2]:W1106 20:46:59.426334 2433813 site-packages/torch/_logging/_internal.py:1081] [0/0] Profiler function <class 'torch.autograd.profiler.record_function'> will be ignored
+[rank3]:W1106 20:46:59.527283 2433814 site-packages/torch/_logging/_internal.py:1081] [0/0] Profiler function <class 'torch.autograd.profiler.record_function'> will be ignored
+/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/autograd/graph.py:825: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
+grad.sizes() = [384, 1, 3, 3], strides() = [9, 1, 3, 1]
+bucket_view.sizes() = [384, 1, 3, 3], strides() = [9, 9, 3, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:327.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/autograd/graph.py:825: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
+grad.sizes() = [384, 1, 3, 3], strides() = [9, 1, 3, 1]
+bucket_view.sizes() = [384, 1, 3, 3], strides() = [9, 9, 3, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:327.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/autograd/graph.py:825: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
+grad.sizes() = [384, 1, 3, 3], strides() = [9, 1, 3, 1]
+bucket_view.sizes() = [384, 1, 3, 3], strides() = [9, 9, 3, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:327.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+11-06 20:50:35 I 0 unused parameters
+/home/beknur.kalmakhanbet/miniconda3/envs/minLSTM/lib/python3.9/site-packages/torch/autograd/graph.py:825: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
+grad.sizes() = [384, 1, 3, 3], strides() = [9, 1, 3, 1]
+bucket_view.sizes() = [384, 1, 3, 3], strides() = [9, 9, 3, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:327.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+11-06 21:02:46 I ------------------
+11-06 21:02:46 I Epoch 1/400 (E1_U2502_S1281024)
+11-06 21:02:46 I ETA: 11.11 06.12.17 estimated_duration: 4-09:25:19.42 time_since_last_log: 00:15:48.79 time_per_update: 00:00:00.37 
+11-06 21:02:46 I data=[0.00, 0.00, 0.00, 0.00] update=[0.37, 0.37, 0.37, 0.37]
+11-06 21:02:46 I loss/online/main/E1: 6.769360542297363
+11-06 21:02:46 I loss/online/total/E1: 6.769360542297363
+11-06 21:02:46 I accuracy1/online/main/E1: 0.005460
+11-06 21:14:49 I ------------------
+11-06 21:14:49 I Epoch 2/400 (E2_U5004_S2562048)
+11-06 21:14:49 I ETA: 11.10 05.07.10 estimated_duration: 3-08:04:23.72 time_since_last_log: 00:12:02.46 time_per_update: 00:00:00.28 
+11-06 21:14:49 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-06 21:14:49 I loss/online/main/E1: 6.434345722198486
+11-06 21:14:49 I loss/online/total/E1: 6.434345722198486
+11-06 21:14:49 I accuracy1/online/main/E1: 0.017670
+11-06 21:26:55 I ------------------
+11-06 21:26:55 I Epoch 3/400 (E3_U7506_S3843072)
+11-06 21:26:55 I ETA: 11.10 05.19.31 estimated_duration: 3-08:16:44.53 time_since_last_log: 00:12:06.17 time_per_update: 00:00:00.29 
+11-06 21:26:55 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-06 21:26:55 I loss/online/main/E1: 6.202082633972168
+11-06 21:26:55 I loss/online/total/E1: 6.202082633972168
+11-06 21:26:55 I accuracy1/online/main/E1: 0.033405
+11-06 21:39:02 I ------------------
+11-06 21:39:02 I Epoch 4/400 (E4_U10008_S5124096)
+11-06 21:39:02 I ETA: 11.10 05.24.31 estimated_duration: 3-08:21:44.55 time_since_last_log: 00:12:06.57 time_per_update: 00:00:00.29 
+11-06 21:39:02 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-06 21:39:02 I loss/online/main/E1: 5.996310234069824
+11-06 21:39:02 I loss/online/total/E1: 5.996310234069824
+11-06 21:39:02 I accuracy1/online/main/E1: 0.052062
+11-06 21:51:18 I ------------------
+11-06 21:51:18 I Epoch 5/400 (E5_U12510_S6405120)
+11-06 21:51:18 I ETA: 11.10 05.43.00 estimated_duration: 3-08:40:13.23 time_since_last_log: 00:12:16.18 time_per_update: 00:00:00.29 
+11-06 21:51:18 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-06 21:51:18 I loss/online/main/E1: 5.826107978820801
+11-06 21:51:18 I loss/online/total/E1: 5.826107978820801
+11-06 21:51:18 I accuracy1/online/main/E1: 0.071403
+11-06 21:51:38 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.21
+11-06 21:51:38 I accuracy1/val/main: 0.183120
+11-06 21:51:38 I loss/val/main: 4.28125
+11-06 22:03:45 I ------------------
+11-06 22:03:45 I Epoch 6/400 (E6_U15012_S7686144)
+11-06 22:03:45 I ETA: 11.10 06.08.11 estimated_duration: 3-09:05:24.31 time_since_last_log: 00:12:26.78 time_per_update: 00:00:00.29 
+11-06 22:03:45 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-06 22:03:45 I loss/online/main/E1: 5.664325714111328
+11-06 22:03:45 I loss/online/total/E1: 5.664325714111328
+11-06 22:03:45 I accuracy1/online/main/E1: 0.091092
+11-06 22:15:48 I ------------------
+11-06 22:15:48 I Epoch 7/400 (E7_U17514_S8967168)
+11-06 22:15:48 I ETA: 11.10 05.59.37 estimated_duration: 3-08:56:50.19 time_since_last_log: 00:12:03.90 time_per_update: 00:00:00.28 
+11-06 22:15:48 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-06 22:15:48 I loss/online/main/E1: 5.52362060546875
+11-06 22:15:48 I loss/online/total/E1: 5.52362060546875
+11-06 22:15:49 I accuracy1/online/main/E1: 0.110046
+11-06 22:28:00 I ------------------
+11-06 22:28:00 I Epoch 8/400 (E8_U20016_S10248192)
+11-06 22:28:00 I ETA: 11.10 06.00.22 estimated_duration: 3-08:57:35.45 time_since_last_log: 00:12:11.14 time_per_update: 00:00:00.29 
+11-06 22:28:00 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-06 22:28:00 I loss/online/main/E1: 5.404432773590088
+11-06 22:28:00 I loss/online/total/E1: 5.404432773590088
+11-06 22:28:00 I accuracy1/online/main/E1: 0.127366
+11-06 22:40:07 I ------------------
+11-06 22:40:07 I Epoch 9/400 (E9_U22518_S11529216)
+11-06 22:40:07 I ETA: 11.10 05.57.37 estimated_duration: 3-08:54:50.79 time_since_last_log: 00:12:07.16 time_per_update: 00:00:00.29 
+11-06 22:40:07 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-06 22:40:07 I loss/online/main/E1: 5.307223320007324
+11-06 22:40:07 I loss/online/total/E1: 5.307223320007324
+11-06 22:40:07 I accuracy1/online/main/E1: 0.142679
+11-06 22:52:12 I ------------------
+11-06 22:52:12 I Epoch 10/400 (E10_U25020_S12810240)
+11-06 22:52:12 I ETA: 11.10 05.54.14 estimated_duration: 3-08:51:27.76 time_since_last_log: 00:12:05.47 time_per_update: 00:00:00.28 
+11-06 22:52:12 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-06 22:52:12 I loss/online/main/E1: 5.213958263397217
+11-06 22:52:12 I loss/online/total/E1: 5.213958263397217
+11-06 22:52:12 I accuracy1/online/main/E1: 0.156562
+11-06 22:52:13 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/vislstm cp=latest model.th
+11-06 22:52:15 I saved vislstm optim to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/vislstm cp=latest optim.th
+11-06 22:52:15 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/trainer cp=latest.th
+11-06 22:52:35 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.20
+11-06 22:52:35 I accuracy1/val/main: 0.338880
+11-06 22:52:35 I loss/val/main: 3.203125
+11-06 23:04:44 I ------------------
+11-06 23:04:44 I Epoch 11/400 (E11_U27522_S14091264)
+11-06 23:04:44 I ETA: 11.10 06.08.46 estimated_duration: 3-09:05:59.70 time_since_last_log: 00:12:31.39 time_per_update: 00:00:00.30 
+11-06 23:04:44 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-06 23:04:44 I loss/online/main/E1: 5.146067142486572
+11-06 23:04:44 I loss/online/total/E1: 5.146067142486572
+11-06 23:04:44 I accuracy1/online/main/E1: 0.167861
+11-06 23:16:52 I ------------------
+11-06 23:16:52 I Epoch 12/400 (E12_U30024_S15372288)
+11-06 23:16:52 I ETA: 11.10 06.06.48 estimated_duration: 3-09:04:01.73 time_since_last_log: 00:12:08.47 time_per_update: 00:00:00.29 
+11-06 23:16:52 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-06 23:16:52 I loss/online/main/E1: 5.086792469024658
+11-06 23:16:52 I loss/online/total/E1: 5.086792469024658
+11-06 23:16:52 I accuracy1/online/main/E1: 0.178327
+11-06 23:29:02 I ------------------
+11-06 23:29:02 I Epoch 13/400 (E13_U32526_S16653312)
+11-06 23:29:02 I ETA: 11.10 06.05.46 estimated_duration: 3-09:02:59.49 time_since_last_log: 00:12:09.56 time_per_update: 00:00:00.29 
+11-06 23:29:02 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-06 23:29:02 I loss/online/main/E1: 5.019204139709473
+11-06 23:29:02 I loss/online/total/E1: 5.019204139709473
+11-06 23:29:02 I accuracy1/online/main/E1: 0.189340
+11-06 23:41:11 I ------------------
+11-06 23:41:11 I Epoch 14/400 (E14_U35028_S17934336)
+11-06 23:41:11 I ETA: 11.10 06.04.44 estimated_duration: 3-09:01:57.76 time_since_last_log: 00:12:09.26 time_per_update: 00:00:00.29 
+11-06 23:41:11 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-06 23:41:11 I loss/online/main/E1: 4.966679573059082
+11-06 23:41:11 I loss/online/total/E1: 4.966679573059082
+11-06 23:41:11 I accuracy1/online/main/E1: 0.198000
+11-06 23:53:20 I ------------------
+11-06 23:53:20 I Epoch 15/400 (E15_U37530_S19215360)
+11-06 23:53:20 I ETA: 11.10 06.03.31 estimated_duration: 3-09:00:44.57 time_since_last_log: 00:12:08.55 time_per_update: 00:00:00.29 
+11-06 23:53:20 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-06 23:53:20 I loss/online/main/E1: 4.921867370605469
+11-06 23:53:20 I loss/online/total/E1: 4.921867370605469
+11-06 23:53:20 I accuracy1/online/main/E1: 0.206340
+11-06 23:53:40 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.20
+11-06 23:53:40 I accuracy1/val/main: 0.413320
+11-06 23:53:40 I loss/val/main: 2.765625
+11-07 00:05:48 I ------------------
+11-07 00:05:48 I Epoch 16/400 (E16_U40032_S20496384)
+11-07 00:05:48 I ETA: 11.10 06.11.24 estimated_duration: 3-09:08:37.41 time_since_last_log: 00:12:28.71 time_per_update: 00:00:00.29 
+11-07 00:05:48 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 00:05:48 I loss/online/main/E1: 4.882613182067871
+11-07 00:05:48 I loss/online/total/E1: 4.882613182067871
+11-07 00:05:48 I accuracy1/online/main/E1: 0.213672
+11-07 00:17:49 I ------------------
+11-07 00:17:49 I Epoch 17/400 (E17_U42534_S21777408)
+11-07 00:17:49 I ETA: 11.10 06.06.52 estimated_duration: 3-09:04:05.80 time_since_last_log: 00:12:01.23 time_per_update: 00:00:00.28 
+11-07 00:17:49 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 00:17:49 I loss/online/main/E1: 4.8197174072265625
+11-07 00:17:49 I loss/online/total/E1: 4.8197174072265625
+11-07 00:17:49 I accuracy1/online/main/E1: 0.222097
+11-07 00:29:55 I ------------------
+11-07 00:29:55 I Epoch 18/400 (E18_U45036_S23058432)
+11-07 00:29:55 I ETA: 11.10 06.04.29 estimated_duration: 3-09:01:42.56 time_since_last_log: 00:12:05.34 time_per_update: 00:00:00.28 
+11-07 00:29:55 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 00:29:55 I loss/online/main/E1: 4.776709079742432
+11-07 00:29:55 I loss/online/total/E1: 4.776709079742432
+11-07 00:29:55 I accuracy1/online/main/E1: 0.230391
+11-07 00:42:04 I ------------------
+11-07 00:42:04 I Epoch 19/400 (E19_U47538_S24339456)
+11-07 00:42:04 I ETA: 11.10 06.03.53 estimated_duration: 3-09:01:06.29 time_since_last_log: 00:12:09.44 time_per_update: 00:00:00.29 
+11-07 00:42:04 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 00:42:04 I loss/online/main/E1: 4.744836807250977
+11-07 00:42:04 I loss/online/total/E1: 4.744836807250977
+11-07 00:42:04 I accuracy1/online/main/E1: 0.236355
+11-07 00:54:08 I ------------------
+11-07 00:54:08 I Epoch 20/400 (E20_U50040_S25620480)
+11-07 00:54:08 I ETA: 11.10 06.01.11 estimated_duration: 3-08:58:24.87 time_since_last_log: 00:12:03.30 time_per_update: 00:00:00.28 
+11-07 00:54:08 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 00:54:08 I loss/online/main/E1: 4.709531307220459
+11-07 00:54:08 I loss/online/total/E1: 4.709531307220459
+11-07 00:54:08 I accuracy1/online/main/E1: 0.241608
+11-07 00:54:08 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/vislstm cp=latest model.th
+11-07 00:54:10 I saved vislstm optim to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/vislstm cp=latest optim.th
+11-07 00:54:10 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/trainer cp=latest.th
+11-07 00:54:30 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.20
+11-07 00:54:30 I accuracy1/val/main: 0.450720
+11-07 00:54:30 I loss/val/main: 2.53125
+11-07 01:06:36 I ------------------
+11-07 01:06:36 I Epoch 21/400 (E21_U52542_S26901504)
+11-07 01:06:36 I ETA: 11.10 06.07.06 estimated_duration: 3-09:04:19.50 time_since_last_log: 00:12:28.36 time_per_update: 00:00:00.29 
+11-07 01:06:36 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 01:06:36 I loss/online/main/E1: 4.69534969329834
+11-07 01:06:36 I loss/online/total/E1: 4.69534969329834
+11-07 01:06:36 I accuracy1/online/main/E1: 0.245623
+11-07 01:18:41 I ------------------
+11-07 01:18:41 I Epoch 22/400 (E22_U55044_S28182528)
+11-07 01:18:41 I ETA: 11.10 06.04.56 estimated_duration: 3-09:02:09.69 time_since_last_log: 00:12:04.64 time_per_update: 00:00:00.28 
+11-07 01:18:41 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 01:18:41 I loss/online/main/E1: 4.661667346954346
+11-07 01:18:41 I loss/online/total/E1: 4.661667346954346
+11-07 01:18:41 I accuracy1/online/main/E1: 0.251141
+11-07 01:30:52 I ------------------
+11-07 01:30:52 I Epoch 23/400 (E23_U57546_S29463552)
+11-07 01:30:52 I ETA: 11.10 06.04.56 estimated_duration: 3-09:02:10.07 time_since_last_log: 00:12:11.17 time_per_update: 00:00:00.29 
+11-07 01:30:52 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 01:30:52 I loss/online/main/E1: 4.630453586578369
+11-07 01:30:52 I loss/online/total/E1: 4.630453586578369
+11-07 01:30:52 I accuracy1/online/main/E1: 0.256683
+11-07 01:43:00 I ------------------
+11-07 01:43:00 I Epoch 24/400 (E24_U60048_S30744576)
+11-07 01:43:00 I ETA: 11.10 06.04.02 estimated_duration: 3-09:01:15.81 time_since_last_log: 00:12:08.02 time_per_update: 00:00:00.29 
+11-07 01:43:00 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 01:43:00 I loss/online/main/E1: 4.610532760620117
+11-07 01:43:00 I loss/online/total/E1: 4.610532760620117
+11-07 01:43:00 I accuracy1/online/main/E1: 0.260460
+11-07 01:55:06 I ------------------
+11-07 01:55:06 I Epoch 25/400 (E25_U62550_S32025600)
+11-07 01:55:06 I ETA: 11.10 06.02.48 estimated_duration: 3-09:00:02.03 time_since_last_log: 00:12:06.57 time_per_update: 00:00:00.29 
+11-07 01:55:06 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 01:55:06 I loss/online/main/E1: 4.560952186584473
+11-07 01:55:06 I loss/online/total/E1: 4.560952186584473
+11-07 01:55:06 I accuracy1/online/main/E1: 0.266768
+11-07 01:55:27 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.20
+11-07 01:55:27 I accuracy1/val/main: 0.488280
+11-07 01:55:27 I loss/val/main: 2.34375
+11-07 02:07:35 I ------------------
+11-07 02:07:35 I Epoch 26/400 (E26_U65052_S33306624)
+11-07 02:07:35 I ETA: 11.10 06.07.38 estimated_duration: 3-09:04:51.57 time_since_last_log: 00:12:28.97 time_per_update: 00:00:00.29 
+11-07 02:07:35 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 02:07:35 I loss/online/main/E1: 4.5511016845703125
+11-07 02:07:35 I loss/online/total/E1: 4.5511016845703125
+11-07 02:07:35 I accuracy1/online/main/E1: 0.270237
+11-07 02:19:39 I ------------------
+11-07 02:19:39 I Epoch 27/400 (E27_U67554_S34587648)
+11-07 02:19:39 I ETA: 11.10 06.05.37 estimated_duration: 3-09:02:50.55 time_since_last_log: 00:12:03.67 time_per_update: 00:00:00.28 
+11-07 02:19:39 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 02:19:39 I loss/online/main/E1: 4.519779682159424
+11-07 02:19:39 I loss/online/total/E1: 4.519779682159424
+11-07 02:19:39 I accuracy1/online/main/E1: 0.274804
+11-07 02:31:43 I ------------------
+11-07 02:31:43 I Epoch 28/400 (E28_U70056_S35868672)
+11-07 02:31:43 I ETA: 11.10 06.03.44 estimated_duration: 3-09:00:57.86 time_since_last_log: 00:12:03.62 time_per_update: 00:00:00.28 
+11-07 02:31:43 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 02:31:43 I loss/online/main/E1: 4.5114946365356445
+11-07 02:31:43 I loss/online/total/E1: 4.5114946365356445
+11-07 02:31:43 I accuracy1/online/main/E1: 0.277656
+11-07 02:43:52 I ------------------
+11-07 02:43:52 I Epoch 29/400 (E29_U72558_S37149696)
+11-07 02:43:52 I ETA: 11.10 06.03.25 estimated_duration: 3-09:00:38.48 time_since_last_log: 00:12:09.61 time_per_update: 00:00:00.29 
+11-07 02:43:52 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 02:43:52 I loss/online/main/E1: 4.4899468421936035
+11-07 02:43:52 I loss/online/total/E1: 4.4899468421936035
+11-07 02:43:52 I accuracy1/online/main/E1: 0.280522
+11-07 02:56:02 I ------------------
+11-07 02:56:02 I Epoch 30/400 (E30_U75060_S38430720)
+11-07 02:56:02 I ETA: 11.10 06.03.04 estimated_duration: 3-09:00:17.58 time_since_last_log: 00:12:09.40 time_per_update: 00:00:00.29 
+11-07 02:56:02 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 02:56:02 I loss/online/main/E1: 4.464476585388184
+11-07 02:56:02 I loss/online/total/E1: 4.464476585388184
+11-07 02:56:02 I accuracy1/online/main/E1: 0.284983
+11-07 02:56:02 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/vislstm cp=latest model.th
+11-07 02:56:04 I saved vislstm optim to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/vislstm cp=latest optim.th
+11-07 02:56:04 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/trainer cp=latest.th
+11-07 02:56:24 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.20
+11-07 02:56:24 I accuracy1/val/main: 0.508620
+11-07 02:56:24 I loss/val/main: 2.234375
+11-07 03:08:32 I ------------------
+11-07 03:08:32 I Epoch 31/400 (E31_U77562_S39711744)
+11-07 03:08:32 I ETA: 11.10 06.07.17 estimated_duration: 3-09:04:30.47 time_since_last_log: 00:12:29.88 time_per_update: 00:00:00.29 
+11-07 03:08:32 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 03:08:32 I loss/online/main/E1: 4.447037696838379
+11-07 03:08:32 I loss/online/total/E1: 4.447037696838379
+11-07 03:08:32 I accuracy1/online/main/E1: 0.287895
+11-07 03:20:33 I ------------------
+11-07 03:20:33 I Epoch 32/400 (E32_U80064_S40992768)
+11-07 03:20:33 I ETA: 11.10 06.05.09 estimated_duration: 3-09:02:22.67 time_since_last_log: 00:12:01.57 time_per_update: 00:00:00.28 
+11-07 03:20:33 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 03:20:33 I loss/online/main/E1: 4.429111480712891
+11-07 03:20:33 I loss/online/total/E1: 4.429111480712891
+11-07 03:20:33 I accuracy1/online/main/E1: 0.290833
+11-07 03:32:44 I ------------------
+11-07 03:32:44 I Epoch 33/400 (E33_U82566_S42273792)
+11-07 03:32:44 I ETA: 11.10 06.05.01 estimated_duration: 3-09:02:14.27 time_since_last_log: 00:12:10.51 time_per_update: 00:00:00.29 
+11-07 03:32:44 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 03:32:44 I loss/online/main/E1: 4.411767959594727
+11-07 03:32:44 I loss/online/total/E1: 4.411767959594727
+11-07 03:32:44 I accuracy1/online/main/E1: 0.294157
+11-07 03:44:49 I ------------------
+11-07 03:44:49 I Epoch 34/400 (E34_U85068_S43554816)
+11-07 03:44:49 I ETA: 11.10 06.03.56 estimated_duration: 3-09:01:09.38 time_since_last_log: 00:12:05.79 time_per_update: 00:00:00.29 
+11-07 03:44:49 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 03:44:49 I loss/online/main/E1: 4.380529403686523
+11-07 03:44:49 I loss/online/total/E1: 4.380529403686523
+11-07 03:44:49 I accuracy1/online/main/E1: 0.298724
+11-07 03:57:01 I ------------------
+11-07 03:57:01 I Epoch 35/400 (E35_U87570_S44835840)
+11-07 03:57:01 I ETA: 11.10 06.04.03 estimated_duration: 3-09:01:16.57 time_since_last_log: 00:12:11.61 time_per_update: 00:00:00.29 
+11-07 03:57:01 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 03:57:01 I loss/online/main/E1: 4.384158134460449
+11-07 03:57:01 I loss/online/total/E1: 4.384158134460449
+11-07 03:57:01 I accuracy1/online/main/E1: 0.299173
+11-07 03:57:21 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.20
+11-07 03:57:21 I accuracy1/val/main: 0.521760
+11-07 03:57:21 I loss/val/main: 2.15625
+11-07 04:09:25 I ------------------
+11-07 04:09:25 I Epoch 36/400 (E36_U90072_S46116864)
+11-07 04:09:25 I ETA: 11.10 06.06.34 estimated_duration: 3-09:03:47.46 time_since_last_log: 00:12:24.25 time_per_update: 00:00:00.29 
+11-07 04:09:25 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 04:09:25 I loss/online/main/E1: 4.381510257720947
+11-07 04:09:25 I loss/online/total/E1: 4.381510257720947
+11-07 04:09:25 I accuracy1/online/main/E1: 0.301107
+11-07 04:21:35 I ------------------
+11-07 04:21:35 I Epoch 37/400 (E37_U92574_S47397888)
+11-07 04:21:35 I ETA: 11.10 06.06.16 estimated_duration: 3-09:03:29.73 time_since_last_log: 00:12:09.79 time_per_update: 00:00:00.29 
+11-07 04:21:35 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 04:21:35 I loss/online/main/E1: 4.361128330230713
+11-07 04:21:35 I loss/online/total/E1: 4.361128330230713
+11-07 04:21:35 I accuracy1/online/main/E1: 0.304475
+11-07 04:33:43 I ------------------
+11-07 04:33:43 I Epoch 38/400 (E38_U95076_S48678912)
+11-07 04:33:43 I ETA: 11.10 06.05.38 estimated_duration: 3-09:02:51.90 time_since_last_log: 00:12:07.84 time_per_update: 00:00:00.29 
+11-07 04:33:43 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 04:33:43 I loss/online/main/E1: 4.3363752365112305
+11-07 04:33:43 I loss/online/total/E1: 4.3363752365112305
+11-07 04:33:43 I accuracy1/online/main/E1: 0.307343
+11-07 04:45:50 I ------------------
+11-07 04:45:50 I Epoch 39/400 (E39_U97578_S49959936)
+11-07 04:45:50 I ETA: 11.10 06.04.55 estimated_duration: 3-09:02:08.52 time_since_last_log: 00:12:07.12 time_per_update: 00:00:00.29 
+11-07 04:45:50 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 04:45:50 I loss/online/main/E1: 4.319828510284424
+11-07 04:45:50 I loss/online/total/E1: 4.319828510284424
+11-07 04:45:50 I accuracy1/online/main/E1: 0.310587
+11-07 04:58:03 I ------------------
+11-07 04:58:03 I Epoch 40/400 (E40_U100080_S51240960)
+11-07 04:58:03 I ETA: 11.10 06.05.11 estimated_duration: 3-09:02:25.03 time_since_last_log: 00:12:12.76 time_per_update: 00:00:00.29 
+11-07 04:58:03 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 04:58:03 I loss/online/main/E1: 4.316189765930176
+11-07 04:58:03 I loss/online/total/E1: 4.316189765930176
+11-07 04:58:03 I accuracy1/online/main/E1: 0.312622
+11-07 04:58:04 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/vislstm cp=latest model.th
+11-07 04:58:05 I saved vislstm optim to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/vislstm cp=latest optim.th
+11-07 04:58:05 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/trainer cp=latest.th
+11-07 04:58:25 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.20
+11-07 04:58:25 I accuracy1/val/main: 0.537600
+11-07 04:58:25 I loss/val/main: 2.046875
+11-07 05:10:35 I ------------------
+11-07 05:10:35 I Epoch 41/400 (E41_U102582_S52521984)
+11-07 05:10:35 I ETA: 11.10 06.08.38 estimated_duration: 3-09:05:51.71 time_since_last_log: 00:12:31.91 time_per_update: 00:00:00.30 
+11-07 05:10:35 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 05:10:35 I loss/online/main/E1: 4.2914557456970215
+11-07 05:10:35 I loss/online/total/E1: 4.2914557456970215
+11-07 05:10:35 I accuracy1/online/main/E1: 0.316733
+11-07 05:22:39 I ------------------
+11-07 05:22:39 I Epoch 42/400 (E42_U105084_S53803008)
+11-07 05:22:39 I ETA: 11.10 06.07.22 estimated_duration: 3-09:04:35.99 time_since_last_log: 00:12:03.92 time_per_update: 00:00:00.28 
+11-07 05:22:39 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 05:22:39 I loss/online/main/E1: 4.285332202911377
+11-07 05:22:39 I loss/online/total/E1: 4.285332202911377
+11-07 05:22:39 I accuracy1/online/main/E1: 0.317791
+11-07 05:34:46 I ------------------
+11-07 05:34:46 I Epoch 43/400 (E43_U107586_S55084032)
+11-07 05:34:46 I ETA: 11.10 06.06.46 estimated_duration: 3-09:04:00.10 time_since_last_log: 00:12:07.74 time_per_update: 00:00:00.29 
+11-07 05:34:46 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 05:34:46 I loss/online/main/E1: 4.270840167999268
+11-07 05:34:46 I loss/online/total/E1: 4.270840167999268
+11-07 05:34:46 I accuracy1/online/main/E1: 0.318985
+11-07 05:46:56 I ------------------
+11-07 05:46:56 I Epoch 44/400 (E44_U110088_S56365056)
+11-07 05:46:56 I ETA: 11.10 06.06.26 estimated_duration: 3-09:03:39.39 time_since_last_log: 00:12:09.19 time_per_update: 00:00:00.29 
+11-07 05:46:56 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 05:46:56 I loss/online/main/E1: 4.254003524780273
+11-07 05:46:56 I loss/online/total/E1: 4.254003524780273
+11-07 05:46:56 I accuracy1/online/main/E1: 0.322023
+11-07 05:59:05 I ------------------
+11-07 05:59:05 I Epoch 45/400 (E45_U112590_S57646080)
+11-07 05:59:05 I ETA: 11.10 06.06.09 estimated_duration: 3-09:03:22.61 time_since_last_log: 00:12:09.52 time_per_update: 00:00:00.29 
+11-07 05:59:05 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 05:59:05 I loss/online/main/E1: 4.248715877532959
+11-07 05:59:05 I loss/online/total/E1: 4.248715877532959
+11-07 05:59:05 I accuracy1/online/main/E1: 0.323110
+11-07 05:59:25 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.20
+11-07 05:59:25 I accuracy1/val/main: 0.551900
+11-07 05:59:25 I loss/val/main: 1.9765625
+11-07 06:11:33 I ------------------
+11-07 06:11:33 I Epoch 46/400 (E46_U115092_S58927104)
+11-07 06:11:33 I ETA: 11.10 06.08.37 estimated_duration: 3-09:05:51.11 time_since_last_log: 00:12:28.08 time_per_update: 00:00:00.29 
+11-07 06:11:33 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 06:11:33 I loss/online/main/E1: 4.230494499206543
+11-07 06:11:33 I loss/online/total/E1: 4.230494499206543
+11-07 06:11:33 I accuracy1/online/main/E1: 0.326553
+11-07 06:23:40 I ------------------
+11-07 06:23:40 I Epoch 47/400 (E47_U117594_S60208128)
+11-07 06:23:40 I ETA: 11.10 06.07.59 estimated_duration: 3-09:05:12.33 time_since_last_log: 00:12:07.23 time_per_update: 00:00:00.29 
+11-07 06:23:40 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 06:23:40 I loss/online/main/E1: 4.228833198547363
+11-07 06:23:40 I loss/online/total/E1: 4.228833198547363
+11-07 06:23:40 I accuracy1/online/main/E1: 0.327646
+11-07 06:35:46 I ------------------
+11-07 06:35:46 I Epoch 48/400 (E48_U120096_S61489152)
+11-07 06:35:46 I ETA: 11.10 06.07.06 estimated_duration: 3-09:04:20.01 time_since_last_log: 00:12:05.44 time_per_update: 00:00:00.28 
+11-07 06:35:46 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 06:35:46 I loss/online/main/E1: 4.2076096534729
+11-07 06:35:46 I loss/online/total/E1: 4.2076096534729
+11-07 06:35:46 I accuracy1/online/main/E1: 0.330127
+11-07 06:47:49 I ------------------
+11-07 06:47:49 I Epoch 49/400 (E49_U122598_S62770176)
+11-07 06:47:49 I ETA: 11.10 06.05.55 estimated_duration: 3-09:03:08.71 time_since_last_log: 00:12:02.90 time_per_update: 00:00:00.28 
+11-07 06:47:49 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 06:47:49 I loss/online/main/E1: 4.188681602478027
+11-07 06:47:49 I loss/online/total/E1: 4.188681602478027
+11-07 06:47:49 I accuracy1/online/main/E1: 0.332489
+11-07 06:59:52 I ------------------
+11-07 06:59:52 I Epoch 50/400 (E50_U125100_S64051200)
+11-07 06:59:52 I ETA: 11.10 06.04.49 estimated_duration: 3-09:02:02.81 time_since_last_log: 00:12:03.20 time_per_update: 00:00:00.28 
+11-07 06:59:52 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 06:59:52 I loss/online/main/E1: 4.182337760925293
+11-07 06:59:52 I loss/online/total/E1: 4.182337760925293
+11-07 06:59:52 I accuracy1/online/main/E1: 0.334667
+11-07 06:59:53 I saved vislstm to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/vislstm cp=latest model.th
+11-07 06:59:54 I saved vislstm optim to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/vislstm cp=latest optim.th
+11-07 06:59:54 I saved trainer state_dict to /home/beknur.kalmakhanbet/save/in1k/jhhl87yo/checkpoints/trainer cp=latest.th
+11-07 07:00:15 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.20
+11-07 07:00:15 I accuracy1/val/main: 0.564100
+11-07 07:00:15 I loss/val/main: 1.921875
+11-07 07:12:19 I ------------------
+11-07 07:12:19 I Epoch 51/400 (E51_U127602_S65332224)
+11-07 07:12:19 I ETA: 11.10 06.06.56 estimated_duration: 3-09:04:09.49 time_since_last_log: 00:12:27.01 time_per_update: 00:00:00.29 
+11-07 07:12:19 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 07:12:19 I loss/online/main/E1: 4.189296245574951
+11-07 07:12:19 I loss/online/total/E1: 4.189296245574951
+11-07 07:12:19 I accuracy1/online/main/E1: 0.333344
+11-07 07:24:25 I ------------------
+11-07 07:24:25 I Epoch 52/400 (E52_U130104_S66613248)
+11-07 07:24:25 I ETA: 11.10 06.06.16 estimated_duration: 3-09:03:30.07 time_since_last_log: 00:12:06.41 time_per_update: 00:00:00.29 
+11-07 07:24:25 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 07:24:25 I loss/online/main/E1: 4.168435573577881
+11-07 07:24:25 I loss/online/total/E1: 4.168435573577881
+11-07 07:24:25 I accuracy1/online/main/E1: 0.336639
+11-07 07:36:34 I ------------------
+11-07 07:36:34 I Epoch 53/400 (E53_U132606_S67894272)
+11-07 07:36:34 I ETA: 11.10 06.05.58 estimated_duration: 3-09:03:11.70 time_since_last_log: 00:12:08.95 time_per_update: 00:00:00.29 
+11-07 07:36:34 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 07:36:34 I loss/online/main/E1: 4.1612467765808105
+11-07 07:36:34 I loss/online/total/E1: 4.1612467765808105
+11-07 07:36:34 I accuracy1/online/main/E1: 0.338058
+11-07 07:48:45 I ------------------
+11-07 07:48:45 I Epoch 54/400 (E54_U135108_S69175296)
+11-07 07:48:45 I ETA: 11.10 06.05.51 estimated_duration: 3-09:03:05.12 time_since_last_log: 00:12:10.43 time_per_update: 00:00:00.29 
+11-07 07:48:45 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 07:48:45 I loss/online/main/E1: 4.147950172424316
+11-07 07:48:45 I loss/online/total/E1: 4.147950172424316
+11-07 07:48:45 I accuracy1/online/main/E1: 0.339653
+11-07 08:00:54 I ------------------
+11-07 08:00:54 I Epoch 55/400 (E55_U137610_S70456320)
+11-07 08:00:54 I ETA: 11.10 06.05.37 estimated_duration: 3-09:02:50.18 time_since_last_log: 00:12:09.26 time_per_update: 00:00:00.29 
+11-07 08:00:54 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 08:00:54 I loss/online/main/E1: 4.134622097015381
+11-07 08:00:54 I loss/online/total/E1: 4.134622097015381
+11-07 08:00:54 I accuracy1/online/main/E1: 0.342448
+11-07 08:01:14 I profiling/offline_accuracy_callback/val.x.class: data=0.00 forward=0.20
+11-07 08:01:14 I accuracy1/val/main: 0.571520
+11-07 08:01:14 I loss/val/main: 1.8828125
+11-07 08:13:20 I ------------------
+11-07 08:13:20 I Epoch 56/400 (E56_U140112_S71737344)
+11-07 08:13:20 I ETA: 11.10 06.07.26 estimated_duration: 3-09:04:39.64 time_since_last_log: 00:12:26.34 time_per_update: 00:00:00.29 
+11-07 08:13:20 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 08:13:20 I loss/online/main/E1: 4.1454620361328125
+11-07 08:13:20 I loss/online/total/E1: 4.1454620361328125
+11-07 08:13:20 I accuracy1/online/main/E1: 0.341102
+11-07 08:25:28 I ------------------
+11-07 08:25:28 I Epoch 57/400 (E57_U142614_S73018368)
+11-07 08:25:28 I ETA: 11.10 06.07.00 estimated_duration: 3-09:04:13.95 time_since_last_log: 00:12:07.92 time_per_update: 00:00:00.29 
+11-07 08:25:28 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 08:25:28 I loss/online/main/E1: 4.124284744262695
+11-07 08:25:28 I loss/online/total/E1: 4.124284744262695
+11-07 08:25:28 I accuracy1/online/main/E1: 0.344688
+11-07 08:37:37 I ------------------
+11-07 08:37:37 I Epoch 58/400 (E58_U145116_S74299392)
+11-07 08:37:37 I ETA: 11.10 06.06.42 estimated_duration: 3-09:03:55.98 time_since_last_log: 00:12:08.89 time_per_update: 00:00:00.29 
+11-07 08:37:37 I data=[0.00, 0.00, 0.00, 0.00] update=[0.28, 0.28, 0.28, 0.28]
+11-07 08:37:37 I loss/online/main/E1: 4.105542182922363
+11-07 08:37:37 I loss/online/total/E1: 4.105542182922363
+11-07 08:37:37 I accuracy1/online/main/E1: 0.347441
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd-gpu-49: error: *** JOB 153731 ON gpu-49 CANCELLED AT 2025-11-07T08:46:45 DUE TO TIME LIMIT ***
+slurmstepd-gpu-49: error: *** STEP 153731.0 ON gpu-49 CANCELLED AT 2025-11-07T08:46:45 DUE TO TIME LIMIT ***

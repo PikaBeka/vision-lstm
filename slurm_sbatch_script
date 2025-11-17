@@ -23,6 +23,6 @@ sleep infinity
 # # add all hostnames info for logging
 # export ALL_HOST_NAMES=$(scontrol show hostnames "$SLURM_JOB_NODELIST")
 
-srun python src/main_train.py --hp src/vislstm/yamls/pretrain/vil/80M_res224finetuning_e5.yaml
+srun python src/main_train.py --hp --resume_stage_id jhhl87yo --resume_checkpoint latest src/vislstm/yamls/pretrain/vil/80M_res224finetuning_e5.yaml
     # --accelerator gpu
 # python src/main_sbatch.py --time 24:00:00 --nodes 1 --hp src/vislstm/yamls/pretrain/vil/lstm_6M16_e800_bialter_bilatflat_conv2d3_lr1e3_res192_bias.yaml # You job script or command
