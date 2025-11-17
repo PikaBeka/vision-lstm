@@ -246,7 +246,7 @@ class minLSTMCell(nn.Module):
         """
         B, S, _ = x_t.shape
 
-        # x_t = einops.rearrange(x_t, "b s d -> b d s")  # Reshape for Conv1d
+        x_t = einops.rearrange(x_t, "b s d -> b d s")  # Reshape for Conv1d
 
         f_gate = self.linear_f(x_t)
         i_gate = self.linear_i(x_t)
@@ -256,9 +256,9 @@ class minLSTMCell(nn.Module):
         # f_gate = self.mixer.forward_f(x_t)
         # hidden = self.mixer.forward_h(x_t)
 
-        # f_gate = einops.rearrange(f_gate, "b d s -> b s d")
-        # i_gate = einops.rearrange(i_gate, "b d s -> b s d")
-        # hidden = einops.rearrange(hidden, "b d s -> b s d")
+        f_gate = einops.rearrange(f_gate, "b d s -> b s d")
+        i_gate = einops.rearrange(i_gate, "b d s -> b s d")
+        hidden = einops.rearrange(hidden, "b d s -> b s d")
 
         diff = F.softplus(-f_gate) - F.softplus(-i_gate)
         log_f = -F.softplus(diff)
@@ -516,8 +516,8 @@ class minLSTMBlcok(nn.Module):
         self.init_weights = init_weights
 
         self.drop_path = DropPath(drop_prob=drop_path)
-        self.norm = DynamicTanh(normalized_shape=dim, channels_last=True)
-        # self.norm = LayerNorm(ndim=dim, weight=True, bias=norm_bias)
+        # self.norm = DynamicTanh(normalized_shape=dim, channels_last=True)
+        self.norm = LayerNorm(ndim=dim, weight=True, bias=norm_bias)
         self.layer = minLSTM(
             dim,
             direction,
@@ -630,8 +630,8 @@ class VisionMinLSTM(nn.Module):
         self.layers = nn.ModuleList([minLSTMPair(dim) for _ in range(depth)])
 
         # Normalization
-        self.norm = DynamicTanh(normalized_shape=dim, channels_last=True)
-        # self.norm = LayerNorm(dim, bias=norm_bias, eps=1e-6)
+        # self.norm = DynamicTanh(normalized_shape=dim, channels_last=True)
+        self.norm = LayerNorm(dim, bias=norm_bias, eps=1e-6)
 
         if pooling == "bilateral_flatten" and mode == "classifier":
             head_dim = dim * 2
@@ -639,9 +639,9 @@ class VisionMinLSTM(nn.Module):
             head_dim = dim
 
         if legacy_norm:
-            self.legacy_norm = DynamicTanh(
-                normalized_shape=head_dim, channels_last=True)
-            # self.legacy_norm = nn.LayerNorm(head_dim)
+            # self.legacy_norm = DynamicTanh(
+            #     normalized_shape=head_dim, channels_last=True)
+            self.legacy_norm = nn.LayerNorm(head_dim)
         else:
             self.legacy_norm = nn.Identity()
 

@@ -1,101 +1,72 @@
-from vision_lstm import VisionLSTM2
+from vision_lstm.vision_lstm2 import VisionLSTM2
 from vision_lstm.vision_minlstm import VisionMinLSTM
 import torch
-import torchvision
-import torchvision.transforms as transforms
-import torch.nn as nn
-import torch.optim as optim
-from torch.utils.data import DataLoader
-from tqdm.auto import tqdm
-import torch.nn.functional as F
-from torchvision.datasets import CIFAR10
-from torchvision.transforms import ToTensor
-import sys
-import torch.profiler
-# from fvcore.nn import FlopCountAnalysis, parameter_count_table
 import time
-from ptflops import get_model_complexity_info
+from contextlib import nullcontext
+from fvcore.nn import FlopCountAnalysis, parameter_count_table
+from torchsummary import summary
 
-# Device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f'Device: {device}')
 
-# Define data augmentations for training
-train_transforms = transforms.Compose([
-    # Randomly crop the image to 32x32 with padding
-    transforms.RandomCrop(32, padding=4),
-    transforms.RandomHorizontalFlip(),     # Randomly flip the image horizontally
-    ToTensor(),                            # Convert the image to a tensor
-    # Normalize with CIFAR-10 means and stds
-    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.247, 0.243, 0.261))
-])
+# reproducible-ish perf knobs
+torch.backends.cuda.matmul.allow_tf32 = True
+torch.backends.cudnn.allow_tf32 = True
+torch.set_float32_matmul_precision("high")  # PyTorch 2.x
+torch.backends.cudnn.benchmark = True       # fixed shape speedup
 
-# Define transforms for testing (no augmentation)
-test_transforms = transforms.Compose([
-    ToTensor(),
-    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.247, 0.243, 0.261))
-])
+# ----- build your model here -----
+model = VisionLSTM2(
+    dim=384, input_shape=(3, 224, 224), patch_size=16, depth=12,
+    pooling='bilateral_avg', output_shape=(1000,)
+).to(device).eval()
 
-# Create datasets with augmentations
-train_dataset = CIFAR10(root="./data_cifar", train=True,
-                        download=True, transform=train_transforms)
-test_dataset = CIFAR10(root="./data_cifar", train=False,
-                       download=False, transform=test_transforms)
-print(f"train_dataset length: {len(train_dataset)}")
-print(f"test_dataset length: {len(test_dataset)}")
+# model = VisionMinLSTM(
+#     dim=384, input_shape=(3, 224, 224), patch_size=16, depth=12,
+#     pooling='bilateral_avg', output_shape=(1000,)
+# ).to(device).eval()
 
-print('-------Setting hyperparameters----------')
-# hyperparameters
-batch_size = 256
-epochs = 200
-lr = 1.0e-5
-weight_decay = 0.05
+flops = FlopCountAnalysis(model, torch.randn(1, 3, 224, 224, device=device).to(
+    memory_format=torch.channels_last))
+print("Total FLOPs:", flops.total())
+
+print(parameter_count_table(model))
+
+# choose dtype + autocast for realistic inference
+amp_ctx = torch.autocast(
+    device_type="cuda", dtype=torch.float16) if device.type == "cuda" else nullcontext()
 
 
-# setup dataloaders
-print('-------Creating dataloaders----------')
-train_dataloader = DataLoader(
-    train_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
-test_dataloader = DataLoader(test_dataset, batch_size=batch_size)
+def bench(batch, iters_warmup=50, iters_timed=300):
+    x = torch.randn(batch, 3, 224, 224, device=device).to(
+        memory_format=torch.channels_last)
+    # warmup
+    with torch.inference_mode(), amp_ctx:
+        for _ in range(iters_warmup):
+            _ = model(x)
+    if device.type == "cuda":
+        torch.cuda.synchronize()
+
+    # timing with CUDA events
+    starter, ender = torch.cuda.Event(
+        enable_timing=True), torch.cuda.Event(enable_timing=True)
+    times_ms = []
+    with torch.inference_mode(), amp_ctx:
+        for _ in range(iters_timed):
+            starter.record()
+            _ = model(x)
+            ender.record()
+            torch.cuda.synchronize()
+            times_ms.append(starter.elapsed_time(ender))  # ms
+
+    import numpy as np
+    times = np.array(times_ms)
+    avg = times.mean()
+    p50, p90, p99 = np.percentile(times, [50, 90, 99])
+    thr = (batch * 1000.0) / avg
+    return dict(batch=batch, avg_ms=avg, p50_ms=p50, p90_ms=p90, p99_ms=p99, imgs_per_s=thr)
 
 
-# create model
-print('-------Creating model----------')
-# from vision_lstm.vision_minLSTM import VisionMinLSTMConcat
-
-model = VisionMinLSTM(
-    dim=192,
-    input_shape=(3, 32, 32),
-    depth=12,
-    output_shape=(10,),
-    pooling="bilateral_flatten",
-    patch_size=4,
-    drop_path_rate=0.0,
-).to(device)
-
-print(model)
-
-print("MODEL LOADED")
-
-# model = VisionLSTM2(
-#     dim=192,  # latent dimension (192 for ViL-T)
-#     depth=12,  # how many ViL blocks (1 block consists 2 subblocks of a forward and backward block)
-#     patch_size=4,  # patch_size (results in 64 patches for 32x32 images)
-#     input_shape=(3, 32, 32),  # RGB images with resolution 32x32
-#     output_shape=(10,),  # classifier with 10 classes
-#     drop_path_rate=0.0,  # stochastic depth parameter (disabled for ViL-T)
-# ).to(device)
-
-total_time = 0
-batch_size = 16
-test_input = torch.randn(batch_size, 3, 224, 224).to(device)
-
-model.eval()
-for i in range(10000):
-    with torch.no_grad():
-        start = time.time()
-        y_hat = model(test_input)
-        end = time.time()
-        total_time += end - start
-
-print(total_time)
+# run a few meaningful batches
+results = [bench(b) for b in [1, 2, 4, 8, 16, 32]]
+for r in results:
+    print(f"B={r['batch']:>2} | avg {r['avg_ms']:.2f} ms | p50 {r['p50_ms']:.2f} | p90 {r['p90_ms']:.2f} | p99 {r['p99_ms']:.2f} | {r['imgs_per_s']:.1f} img/s")

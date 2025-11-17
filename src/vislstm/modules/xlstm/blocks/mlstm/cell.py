@@ -1,6 +1,8 @@
 # This file is licensed under Apache-2.0
 # Copyright (c) NXAI GmbH and its affiliates 2024
 # Maximilian Beck
+from .backends import parallel_stabilized_simple
+from ...components.init import bias_linspace_init_
 from dataclasses import dataclass
 
 import torch
@@ -56,12 +58,12 @@ class mLSTMCell(nn.Module):
 
         self.backend_fn = parallel_scan_log
 
-        # self.linear_i = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-        #                           kernel_size=3, padding=1, groups=128, bias=False)
-        # self.linear_f = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-        #                           kernel_size=3, padding=1, groups=128, bias=False)
-        # self.linear_h = nn.Conv1d(config.embedding_dim, config.embedding_dim,
-        #                           kernel_size=3, padding=1, groups=128, bias=False)
+        self.linear_i = nn.Conv1d(config.embedding_dim, config.embedding_dim,
+                                  kernel_size=3, padding=1, groups=config.embedding_dim, bias=False)
+        self.linear_f = nn.Conv1d(config.embedding_dim, config.embedding_dim,
+                                  kernel_size=3, padding=1, groups=config.embedding_dim, bias=False)
+        self.linear_h = nn.Conv1d(config.embedding_dim, config.embedding_dim,
+                                  kernel_size=3, padding=1, groups=config.embedding_dim, bias=False)
 
         # self.linear_h = FeedForward(
         #     config.embedding_dim, config.embedding_dim//192)
@@ -70,18 +72,12 @@ class mLSTMCell(nn.Module):
         # self.linear_f = FeedForward(
         #     config.embedding_dim, config.embedding_dim//192)
 
-        self.linear_h = Linear(config.embedding_dim, 2*config.embedding_dim)
-        self.linear_i = Linear(config.embedding_dim, 2*config.embedding_dim)
-        self.linear_f = Linear(config.embedding_dim, 2*config.embedding_dim)
-
-        self.to_out = nn.Linear(2*config.embedding_dim, config.embedding_dim)
-
         self.reset_parameters()
 
     def forward(self, x_t: torch.Tensor, **kwargs) -> torch.Tensor:
         B, S, _ = x_t.shape
 
-        # x_t = einops.rearrange(x_t, "b s d -> b d s")  # Reshape for Conv1d
+        x_t = einops.rearrange(x_t, "b s d -> b d s")  # Reshape for Conv1d
 
         # x_t_norm = self.norm(x_t)
 
@@ -89,9 +85,9 @@ class mLSTMCell(nn.Module):
         i_gate = self.linear_i(x_t)
         hidden = self.linear_h(x_t)
 
-        # f_gate = einops.rearrange(f_gate, "b d s -> b s d")
-        # i_gate = einops.rearrange(i_gate, "b d s -> b s d")
-        # hidden = einops.rearrange(hidden, "b d s -> b s d")
+        f_gate = einops.rearrange(f_gate, "b d s -> b s d")
+        i_gate = einops.rearrange(i_gate, "b d s -> b s d")
+        hidden = einops.rearrange(hidden, "b d s -> b s d")
 
         diff = F.softplus(-f_gate) - F.softplus(-i_gate)
         log_f = -F.softplus(diff)
@@ -107,29 +103,13 @@ class mLSTMCell(nn.Module):
         return self.to_out(out)
 
     def reset_parameters(self):
-        # torch.nn.init.zeros_(self.linear_i.weight)
-        # torch.nn.init.zeros_(self.linear_f.weight)
-        # torch.nn.init.zeros_(self.linear_h.weight)
+        torch.nn.init.zeros_(self.linear_i.weight)
+        torch.nn.init.zeros_(self.linear_f.weight)
+        torch.nn.init.zeros_(self.linear_h.weight)
 
         # self.linear_f.reset_parameters()
         # self.linear_i.reset_parameters()
         # self.linear_h.reset_parameters()
-
-        small_init_init_(self.linear_h.weight, dim=self.config.embedding_dim)
-        if self.linear_h.bias is not None:
-            nn.init.zeros_(self.linear_h.bias)
-
-        small_init_init_(self.linear_i.weight, dim=self.config.embedding_dim)
-        if self.linear_i.bias is not None:
-            nn.init.zeros_(self.linear_i.bias)
-
-        small_init_init_(self.linear_f.weight, dim=self.config.embedding_dim)
-        if self.linear_f.bias is not None:
-            nn.init.zeros_(self.linear_f.bias)
-
-        small_init_init_(self.to_out.weight, dim=self.config.embedding_dim)
-        if self.to_out.bias is not None:
-            nn.init.zeros_(self.to_out.bias)
 
 # # This file is licensed under Apache-2.0
 # # Copyright (c) NXAI GmbH and its affiliates 2024
@@ -162,11 +142,13 @@ class mLSTMCell(nn.Module):
 #         self.igate = nn.Linear(3 * config.embedding_dim, config.num_heads)
 #         self.fgate = nn.Linear(3 * config.embedding_dim, config.num_heads)
 
-#         self.outnorm = MultiHeadLayerNorm(ndim=config.embedding_dim, weight=True, bias=config.bias)
+#         self.outnorm = MultiHeadLayerNorm(
+#             ndim=config.embedding_dim, weight=True, bias=config.bias)
 
 #         self.register_buffer(
 #             "causal_mask",
-#             torch.tril(torch.ones(config.context_length, config.context_length, dtype=torch.bool)),
+#             torch.tril(torch.ones(config.context_length,
+#                        config.context_length, dtype=torch.bool)),
 #             persistent=False,
 #         )
 
@@ -186,9 +168,11 @@ class mLSTMCell(nn.Module):
 
 #         # compute input and forget gate pre-activations
 #         igate_preact = self.igate(if_gate_input)  # (B, S, NH)
-#         igate_preact = igate_preact.transpose(-1, -2).unsqueeze(-1)  # (B, NH, S, 1)
+#         # (B, NH, S, 1)
+#         igate_preact = igate_preact.transpose(-1, -2).unsqueeze(-1)
 #         fgate_preact = self.fgate(if_gate_input)  # (B, S, NH)
-#         fgate_preact = fgate_preact.transpose(-1, -2).unsqueeze(-1)  # (B, NH, S, 1)#
+#         # (B, NH, S, 1)#
+#         fgate_preact = fgate_preact.transpose(-1, -2).unsqueeze(-1)
 
 #         h_state = self.backend_fn(
 #             queries=q,
@@ -200,7 +184,8 @@ class mLSTMCell(nn.Module):
 #         )  # (B, NH, S, DH)
 
 #         h_state_norm = self.outnorm(h_state)  # (B, NH, S, DH)
-#         h_state_norm = h_state_norm.transpose(1, 2).reshape(B, S, -1)  # (B, NH, S, DH) -> (B, S, NH, DH) -> (B, S, H)
+#         h_state_norm = h_state_norm.transpose(1, 2).reshape(
+#             B, S, -1)  # (B, NH, S, DH) -> (B, S, NH, DH) -> (B, S, H)
 
 #         return h_state_norm
 
